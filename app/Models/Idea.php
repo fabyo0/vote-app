@@ -63,9 +63,33 @@ class Idea extends Model
 
     public function isVotedByUser(?User $user): bool
     {
-        return Vote::query()->where('user_id', $user->id)
+        if (!$user) {
+            return false;
+        }
+
+        return Vote::where('user_id', $user->id)
             ->where('idea_id', $this->id)
             ->exists();
+    }
+
+    public function vote(User $user): void
+    {
+        Vote::create([
+            'user_id' => $user->id,
+            'idea_id' => $this->id
+        ]);
+    }
+
+    public function removeVote(User $user): void
+    {
+        $vote = Vote::query()
+            ->where('user_id', $user->id)
+            ->where('idea_id', $this->id)
+            ->first();
+
+        if ($vote) {
+            $vote->delete();
+        }
     }
 
     /*   public function getStatusClasses(): string
