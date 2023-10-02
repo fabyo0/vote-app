@@ -3,14 +3,13 @@
 namespace Tests\Feature;
 
 use App\Http\Livewire\IdeaIndex;
-use App\Http\Livewire\IdeaShow;
+use App\Http\Livewire\IdeasIndex;
 use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -43,80 +42,38 @@ class VoteIndexPageTest extends TestCase
     }
 
 
-    public function test_index_page_correctly_receives_votes_count()
+    public function test_ideas_index_livewire_component_correctly_receives_votes_count()
     {
         $user = User::factory()->create();
         $userB = User::factory()->create();
 
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
 
-        $statusOpen = Status::factory()->create([
-            'name' => 'Open',
-            'classes' => 'bg-gray-200'
-        ]);
+        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
 
         $idea = Idea::factory()->create([
             'user_id' => $user->id,
-            'status_id' => $statusOpen,
-            'category_id' => $categoryOne,
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
             'title' => 'My First Idea',
-            'description' => 'Description for my first idea'
+            'description' => 'Description for my first idea',
         ]);
 
         Vote::factory()->create([
             'idea_id' => $idea->id,
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         Vote::factory()->create([
             'idea_id' => $idea->id,
-            'user_id' => $userB->id
+            'user_id' => $userB->id,
         ]);
 
-        $this->get(route('idea.index', $idea),)
+        Livewire::test(IdeasIndex::class)
             ->assertViewHas('ideas', function ($ideas) {
                 return $ideas->first()->votes_count == 2;
             });
     }
-
-
-    public function test_votes_count_correctly_on_index_page_livewire_component()
-    {
-        $user = User::factory()->create();
-        $userB = User::factory()->create();
-
-        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-
-        $statusOpen = Status::factory()->create([
-            'name' => 'Open',
-            'classes' => 'bg-gray-200'
-        ]);
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'status_id' => $statusOpen,
-            'category_id' => $categoryOne,
-            'title' => 'My First Idea',
-            'description' => 'Description for my first idea'
-        ]);
-
-        Vote::factory()->create([
-            'idea_id' => $idea->id,
-            'user_id' => $user->id
-        ]);
-
-        Vote::factory()->create([
-            'idea_id' => $idea->id,
-            'user_id' => $userB->id
-        ]);
-
-        Livewire::test(IdeaIndex::class, [
-            'idea' => $idea,
-            'votesCount' => 5,
-        ])->assertSet('votesCount', 5)
-            ->assertSeeHtml('<div class="font-semibold text-2xl">5</div>');
-    }
-
 
     public function test_user_who_is_not_logged_in_is_redirected_to_login_page_when_trying_to_vote()
     {
@@ -165,6 +122,9 @@ class VoteIndexPageTest extends TestCase
             'idea_id' => $idea->id
         ]);
 
+        $idea->votes_count = 1;
+        $idea->voted_by_user = 1;
+
         Livewire::
         actingAs($user)
             ->test(IdeaIndex::class, [
@@ -205,13 +165,12 @@ class VoteIndexPageTest extends TestCase
             'user_id' => $user->id,
         ]);
 
-        $response = $this->actingAs($user)->get(route('idea.index'));
-
-        $ideaWithVotes = $response['ideas']->items()[0];
+        $idea->votes_count = 1;
+        $idea->voted_by_user = 1;
 
         Livewire::actingAs($user)
             ->test(IdeaIndex::class, [
-                'idea' => $ideaWithVotes,
+                'idea' => $idea,
                 'votesCount' => 5,
             ])
             ->call('vote')

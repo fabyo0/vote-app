@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
+use App\Exceptions\VoteNotFoundException;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Auth;
 
 class Idea extends Model
 {
@@ -34,6 +33,11 @@ class Idea extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 
 
@@ -74,40 +78,35 @@ class Idea extends Model
 
     public function vote(User $user): void
     {
-        Vote::create([
-            'user_id' => $user->id,
-            'idea_id' => $this->id
-        ]);
+        if ($this->isVotedByUser($user)) {
+            return;
+        }
+        $this->votes()->attach($user->id);
     }
+
+
+    /**
+     * @throws VoteNotFoundException
+     */
+    /*  public function removeVote(User $user): void
+      {
+          $vote = Vote::query()
+              ->where('user_id', $user->id)
+              ->where('idea_id', $this->id)
+              ->first();
+
+          if ($vote) {
+              $vote->delete();
+          }
+          else{
+              throw new VoteNotFoundException;
+          }
+      }*/
+
 
     public function removeVote(User $user): void
     {
-        $vote = Vote::query()
-            ->where('user_id', $user->id)
-            ->where('idea_id', $this->id)
-            ->first();
-
-        if ($vote) {
-            $vote->delete();
-        }
+        $this->votes()->detach($user);
     }
-
-    /*   public function getStatusClasses(): string
-       {
-           $allowedStatus = [
-               'Open' => 'bg-gray-200',
-               'Considering' => 'bg-purple text-white',
-               'In Progress' => 'bg-yellow text-white',
-               'Implemented' => 'bg-green text-white',
-               'Closed' => 'bg-red text-white'
-           ];
-
-           return $allowedStatus[$this->status->name];
-       }*/
-
-    /*  public function getRouteKeyName(): string
-    {
-    return 'slug';
-    }*/
 
 }

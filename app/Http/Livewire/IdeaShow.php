@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Exceptions\DuplicateVoteException;
+use App\Exceptions\VoteNotFoundException;
 use App\Models\Idea;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
@@ -26,22 +28,29 @@ class IdeaShow extends Component
         }
 
         if ($this->hasVoted) {
-            $this->idea->removeVote(auth()->user());
+            try {
+                $this->idea->removeVote(auth()->user());
+            } catch (VoteNotFoundException $exception) {
+                // exception
+            }
 
             $this->updateVoteCountAndType(-1, false);
         } else {
-            $this->idea->vote(auth()->user());
-
+            try {
+                $this->idea->vote(auth()->user());
+            } catch (DuplicateVoteException $exception) {
+                //exception
+            }
             $this->updateVoteCountAndType(1, true);
         }
     }
+
 
     private function updateVoteCountAndType(int $change, bool $hasVoted): void
     {
         $this->votesCount += $change;
         $this->hasVoted = $hasVoted;
     }
-
 
     public function render()
     {

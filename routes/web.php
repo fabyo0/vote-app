@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/user', function () {
-    return \App\Models\User::all();
+    return response()->json(\App\Models\User::all());
 });
 
 Route::get('/clear-cache', function () {
@@ -32,6 +32,6 @@ Route::get('/clear-cache', function () {
 
 Route::get('/', [IdeaController::class, 'index'])->name('idea.index');
 
-Route::get('/ideas/{idea:slug}', [IdeaController::class, 'show'])->name('idea.show');
+Route::get('/ideas/{idea}', [IdeaController::class, 'show'])->name('idea.show');
 
 require __DIR__ . '/auth.php';
