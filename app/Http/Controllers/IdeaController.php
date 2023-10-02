@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreIdeaRequest;
 use App\Http\Requests\UpdateIdeaRequest;
 use App\Models\Idea;
+use App\Models\Vote;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class IdeaController extends Controller
 {
-
     public function index(): View
     {
         return view('idea.index', [
             'ideas' => Idea::query()
+                ->addSelect(['voted_by_user' => Vote::query()->select('ideas.id')
+                    ->where('user_id', Auth::id())
+                    ->whereColumn('idea_id', 'ideas.id')
+                ])
                 ->with(['category', 'user', 'status'])
                 ->withCount('votes')
                 ->latest()

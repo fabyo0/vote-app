@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Auth;
 
 class Idea extends Model
 {
@@ -35,6 +36,7 @@ class Idea extends Model
         ];
     }
 
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -46,14 +48,24 @@ class Idea extends Model
         return $this->belongsTo(Category::class);
     }
 
+
     public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class);
     }
 
+
     public function votes(): BelongsToMany
     {
-        return $this->belongsToMany(User::class,'votes');
+        return $this->belongsToMany(User::class, 'votes');
+    }
+
+
+    public function isVotedByUser(?User $user): bool
+    {
+        return Vote::query()->where('user_id', $user->id)
+            ->where('idea_id', $this->id)
+            ->exists();
     }
 
     /*   public function getStatusClasses(): string
@@ -70,8 +82,8 @@ class Idea extends Model
        }*/
 
     /*  public function getRouteKeyName(): string
-{
-   return 'slug';
-}*/
+    {
+    return 'slug';
+    }*/
 
 }

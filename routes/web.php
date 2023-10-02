@@ -15,13 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/user', function () {
-    $user = \App\Models\User::create([
-        'name' => 'emre',
-        'email' => 'emre@hotmail.com',
-        'password' => \Illuminate\Support\Facades\Hash::make('123')
-    ]);
-    dd('ok');
+    return \App\Models\User::all();
 });
 
 Route::get('/clear-cache', function () {
