@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Idea;
 use Livewire\Component;
 use Illuminate\Support\Facades\Route;
 
@@ -10,6 +11,7 @@ class StatusFilter extends Component
 {
 
     public $status = 'All';
+    public $statusAllCount;
 
     protected $queryString = [
         'status' => ['except' => '']
@@ -32,6 +34,9 @@ class StatusFilter extends Component
 
     public function mount()
     {
+        // Idea count
+        $this->statusAllCount = Idea::query()->count();
+
         //TODO: Mevcut url idea.show ise
         if (Route::currentRouteName() === 'idea.show') {
             $this->status = null;
