@@ -27,7 +27,7 @@ Route::get('/clear-cache', function () {
     Artisan::call('config:cache');
     Artisan::call('view:clear');
 
-    return 'Application cache has been cleared';
+    dd( 'Application cache has been cleared');
 });
 
 Route::get('/', [IdeaController::class, 'index'])->name('idea.index');

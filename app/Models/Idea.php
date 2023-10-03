@@ -106,6 +106,10 @@ class Idea extends Model
 
     public function removeVote(User $user): void
     {
+        if ($this->isVotedByUser($user)) {
+            return;
+        }
+
         $this->votes()->detach($user);
     }
 

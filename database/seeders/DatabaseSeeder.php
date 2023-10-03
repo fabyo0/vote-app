@@ -11,16 +11,11 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
-        User::factory([
+        User::factory()->create([
             'name' => 'emre',
-            'email' => 'emre@hotmail.com'
+            'email' => 'emre@hotmail.com',
         ]);
 
         User::factory(19)->create();
@@ -30,25 +25,22 @@ class DatabaseSeeder extends Seeder
         Category::factory()->create(['name' => 'Category 3']);
         Category::factory()->create(['name' => 'Category 4']);
 
-        Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-        Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
-        Status::factory()->create(['name' => 'In Progress', 'classes' => 'bg-yellow text-white']);
-        Status::factory()->create(['name' => 'Implemented', 'classes' => 'bg-green text-white']);
-        Status::factory()->create(['name' => 'Closed', 'classes' => 'bg-red text-white']);
+        Status::create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        Status::create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
+        Status::create(['name' => 'In Progress', 'classes' => 'bg-yellow text-white']);
+        Status::create(['name' => 'Implemented', 'classes' => 'bg-green text-white']);
+        Status::create(['name' => 'Closed', 'classes' => 'bg-red text-white']);
 
         Idea::factory(100)->create();
 
-        //TODO: Generate unique votes. Ensure idea_id and user_id are unique for each now.
 
-        $userIds = range(1, 20);
-        $ideaIds = range(1, 100);
-
-        foreach ($userIds as $user_id) {
-            foreach ($ideaIds as $idea_id) {
-                if ($idea_id % 2 == 0) {
+        // Generate unique votes. Ensure idea_id and user_id are unique for each row
+        foreach (range(1, 20) as $user_id) {
+            foreach (range(1, 100) as $idea_id) {
+                if ($idea_id % 2 === 0) {
                     Vote::factory()->create([
                         'user_id' => $user_id,
-                        'idea_id' => $idea_id
+                        'idea_id' => $idea_id,
                     ]);
                 }
             }

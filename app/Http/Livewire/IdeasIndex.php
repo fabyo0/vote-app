@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Idea;
+use App\Models\Status;
 use App\Models\Vote;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -14,7 +15,12 @@ class IdeasIndex extends Component
 
     public function render()
     {
+        $statues = Status::all()->pluck('id','name');
+
         $ideas = Idea::query()
+            ->when(request()->status && request()->status !== 'All', function ($query) use ($statues) {
+                $query->where('status_id', $statues->get(request()->status));
+            })
             ->addSelect(['voted_by_user' => Vote::query()->select('ideas.id')
                 ->where('user_id', Auth::id())
                 ->whereColumn('idea_id', 'ideas.id')

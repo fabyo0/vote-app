@@ -12,7 +12,8 @@ class Status extends Model
 
     //protected $guarded = [];
 
-    protected $fillable = ['name','classes'];
+    //protected $fillable = ['name','classes'];
+    protected $guarded = [];
 
     public function ideas(): HasMany
     {

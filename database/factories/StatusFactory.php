@@ -10,6 +10,8 @@ class StatusFactory extends Factory
 
     protected $model = Status::class;
 
+    //protected $count = 5;
+
     /**
      * Define the model's default state.
      *
@@ -17,6 +19,7 @@ class StatusFactory extends Factory
      */
     public function definition()
     {
+
         $statusOptions = [
             ['name' => 'Open', 'classes' => 'bg-gray-200'],
             ['name' => 'Considering', 'classes' => 'bg-purple text-white'],

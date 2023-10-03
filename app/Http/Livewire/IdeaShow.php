@@ -31,7 +31,7 @@ class IdeaShow extends Component
             try {
                 $this->idea->removeVote(auth()->user());
             } catch (VoteNotFoundException $exception) {
-                // exception
+                return $exception->getMessage();
             }
 
             $this->updateVoteCountAndType(-1, false);
@@ -39,7 +39,7 @@ class IdeaShow extends Component
             try {
                 $this->idea->vote(auth()->user());
             } catch (DuplicateVoteException $exception) {
-                //exception
+                return $exception->getMessage();
             }
             $this->updateVoteCountAndType(1, true);
         }

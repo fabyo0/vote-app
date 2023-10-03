@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\StatusEnum;
 use App\Http\Requests\StoreIdeaRequest;
 use App\Http\Requests\UpdateIdeaRequest;
 use App\Models\Idea;
 use App\Models\Vote;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
+use Illuminate\Http\Request;
+
 
 class IdeaController extends Controller
 {
-    public function index(): Response
+    public function index(Request $request)
     {
         $ideas = Idea::query()
+            ->when($request->status !== 'All', function ($query) {
+                return $query->where('status_id', StatusEnum::Open);
+            })
             ->addSelect(['voted_by_user' => Vote::query()->select('ideas.id')
                 ->where('user_id', Auth::id())
                 ->whereColumn('idea_id', 'ideas.id')
@@ -26,9 +30,10 @@ class IdeaController extends Controller
 
         return response()->view('idea.index', [
             'ideas' => $ideas
-        ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        ]);
 
     }
+
 
     public function create()
     {
