@@ -8,10 +8,6 @@
         </a>
     </div>
 
-    {{--<livewire:idea-show
-        :idea="$idea"
-    />--}}
-
     @livewire('idea-show',[
     'idea' => $idea,
     'votesCount' => $votesCount

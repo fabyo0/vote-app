@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/status', function () {
-    return response()->json(\App\Models\Status::all());
+Route::get('/user', function () {
+    return response()->json(\App\Models\User::all());
 });
 
 Route::get('/clear-cache', function () {

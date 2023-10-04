@@ -12,13 +12,12 @@ class CategoryFactory extends Factory
      *
      * @return array
      */
-
     protected $model = Category::class;
 
-    public function definition()
+    public function definition(): array
     {
         return [
-            'name' => $this->faker->words(2,true)
+            'name' => $this->faker->words(2, true),
         ];
     }
 }

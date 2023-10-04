@@ -2,8 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Enums\StatusEnum;
-use App\Models\Idea;
+
 use App\Models\Status;
 use Livewire\Component;
 use Illuminate\Support\Facades\Route;
@@ -12,40 +11,39 @@ use Illuminate\Support\Facades\Route;
 class StatusFilter extends Component
 {
 
-    public $status = 'All';
+    public $status;
 
     public $statusCount;
-
-
-    protected $queryString = [
-        'status' => ['except' => '']
-    ];
 
     public function setStatus($newStatus)
     {
         $this->status = $newStatus;
 
-        /* if ($this->getPreviousRouteName() == 'idea.show') {
-             return redirect()->route('idea.index', [
-                 'status' => $this->status
-             ]);
-         }*/
+        //TODO: Emit queryStringStatus
 
-        return redirect()->route('idea.index', [
+        $this->emit('queryStringUpdatedStatus', $this->status);
+
+        if ($this->getPreviousRouteName() == 'idea.show') {
+            return redirect()->route('idea.index', [
+                'status' => $this->status
+            ]);
+        }
+
+        /*return redirect()->route('idea.index', [
             'status' => $this->status
-        ]);
+        ]);*/
     }
 
     public function mount()
     {
         // Status count
         $this->statusCount = Status::getCount();
-
+        $this->status = request()->status ?? 'All';
 
         //TODO: Mevcut url idea.show ise
         if (Route::currentRouteName() === 'idea.show') {
             $this->status = null;
-            $this->queryString = [];
+            // $this->queryString = [];
         }
     }
 
@@ -58,6 +56,4 @@ class StatusFilter extends Component
     {
         return view('livewire.status-filter');
     }
-
-
 }
