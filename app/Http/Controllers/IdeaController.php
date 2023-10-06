@@ -7,6 +7,7 @@ use App\Http\Requests\StoreIdeaRequest;
 use App\Http\Requests\UpdateIdeaRequest;
 use App\Models\Idea;
 use App\Models\Vote;
+use http\Url;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -52,7 +53,10 @@ class IdeaController extends Controller
         return view('idea.show', [
             'idea' => $idea,
             'votesCount' => $idea->votes()
-                ->count()
+                ->count(),
+            'backUrl' => url()->previous() !== url()->full()
+                ? url()->previous()
+                : route('idea.show')
         ]);
     }
 
