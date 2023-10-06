@@ -6,7 +6,9 @@ use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
 use App\Models\Vote;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,11 +18,15 @@ class IdeasIndex extends Component
 
     public $status;
     public $category;
+    public $filter;
+    public $search;
 
 
     protected $queryString = [
         'status',
-        'category'
+        'category',
+        'filter',
+        'search' => ['except' => '']
     ];
 
     protected $listeners = ['queryStringUpdatedStatus'];
@@ -29,6 +35,20 @@ class IdeasIndex extends Component
     public function updatingCategory(): void
     {
         $this->resetPage();
+    }
+
+    public function updatingSearch(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatedFilter()
+    {
+        if ($this->filter === 'My Ideas') {
+            if (auth()->guest()) {
+                return Redirect::route('login');
+            }
+        }
     }
 
     public function queryStringUpdatedStatus($newStatus): void
@@ -40,21 +60,30 @@ class IdeasIndex extends Component
     public function mount(): void
     {
         $this->status = request()->status ?? 'All';
-       // $this->category = request()->category ?? 'All Categories';
+        // $this->category = request()->category ?? 'All Categories';
     }
 
 
     public function render()
     {
         $statues = Status::all()->pluck('id', 'name');
-        $categories = Category::all();
-
+        $categories = Category::select('id', 'name')->get();
 
         $ideas = Idea::query()
             ->when($this->status && $this->status !== 'All', function ($query) use ($statues) {
                 $query->where('status_id', $statues->get($this->status));
-            })->when($this->category && $this->category !== 'All Categories', function ($query) use ($categories) {
+            })
+            ->when($this->category && $this->category !== 'All Categories', function ($query) use ($categories) {
                 $query->where('category_id', $categories->pluck('id', 'name')->get($this->category));
+            })
+            ->when($this->filter && $this->filter === 'Top Voted', function ($query) {
+                $query->orderByDesc('votes_count');
+            })
+            ->when($this->filter && $this->filter === 'My Ideas', function ($query) {
+                $query->where('user_id', auth()->id())->get();
+            })
+            ->when(strlen($this->search) >= 3, function ($query) {
+                return $query->where('title', 'like', '%' . $this->search . '%');
             })
             ->addSelect(['voted_by_user' => Vote::query()->select('ideas.id')
                 ->where('user_id', Auth::id())
@@ -62,7 +91,6 @@ class IdeasIndex extends Component
             ])
             ->with(['category', 'user', 'status'])
             ->withCount('votes')
-            ->latest()
             ->simplePaginate(Idea::PAGINATION_COUNT);
 
 
