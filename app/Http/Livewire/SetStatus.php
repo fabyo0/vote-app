@@ -15,7 +15,7 @@ class SetStatus extends Component
         'status' => 'required'
     ];
 
-    public function mount(Idea $idea)
+    public function mount(Idea $idea): void
     {
         $this->idea = $idea;
         $this->status = $this->idea->status_id;
