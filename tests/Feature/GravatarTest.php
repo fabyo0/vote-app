@@ -4,13 +4,11 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 class GravatarTest extends TestCase
 {
-
     use RefreshDatabase;
 
     /**
@@ -34,9 +32,8 @@ class GravatarTest extends TestCase
 
         $gravatarUrl = $user->getAvatar();
 
-
         $this->assertEquals(
-            'https://www.gravatar.com/avatar/' . md5($user->email) .
+            'https://www.gravatar.com/avatar/'.md5($user->email).
             '?s=200&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-26.png',
             $gravatarUrl
         );

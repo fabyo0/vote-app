@@ -22,16 +22,15 @@ class Idea extends Model
         'status_id',
         'title',
         'slug',
-        'description'
+        'description',
     ];
-
 
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => 'title'
-            ]
+                'source' => 'title',
+            ],
         ];
     }
 
@@ -40,34 +39,29 @@ class Idea extends Model
         return 'slug';
     }
 
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
 
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-
     public function status(): BelongsTo
     {
         return $this->belongsTo(Status::class);
     }
-
 
     public function votes(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'votes');
     }
 
-
     public function isVotedByUser(?User $user): bool
     {
-        if (!$user) {
+        if (! $user) {
             return false;
         }
 
@@ -83,7 +77,6 @@ class Idea extends Model
         }
         $this->votes()->attach($user->id);
     }
-
 
     /**
      * @throws VoteNotFoundException
@@ -103,7 +96,6 @@ class Idea extends Model
           }
       }*/
 
-
     public function removeVote(User $user): void
     {
         if ($this->isVotedByUser($user)) {
@@ -112,5 +104,4 @@ class Idea extends Model
 
         $this->votes()->detach($user);
     }
-
 }

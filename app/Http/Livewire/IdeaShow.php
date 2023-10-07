@@ -11,7 +11,9 @@ use Livewire\Component;
 class IdeaShow extends Component
 {
     public $idea;
+
     public $votesCount;
+
     public $hasVoted;
 
     public function mount(Idea $idea, $votesCount): void
@@ -23,7 +25,7 @@ class IdeaShow extends Component
 
     public function vote()
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return Redirect::route('login');
         }
 
@@ -44,7 +46,6 @@ class IdeaShow extends Component
             $this->updateVoteCountAndType(1, true);
         }
     }
-
 
     private function updateVoteCountAndType(int $change, bool $hasVoted): void
     {

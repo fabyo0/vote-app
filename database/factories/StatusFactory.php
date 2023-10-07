@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StatusFactory extends Factory
 {
-
     protected $model = Status::class;
 
     //protected $count = 5;
@@ -25,14 +24,14 @@ class StatusFactory extends Factory
             ['name' => 'Considering', 'classes' => 'bg-purple text-white'],
             ['name' => 'In Progress', 'classes' => 'bg-yellow text-white'],
             ['name' => 'Implemented', 'classes' => 'bg-green text-white'],
-            ['name' => 'Closed', 'classes' => 'bg-red text-white']
+            ['name' => 'Closed', 'classes' => 'bg-red text-white'],
         ];
 
         $randomStatus = $this->faker->randomElement($statusOptions);
 
         return [
             'name' => $randomStatus['name'],
-            'classes' => $randomStatus['classes']
+            'classes' => $randomStatus['classes'],
         ];
 
     }

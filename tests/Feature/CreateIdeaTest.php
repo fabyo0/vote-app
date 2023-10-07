@@ -7,13 +7,11 @@ use App\Models\Category;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Tests\TestCase;
 
 class CreateIdeaTest extends TestCase
 {
-
     use RefreshDatabase;
 
     /**
@@ -70,14 +68,14 @@ class CreateIdeaTest extends TestCase
         $user = User::factory()->create();
 
         $categoryOne = Category::factory()->create([
-            'name' => 'Category 1'
+            'name' => 'Category 1',
         ]);
         $categoryTwo = Category::factory()->create([
-            'name' => 'Category 2'
+            'name' => 'Category 2',
         ]);
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200'
+            'classes' => 'bg-gray-200',
         ]);
 
         Livewire::actingAs($user)
@@ -97,7 +95,7 @@ class CreateIdeaTest extends TestCase
 
         $this->assertDatabaseHas('ideas', [
             'title' => 'My first ideas',
-            'description' => 'Lorem ipsum dolor sit amet...'
+            'description' => 'Lorem ipsum dolor sit amet...',
         ]);
     }
 

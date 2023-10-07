@@ -9,14 +9,11 @@ use App\Models\Status;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Livewire;
 use Tests\TestCase;
 
-
 class SearchFiltersTest extends TestCase
 {
-
     use RefreshDatabase;
 
     /**
@@ -30,7 +27,6 @@ class SearchFiltersTest extends TestCase
 
         $response->assertStatus(200);
     }
-
 
     public function test_search_works_when_more_than_3_characters()
     {
@@ -79,7 +75,6 @@ class SearchFiltersTest extends TestCase
             });
     }
 
-
     public function test_does_not_perform_search_if_less_than_3_characters()
     {
 
@@ -126,7 +121,6 @@ class SearchFiltersTest extends TestCase
             });
     }
 
-
     public function test_search_works_correctly_with_category_filters()
     {
         $user = User::factory()->create();
@@ -159,7 +153,7 @@ class SearchFiltersTest extends TestCase
             'title' => 'My Third Idea',
             'description' => 'Description for my first idea',
         ]);
-        
+
         Livewire::test(IdeasIndex::class)
             ->set('category', 'Category 1')
             ->set('search', 'Idea')
@@ -167,5 +161,4 @@ class SearchFiltersTest extends TestCase
                 return $ideas->count() === 2;
             });
     }
-
 }

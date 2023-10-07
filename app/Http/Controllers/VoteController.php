@@ -31,7 +31,6 @@ class VoteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreVoteRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreVoteRequest $request)
@@ -42,7 +41,6 @@ class VoteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Vote  $vote
      * @return \Illuminate\Http\Response
      */
     public function show(Vote $vote)
@@ -53,7 +51,6 @@ class VoteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Vote  $vote
      * @return \Illuminate\Http\Response
      */
     public function edit(Vote $vote)
@@ -64,8 +61,6 @@ class VoteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateVoteRequest  $request
-     * @param  \App\Models\Vote  $vote
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateVoteRequest $request, Vote $vote)
@@ -76,7 +71,6 @@ class VoteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Vote  $vote
      * @return \Illuminate\Http\Response
      */
     public function destroy(Vote $vote)

@@ -25,7 +25,7 @@ class VoteIndexPageTest extends TestCase
 
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200'
+            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -33,14 +33,13 @@ class VoteIndexPageTest extends TestCase
             'category_id' => $categoryOne,
             'status_id' => $statusOpen,
             'title' => 'My First Idea',
-            'description' => 'Description for my first idea'
+            'description' => 'Description for my first idea',
         ]);
 
         // contains idea-index contains
         $this->get(route('idea.index', $idea))
             ->assertSeeLivewire('idea-index');
     }
-
 
     public function test_ideas_index_livewire_component_correctly_receives_votes_count()
     {
@@ -99,7 +98,6 @@ class VoteIndexPageTest extends TestCase
             ->assertRedirect(route('login'));
     }
 
-
     public function test_user_who_is__logged_in_can_vote_for_idea()
     {
         $user = User::factory()->create();
@@ -119,14 +117,13 @@ class VoteIndexPageTest extends TestCase
         //TODO: Assert that a given where condition does not exist in the database.
         $this->assertDatabaseMissing('votes', [
             'user_id' => $user->id,
-            'idea_id' => $idea->id
+            'idea_id' => $idea->id,
         ]);
 
         $idea->votes_count = 1;
         $idea->voted_by_user = 1;
 
-        Livewire::
-        actingAs($user)
+        Livewire::actingAs($user)
             ->test(IdeaIndex::class, [
                 'idea' => $idea,
                 'votesCount' => 5,
@@ -139,10 +136,9 @@ class VoteIndexPageTest extends TestCase
         //TODO: Check Database
         $this->assertDatabaseHas('votes', [
             'user_id' => $user->id,
-            'idea_id' => $idea->id
+            'idea_id' => $idea->id,
         ]);
     }
-
 
     public function test_user_who_is_logged_in_can_remove_vote_for_idea()
     {

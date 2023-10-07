@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Idea;
 use Illuminate\Database\Seeder;
 
 class IdeaSeeder extends Seeder

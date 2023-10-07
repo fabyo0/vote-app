@@ -18,7 +18,7 @@ class StatusTest extends TestCase
         $user = User::factory()->create();
 
         $categoryOne = Category::factory()->create([
-            'name' => 'Category 1'
+            'name' => 'Category 1',
         ]);
 
         $statusOpen = Status::factory()->create(['name' => 'Open']);
@@ -123,5 +123,4 @@ class StatusTest extends TestCase
         $this->assertEquals(3, Status::getCount()['in_progress']);
         $this->assertEquals(4, Status::getCount()['implemented']);
     }
-
 }

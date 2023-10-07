@@ -9,14 +9,11 @@ use App\Models\Status;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Livewire;
 use Tests\TestCase;
 
-
 class OtherFiltersTest extends TestCase
 {
-
     use RefreshDatabase;
 
     /**
@@ -30,7 +27,6 @@ class OtherFiltersTest extends TestCase
 
         $response->assertStatus(200);
     }
-
 
     public function test_top_voted_filter_works()
     {
@@ -47,30 +43,29 @@ class OtherFiltersTest extends TestCase
             'user_id' => $user->id,
             'category_id' => $categoryOne->id,
             'status_id' => $statusOne->id,
-            'description' => 'Description for my first idea'
+            'description' => 'Description for my first idea',
         ]);
 
         $ideaTwo = Idea::factory()->create([
             'user_id' => $userB->id,
             'category_id' => $categoryTwo->id,
             'status_id' => $statusOne->id,
-            'description' => 'Description for my second idea'
-        ]);
-
-
-        Vote::create([
-            'idea_id' => $ideaOne->id,
-            'user_id' => $user->id
+            'description' => 'Description for my second idea',
         ]);
 
         Vote::create([
             'idea_id' => $ideaOne->id,
-            'user_id' => $userB->id
+            'user_id' => $user->id,
+        ]);
+
+        Vote::create([
+            'idea_id' => $ideaOne->id,
+            'user_id' => $userB->id,
         ]);
 
         Vote::create([
             'idea_id' => $ideaTwo->id,
-            'user_id' => $userC->id
+            'user_id' => $userC->id,
         ]);
 
         Livewire::test(IdeasIndex::class)
@@ -90,7 +85,6 @@ class OtherFiltersTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
 
         $statusOpen = Status::factory()->create(['name' => 'Open']);
-
 
         $ideaOne = Idea::factory()->create([
             'user_id' => $user->id,
@@ -121,7 +115,6 @@ class OtherFiltersTest extends TestCase
             ->assertRedirect(route('login'));
 
     }
-
 
     //FIXME: Failed asserting that false is true.
     public function test_my_ideas_filter_works_correctly_with_categories_filter()
@@ -210,5 +203,4 @@ class OtherFiltersTest extends TestCase
                     && $ideas->get(1)->title === 'My Second Idea';
             });
     }
-
 }

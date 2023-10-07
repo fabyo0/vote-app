@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
 use App\Models\Vote;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
@@ -17,20 +16,21 @@ class IdeasIndex extends Component
     use WithPagination;
 
     public $status;
-    public $category;
-    public $filter;
-    public $search;
 
+    public $category;
+
+    public $filter;
+
+    public $search;
 
     protected $queryString = [
         'status',
         'category',
         'filter',
-        'search' => ['except' => '']
+        'search' => ['except' => ''],
     ];
 
     protected $listeners = ['queryStringUpdatedStatus'];
-
 
     public function updatingCategory(): void
     {
@@ -63,7 +63,6 @@ class IdeasIndex extends Component
         // $this->category = request()->category ?? 'All Categories';
     }
 
-
     public function render()
     {
         $statues = Status::all()->pluck('id', 'name');
@@ -83,20 +82,19 @@ class IdeasIndex extends Component
                 $query->where('user_id', auth()->id())->get();
             })
             ->when(strlen($this->search) >= 3, function ($query) {
-                return $query->where('title', 'like', '%' . $this->search . '%');
+                return $query->where('title', 'like', '%'.$this->search.'%');
             })
             ->addSelect(['voted_by_user' => Vote::query()->select('ideas.id')
                 ->where('user_id', Auth::id())
-                ->whereColumn('idea_id', 'ideas.id')
+                ->whereColumn('idea_id', 'ideas.id'),
             ])
             ->with(['category', 'user', 'status'])
             ->withCount('votes')
             ->simplePaginate(Idea::PAGINATION_COUNT);
 
-
         return view('livewire.ideas-index', [
             'ideas' => $ideas,
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
 }

@@ -31,7 +31,6 @@ class StatusController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreStatusRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreStatusRequest $request)
@@ -42,7 +41,6 @@ class StatusController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Status  $status
      * @return \Illuminate\Http\Response
      */
     public function show(Status $status)
@@ -53,7 +51,6 @@ class StatusController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Status  $status
      * @return \Illuminate\Http\Response
      */
     public function edit(Status $status)
@@ -64,8 +61,6 @@ class StatusController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateStatusRequest  $request
-     * @param  \App\Models\Status  $status
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateStatusRequest $request, Status $status)
@@ -76,7 +71,6 @@ class StatusController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Status  $status
      * @return \Illuminate\Http\Response
      */
     public function destroy(Status $status)

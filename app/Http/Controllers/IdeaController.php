@@ -7,10 +7,8 @@ use App\Http\Requests\StoreIdeaRequest;
 use App\Http\Requests\UpdateIdeaRequest;
 use App\Models\Idea;
 use App\Models\Vote;
-use http\Url;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class IdeaController extends Controller
 {
@@ -22,7 +20,7 @@ class IdeaController extends Controller
             })
             ->addSelect(['voted_by_user' => Vote::query()->select('ideas.id')
                 ->where('user_id', Auth::id())
-                ->whereColumn('idea_id', 'ideas.id')
+                ->whereColumn('idea_id', 'ideas.id'),
             ])
             ->with(['category', 'user', 'status'])
             ->withCount('votes')
@@ -30,17 +28,15 @@ class IdeaController extends Controller
             ->simplePaginate(Idea::PAGINATION_COUNT);
 
         return response()->view('idea.index', [
-            'ideas' => $ideas
+            'ideas' => $ideas,
         ]);
 
     }
-
 
     public function create()
     {
         //
     }
-
 
     public function store(StoreIdeaRequest $request)
     {
@@ -56,22 +52,19 @@ class IdeaController extends Controller
                 ->count(),
             'backUrl' => url()->previous() !== url()->full()
                 ? url()->previous()
-                : route('idea.show')
+                : route('idea.show'),
         ]);
     }
-
 
     public function edit(Idea $idea)
     {
         //
     }
 
-
     public function update(UpdateIdeaRequest $request, Idea $idea)
     {
         //
     }
-
 
     public function destroy(Idea $idea)
     {

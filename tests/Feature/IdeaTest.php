@@ -2,15 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Exceptions\DuplicateVoteException;
 use App\Exceptions\VoteNotFoundException;
 use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\Vote;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class IdeaTest extends TestCase
@@ -35,7 +32,7 @@ class IdeaTest extends TestCase
 
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200'
+            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -43,17 +40,16 @@ class IdeaTest extends TestCase
             'status_id' => $statusOpen,
             'category_id' => $categoryOne,
             'title' => 'My First Idea',
-            'description' => 'Description for my first idea'
+            'description' => 'Description for my first idea',
         ]);
 
         Vote::factory()->create([
             'user_id' => $user->id,
-            'idea_id' => $idea->id
+            'idea_id' => $idea->id,
         ]);
 
         $this->assertTrue($idea->isVotedByUser($user));
     }
-
 
     public function test_user_can_vote_for_idea()
     {
@@ -63,7 +59,7 @@ class IdeaTest extends TestCase
 
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200'
+            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -71,7 +67,7 @@ class IdeaTest extends TestCase
             'status_id' => $statusOpen,
             'category_id' => $categoryOne,
             'title' => 'My First Idea',
-            'description' => 'Description for my first idea'
+            'description' => 'Description for my first idea',
         ]);
 
         $this->assertFalse($idea->isVotedByUser($user));
@@ -87,7 +83,7 @@ class IdeaTest extends TestCase
 
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200'
+            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -95,19 +91,18 @@ class IdeaTest extends TestCase
             'status_id' => $statusOpen,
             'category_id' => $categoryOne,
             'title' => 'My First Idea',
-            'description' => 'Description for my first idea'
+            'description' => 'Description for my first idea',
         ]);
 
         Vote::create([
             'user_id' => $user->id,
-            'idea_id' => $idea->id
+            'idea_id' => $idea->id,
         ]);
 
         $this->assertTrue($idea->isVotedByUser($user));
         $idea->removeVote($user);
         $this->assertFalse($idea->isVotedByUser($user));
     }
-
 
     public function test_removing_a_vote_that_doesnt_exist_throws_exception()
     {
@@ -129,5 +124,4 @@ class IdeaTest extends TestCase
 
         $idea->removeVote($user);
     }
-
 }

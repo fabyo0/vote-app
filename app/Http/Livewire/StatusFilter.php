@@ -2,15 +2,12 @@
 
 namespace App\Http\Livewire;
 
-
 use App\Models\Status;
-use Livewire\Component;
 use Illuminate\Support\Facades\Route;
-
+use Livewire\Component;
 
 class StatusFilter extends Component
 {
-
     public $status;
 
     public $statusCount;
@@ -25,7 +22,7 @@ class StatusFilter extends Component
 
         if ($this->getPreviousRouteName() == 'idea.show') {
             return redirect()->route('idea.index', [
-                'status' => $this->status
+                'status' => $this->status,
             ]);
         }
 

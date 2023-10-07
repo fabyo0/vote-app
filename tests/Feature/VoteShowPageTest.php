@@ -9,7 +9,6 @@ use App\Models\Status;
 use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Tests\TestCase;
 
@@ -25,7 +24,7 @@ class VoteShowPageTest extends TestCase
 
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200'
+            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -33,14 +32,13 @@ class VoteShowPageTest extends TestCase
             'status_id' => $statusOpen,
             'category_id' => $categoryOne,
             'title' => 'My First Idea',
-            'description' => 'Description for my first idea'
+            'description' => 'Description for my first idea',
         ]);
 
         // contains idea-index contains
         $this->get(route('idea.show', $idea))
             ->assertSeeLivewire('idea-show');
     }
-
 
     public function test_show_page_correctly_receives_votes_count()
     {
@@ -51,7 +49,7 @@ class VoteShowPageTest extends TestCase
 
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200'
+            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -59,23 +57,22 @@ class VoteShowPageTest extends TestCase
             'status_id' => $statusOpen,
             'category_id' => $categoryOne,
             'title' => 'My First Idea',
-            'description' => 'Description for my first idea'
+            'description' => 'Description for my first idea',
         ]);
 
         Vote::factory()->create([
             'idea_id' => $idea->id,
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         Vote::factory()->create([
             'idea_id' => $idea->id,
-            'user_id' => $userB->id
+            'user_id' => $userB->id,
         ]);
 
-        $this->get(route('idea.show', $idea),)
+        $this->get(route('idea.show', $idea))
             ->assertViewHas('votesCount', 2);
     }
-
 
     public function test_votes_count_correctly_on_show_page_livewire_component()
     {
@@ -86,7 +83,7 @@ class VoteShowPageTest extends TestCase
 
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200'
+            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -94,17 +91,17 @@ class VoteShowPageTest extends TestCase
             'status_id' => $statusOpen,
             'category_id' => $categoryOne,
             'title' => 'My First Idea',
-            'description' => 'Description for my first idea'
+            'description' => 'Description for my first idea',
         ]);
 
         Vote::factory()->create([
             'idea_id' => $idea->id,
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         Vote::factory()->create([
             'idea_id' => $idea->id,
-            'user_id' => $userB->id
+            'user_id' => $userB->id,
         ]);
 
         Livewire::test(IdeaShow::class, [
@@ -113,7 +110,6 @@ class VoteShowPageTest extends TestCase
         ])->assertSet('votesCount', 5)
             ->assertSeeHtml('<div class="text-sm font-bold leading-none">5</div>');
     }
-
 
     public function test_user_who_is_logged_in_shows_voted_if_idea_already_voted_for()
     {
@@ -124,7 +120,7 @@ class VoteShowPageTest extends TestCase
 
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200'
+            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
@@ -132,17 +128,17 @@ class VoteShowPageTest extends TestCase
             'status_id' => $statusOpen,
             'category_id' => $categoryOne,
             'title' => 'My First Idea',
-            'description' => 'Description for my first idea'
+            'description' => 'Description for my first idea',
         ]);
 
         Vote::factory()->create([
             'idea_id' => $idea->id,
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         Vote::factory()->create([
             'idea_id' => $idea->id,
-            'user_id' => $userB->id
+            'user_id' => $userB->id,
         ]);
 
         Livewire::actingAs($user)
@@ -152,7 +148,6 @@ class VoteShowPageTest extends TestCase
             ])->assertSet('hasVoted', true)
             ->assertSee('Voted');
     }
-
 
     public function test_user_who_is_not_logged_in_is_redirected_to_login_page_when_trying_to_vote()
     {
@@ -178,7 +173,6 @@ class VoteShowPageTest extends TestCase
             ->assertRedirect(route('login'));
     }
 
-
     public function test_user_who_is__logged_in_can_vote_for_idea()
     {
         $user = User::factory()->create();
@@ -198,11 +192,10 @@ class VoteShowPageTest extends TestCase
         //TODO: Assert that a given where condition does not exist in the database.
         $this->assertDatabaseMissing('votes', [
             'user_id' => $user->id,
-            'idea_id' => $idea->id
+            'idea_id' => $idea->id,
         ]);
 
-        Livewire::
-        actingAs($user)
+        Livewire::actingAs($user)
             ->test(IdeaShow::class, [
                 'idea' => $idea,
                 'votesCount' => 5,
@@ -215,10 +208,9 @@ class VoteShowPageTest extends TestCase
         //TODO: Check Database
         $this->assertDatabaseHas('votes', [
             'user_id' => $user->id,
-            'idea_id' => $idea->id
+            'idea_id' => $idea->id,
         ]);
     }
-
 
     public function test_user_who_is_logged_in_can_remove_vote_for_idea()
     {

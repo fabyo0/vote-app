@@ -8,13 +8,11 @@ use App\Models\Idea;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Livewire;
 use Tests\TestCase;
 
 class CategoryFiltersTest extends TestCase
 {
-
     use RefreshDatabase;
 
     /**
@@ -29,22 +27,21 @@ class CategoryFiltersTest extends TestCase
         $response->assertStatus(200);
     }
 
-
     public function test_selecting_a_category_filters_correctly()
     {
 
         $user = User::factory()->create();
 
         $categoryOne = Category::factory()->create([
-            'name' => 'Category 1'
+            'name' => 'Category 1',
         ]);
 
         $categoryTwo = Category::factory()->create([
-            'name' => 'Category 1'
+            'name' => 'Category 1',
         ]);
 
         $categoryThree = Category::factory()->create([
-            'name' => 'Category 3'
+            'name' => 'Category 3',
         ]);
 
         $statusOpen = Status::factory()->create(['name' => 'Open']);
@@ -81,23 +78,21 @@ class CategoryFiltersTest extends TestCase
             });
     }
 
-
-
     public function test_the_category_query_string_filters_correctly()
     {
 
         $user = User::factory()->create();
 
         $categoryOne = Category::factory()->create([
-            'name' => 'Category 1'
+            'name' => 'Category 1',
         ]);
 
         $categoryTwo = Category::factory()->create([
-            'name' => 'Category 1'
+            'name' => 'Category 1',
         ]);
 
         $categoryThree = Category::factory()->create([
-            'name' => 'Category 3'
+            'name' => 'Category 3',
         ]);
 
         $statusOpen = Status::factory()->create(['name' => 'Open']);
@@ -134,23 +129,21 @@ class CategoryFiltersTest extends TestCase
             });
     }
 
-
-
     public function test_selecting_a_category_filters_and_status_correctly()
     {
 
         $user = User::factory()->create();
 
         $categoryOne = Category::factory()->create([
-            'name' => 'Category 1'
+            'name' => 'Category 1',
         ]);
 
         $categoryTwo = Category::factory()->create([
-            'name' => 'Category 1'
+            'name' => 'Category 1',
         ]);
 
         $categoryThree = Category::factory()->create([
-            'name' => 'Category 3'
+            'name' => 'Category 3',
         ]);
 
         $statusOpen = Status::factory()->create(['name' => 'Open']);
@@ -189,23 +182,21 @@ class CategoryFiltersTest extends TestCase
             });
     }
 
-
-
     public function test_selecting_a_category_filters_and_status_and_category_correctly()
     {
 
         $user = User::factory()->create();
 
         $categoryOne = Category::factory()->create([
-            'name' => 'Category 1'
+            'name' => 'Category 1',
         ]);
 
         $categoryTwo = Category::factory()->create([
-            'name' => 'Category 1'
+            'name' => 'Category 1',
         ]);
 
         $categoryThree = Category::factory()->create([
-            'name' => 'Category 3'
+            'name' => 'Category 3',
         ]);
 
         $statusOpen = Status::factory()->create(['name' => 'Open']);
@@ -243,23 +234,21 @@ class CategoryFiltersTest extends TestCase
             });
     }
 
-
-
     public function test_selecting_all_categories_filters_correctly()
     {
 
         $user = User::factory()->create();
 
         $categoryOne = Category::factory()->create([
-            'name' => 'Category 1'
+            'name' => 'Category 1',
         ]);
 
         $categoryTwo = Category::factory()->create([
-            'name' => 'Category 1'
+            'name' => 'Category 1',
         ]);
 
         $categoryThree = Category::factory()->create([
-            'name' => 'Category 3'
+            'name' => 'Category 3',
         ]);
 
         $statusOpen = Status::factory()->create(['name' => 'Open']);

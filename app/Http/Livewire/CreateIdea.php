@@ -20,7 +20,7 @@ class CreateIdea extends Component
     protected $rules = [
         'title' => 'required|string|min:4',
         'category' => 'required|integer',
-        'description' => 'required|min:4|string'
+        'description' => 'required|min:4|string',
     ];
 
     public function createIdea()
@@ -35,7 +35,7 @@ class CreateIdea extends Component
                 'category_id' => $this->category,
                 'status_id' => 1,
                 'title' => $this->title,
-                'description' => $this->description
+                'description' => $this->description,
             ]);
 
             session()->flash('success_message', 'Idea was added successfully.');
@@ -50,7 +50,7 @@ class CreateIdea extends Component
     public function render()
     {
         return view('livewire.create-idea', [
-            'categories' => Category::query()->select('id', 'name')->get()
+            'categories' => Category::query()->select('id', 'name')->get(),
         ]);
     }
 }
