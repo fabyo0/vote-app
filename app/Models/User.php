@@ -33,6 +33,27 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+
+    public function ideas(): HasMany
+    {
+        return $this->hasMany(Idea::class);
+    }
+
+    public function votes(): BelongsToMany
+    {
+        return $this->belongsToMany(Vote::class, 'votes');
+    }
+
+
     public function getAvatar(): string
     {
         //  Kullanıcının e-posta adresinin ilk karakterini alın
@@ -56,24 +77,5 @@ class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->email == 'emre@hotmail.com';
-    }
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-    public function ideas(): HasMany
-    {
-        return $this->hasMany(Idea::class);
-    }
-
-    public function votes(): BelongsToMany
-    {
-        return $this->belongsToMany(Vote::class, 'votes');
     }
 }
