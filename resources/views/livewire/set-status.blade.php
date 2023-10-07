@@ -2,9 +2,9 @@
     class="relative"
     x-data="{ isOpen: false }"
     x-init="
-        window.livewire.on('statusWasUpdating',() => {
-            isOpen = false;
-        });
+        window.livewire.on('statusWasUpdated', () => {
+            isOpen = false
+        })
     "
 >
     <button
@@ -24,29 +24,26 @@
         @keydown.escape.window="isOpen = false"
         class="absolute z-20 w-64 md:w-76 text-left font-semibold text-sm bg-white shadow-dialog rounded-xl mt-2"
     >
-        <form wire:submit.prevent="setStatus" class="space-y-4 px-4 py-6">
+        <form wire:submit.prevent="setStatus" action="#" class="space-y-4 px-4 py-6">
             <div class="space-y-2">
                 <div>
                     <label class="inline-flex items-center">
                         <input wire:model="status" type="radio" class="bg-gray-200 text-gray-600 border-none"
-                               name="status"
-                               value="1" checked>
+                               name="status" value="1" checked>
                         <span class="ml-2">Open</span>
                     </label>
                 </div>
                 <div>
                     <label class="inline-flex items-center">
                         <input wire:model="status" type="radio" class="bg-gray-200 text-purple border-none"
-                               name="status"
-                               value="2">
+                               name="status" value="2">
                         <span class="ml-2">Considering</span>
                     </label>
                 </div>
                 <div>
                     <label class="inline-flex items-center">
                         <input wire:model="status" type="radio" class="bg-gray-200 text-yellow border-none"
-                               name="status"
-                               value="3">
+                               name="status" value="3">
                         <span class="ml-2">In Progress</span>
                     </label>
                 </div>
@@ -64,16 +61,12 @@
                         <span class="ml-2">Closed</span>
                     </label>
                 </div>
-                @error('status')
-                <p class="bg-red-500">{{ $message }}</p>
-                @enderror
             </div>
 
             <div>
                 <textarea name="update_comment" id="update_comments" cols="30" rows="3"
                           class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 border-none px-4 py-2"
-                          placeholder="Add an update comment (optional)">
-                </textarea>
+                          placeholder="Add an update comment (optional)"></textarea>
             </div>
 
             <div class="flex items-center justify-between space-x-3">
@@ -90,7 +83,7 @@
                 </button>
                 <button
                     type="submit"
-                    class="flex items-center justify-center w-1/2 h-11 text-xs bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3"
+                    class="flex items-center justify-center w-1/2 h-11 text-xs bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3 disabled:opacity-50"
                 >
                     <span class="ml-1">Update</span>
                 </button>
@@ -98,7 +91,8 @@
 
             <div>
                 <label class="font-normal inline-flex items-center">
-                    <input type="checkbox" name="notify_voters" class="rounded bg-gray-200" checked="">
+                    <input wire:model="notifyAllVoters" type="checkbox" name="notify_voters"
+                           class="rounded bg-gray-200">
                     <span class="ml-2">Notify all voters</span>
                 </label>
             </div>

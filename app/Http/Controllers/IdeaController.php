@@ -52,7 +52,7 @@ class IdeaController extends Controller
                 ->count(),
             'backUrl' => url()->previous() !== url()->full()
                 ? url()->previous()
-                : route('idea.show'),
+                : route('idea.show',$idea),
         ]);
     }
 
