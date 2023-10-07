@@ -16,6 +16,8 @@ class IdeaShow extends Component
 
     public $hasVoted;
 
+    protected $listeners = ['statusWasUpdating'];
+
     public function mount(Idea $idea, $votesCount): void
     {
         $this->idea = $idea;
@@ -23,9 +25,14 @@ class IdeaShow extends Component
         $this->hasVoted = $idea->isVotedByUser(auth()->user());
     }
 
+    public function statusWasUpdating(): void
+    {
+        $this->idea->refresh();
+    }
+
     public function vote()
     {
-        if (! auth()->check()) {
+        if (!auth()->check()) {
             return Redirect::route('login');
         }
 

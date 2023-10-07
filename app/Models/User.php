@@ -45,11 +45,17 @@ class User extends Authenticatable
 
         //  Gravatar için avatar URL'sini oluşturun
         return 'https://www.gravatar.com/avatar/'
-            .md5($this->email) // Kullanıcının e-posta adresini md5 ile hashleyin
-            .'?s=200' // Avatarın boyutunu 200x200 piksel olarak ayarlayın
-            .'&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-'
-            .$integerToUse
-            .'.png'; // Varsayılan avatarın URL'sini oluşturun
+            . md5($this->email) // Kullanıcının e-posta adresini md5 ile hashleyin
+            . '?s=200' // Avatarın boyutunu 200x200 piksel olarak ayarlayın
+            . '&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-'
+            . $integerToUse
+            . '.png'; // Varsayılan avatarın URL'sini oluşturun
+    }
+
+
+    public function isAdmin(): bool
+    {
+        return $this->email == 'emre@hotmail.com';
     }
 
     /**
