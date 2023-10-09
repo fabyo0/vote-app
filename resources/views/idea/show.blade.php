@@ -62,12 +62,15 @@
                                         @click.away="isOpen = false"
                                         @keydown.escape.window="isOpen = false"
                                     >
+
                                         <li><a href="#"
                                                class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Mark
-                                                as Spam</a></li>
+                                                as Spam</a>
+                                        </li>
                                         <li><a href="#"
                                                class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Delete
-                                                Post</a></li>
+                                                Post</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
