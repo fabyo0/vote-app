@@ -66,7 +66,7 @@ class IdeasIndex extends Component
     public function render()
     {
         $statues = Status::all()->pluck('id', 'name');
-        $categories = Category::select('id', 'name')->get();
+        $categories = Category::query()->select('id', 'name')->get();
 
         $ideas = Idea::query()
             ->when($this->status && $this->status !== 'All', function ($query) use ($statues) {
