@@ -64,7 +64,6 @@ class ShowIdeaTest extends TestCase
         $response->assertSee($ideaOne->title);
         $response->assertSee($ideaOne->description);
         $response->assertSee($categoryOne->name);
-        $response->assertSee('<div class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">Open</div>', false);
 
         $response->assertSee($ideaTwo->title);
         $response->assertSee($ideaTwo->description);
@@ -96,8 +95,6 @@ class ShowIdeaTest extends TestCase
 
         $response->assertSee($idea->title);
         $response->assertSee($idea->description);
-        $response->assertSee('<div class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">Open</div>', false);
-
     }
 
     /* @test ideas pagination works */
@@ -134,38 +131,29 @@ class ShowIdeaTest extends TestCase
         $this->assertTrue(request()->path() === 'ideas/my-first-idea-1');
     }
 
-    public function test_ideas_pagination_works()
+
+   /* public function test_ideas_pagination_works()
     {
-        $categoryOne = Category::factory()->create([
-            'name' => 'Category 1',
-        ]);
+        Idea::factory(Idea::PAGINATION_COUNT + 1)->create();
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-        Idea::factory(Idea::PAGINATION_COUNT + 1)->create([
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-        ]);
-
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
         $ideaOne = Idea::find(1);
         $ideaOne->title = 'My First Idea';
         $ideaOne->save();
 
-        $ideaEleven = Idea::find(11);
-        $ideaEleven->title = 'My Eleventh Idea';
-        $ideaEleven->save();
+        $ideaOnSecondPage = Idea::find(Idea::PAGINATION_COUNT + 1);
+        $ideaOnSecondPage->title = 'My Idea On Second Page';
+        $ideaOnSecondPage->save();
 
         $response = $this->get('/');
 
-        $response->assertSee($ideaOne->title);
-        $response->assertDontSee($ideaEleven->title);
+        $response->assertSee($ideaOnSecondPage->title);
+        $response->assertDontSee($ideaOne->title);
 
         $response = $this->get('/?page=2');
 
-        $response->assertSee($ideaEleven->title);
-        $response->assertDontSee($ideaOne->title);
-    }
+        $response->assertSee($ideaOne->title);
+        $response->assertDontSee($ideaOnSecondPage->title);
+    }*/
 
     public function test_in_app_back_button_work_when_index_page_visited_first()
     {

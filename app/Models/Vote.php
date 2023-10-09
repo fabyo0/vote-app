@@ -15,14 +15,4 @@ class Vote extends Model
         'user_id',
         'idea_id',
     ];
-
-    /*    public function user(): BelongsTo
-        {
-            return $this->belongsTo(User::class);
-        }
-
-        public function idea(): HasMany
-        {
-            return $this->hasMany(Idea::class);
-        }*/
 }

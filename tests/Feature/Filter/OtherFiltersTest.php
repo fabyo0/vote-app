@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature;
+namespace Feature\Filter;
 
 use App\Http\Livewire\IdeasIndex;
 use App\Models\Category;
@@ -12,7 +12,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire;
 use Tests\TestCase;
 
-class SearchFiltersTest extends TestCase
+class OtherFiltersTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -28,13 +28,61 @@ class SearchFiltersTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_search_works_when_more_than_3_characters()
+    public function test_top_voted_filter_works()
     {
-
         $user = User::factory()->create();
+        $userB = User::factory()->create();
+        $userC = User::factory()->create();
 
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
+
+        $statusOne = Status::factory()->create(['name' => 'Open']);
+
+        $ideaOne = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOne->id,
+            'description' => 'Description for my first idea',
+        ]);
+
+        $ideaTwo = Idea::factory()->create([
+            'user_id' => $userB->id,
+            'category_id' => $categoryTwo->id,
+            'status_id' => $statusOne->id,
+            'description' => 'Description for my second idea',
+        ]);
+
+        Vote::create([
+            'idea_id' => $ideaOne->id,
+            'user_id' => $user->id,
+        ]);
+
+        Vote::create([
+            'idea_id' => $ideaOne->id,
+            'user_id' => $userB->id,
+        ]);
+
+        Vote::create([
+            'idea_id' => $ideaTwo->id,
+            'user_id' => $userC->id,
+        ]);
+
+        Livewire::test(IdeasIndex::class)
+            ->set('filter', 'Top Voted')
+            ->assertViewHas('ideas', function ($ideas) {
+                return $ideas->count() === 2
+                    && $ideas->first()->count() === 2
+                    && $ideas->get(1)->votes()->count() === 1;
+            });
+    }
+
+    public function test_my_ideas_filter_works_correctly_when_user_is_not_logged_in()
+    {
+        $user = User::factory()->create();
+        $userB = User::factory()->create();
+
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
 
         $statusOpen = Status::factory()->create(['name' => 'Open']);
 
@@ -55,75 +103,24 @@ class SearchFiltersTest extends TestCase
         ]);
 
         $ideaThree = Idea::factory()->create([
-            'user_id' => $user->id,
+            'user_id' => $userB->id,
             'category_id' => $categoryOne->id,
             'status_id' => $statusOpen->id,
             'title' => 'My Third Idea',
             'description' => 'Description for my first idea',
         ]);
 
-        Vote::factory()->create([
-            'idea_id' => $ideaOne->id,
-            'user_id' => $user->id,
-        ]);
-
         Livewire::test(IdeasIndex::class)
-            ->set('search', 'Second')
-            ->assertViewHas('ideas', function ($ideas) {
-                return $ideas->count() == 1
-                    && $ideas->first()->title === 'My Second Idea';
-            });
+            ->set('filter', 'My Ideas')
+            ->assertRedirect(route('login'));
+
     }
 
-    public function test_does_not_perform_search_if_less_than_3_characters()
-    {
-
-        $user = User::factory()->create();
-
-        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-        $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
-
-        $statusOpen = Status::factory()->create(['name' => 'Open']);
-
-        $ideaOne = Idea::factory()->create([
-            'user_id' => $user->id,
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'title' => 'My First Idea',
-            'description' => 'Description for my first idea',
-        ]);
-
-        $ideaTwo = Idea::factory()->create([
-            'user_id' => $user->id,
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'title' => 'My Second Idea',
-            'description' => 'Description for my first idea',
-        ]);
-
-        $ideaThree = Idea::factory()->create([
-            'user_id' => $user->id,
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'title' => 'My Third Idea',
-            'description' => 'Description for my first idea',
-        ]);
-
-        Vote::factory()->create([
-            'idea_id' => $ideaOne->id,
-            'user_id' => $user->id,
-        ]);
-
-        Livewire::test(IdeasIndex::class)
-            ->set('search', 'ab')
-            ->assertViewHas('ideas', function ($ideas) {
-                return $ideas->count() === 3;
-            });
-    }
-
-    public function test_search_works_correctly_with_category_filters()
+    //FIXME: Failed asserting that false is true.
+    public function test_my_ideas_filter_works_correctly_with_categories_filter()
     {
         $user = User::factory()->create();
+        $userB = User::factory()->create();
 
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
@@ -154,11 +151,56 @@ class SearchFiltersTest extends TestCase
             'description' => 'Description for my first idea',
         ]);
 
-        Livewire::test(IdeasIndex::class)
+        Livewire::actingAs($user)
+            ->test(IdeasIndex::class)
             ->set('category', 'Category 1')
-            ->set('search', 'Idea')
+            ->set('filter', 'My Ideas')
             ->assertViewHas('ideas', function ($ideas) {
-                return $ideas->count() === 2;
+                return $ideas->count() === 2
+                    && $ideas->first()->title === 'My First Idea';
+                //  && $ideas->get(1)->title == 'My First Idea';
+            });
+    }
+
+    public function test_no_filters_works_correctly()
+    {
+        $user = User::factory()->create();
+
+        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+        $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
+
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
+
+        $ideaOne = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
+            'title' => 'My First Idea',
+            'description' => 'Description for my first idea',
+        ]);
+
+        $ideaTwo = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
+            'title' => 'My Second Idea',
+            'description' => 'Description for my first idea',
+        ]);
+
+        $ideaThree = Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
+            'title' => 'My Third Idea',
+            'description' => 'Description for my first idea',
+        ]);
+
+        Livewire::test(IdeasIndex::class)
+            ->set('filter', 'No filter')
+            ->assertViewHas('ideas', function ($ideas) {
+                return $ideas->count() === 3
+                    && $ideas->first()->title === 'My First Idea'
+                    && $ideas->get(1)->title === 'My Second Idea';
             });
     }
 }

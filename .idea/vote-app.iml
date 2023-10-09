@@ -134,7 +134,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpdoc-parser" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/cache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/pint" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/telescope" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/opcodesio/log-viewer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/opcodesio/mail-parser" />
     </content>

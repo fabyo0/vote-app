@@ -38,6 +38,8 @@ class CreateIdea extends Component
                 'description' => $this->description,
             ]);
 
+            //$idea->vote(\auth()->user());
+
             session()->flash('success_message', 'Idea was added successfully.');
 
             $this->reset();

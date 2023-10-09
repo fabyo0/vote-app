@@ -43,7 +43,6 @@ class IdeaController extends Controller
         //
     }
 
-
     public function show(Idea $idea)
     {
         return view('idea.show', [
@@ -52,7 +51,7 @@ class IdeaController extends Controller
                 ->count(),
             'backUrl' => url()->previous() !== url()->full()
                 ? url()->previous()
-                : route('idea.show',$idea),
+                : route('idea.show', $idea),
         ]);
     }
 

@@ -14,7 +14,6 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
-        "laravel/telescope": "^4.16",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.4",
         "opcodesio/log-viewer": "^3.1"

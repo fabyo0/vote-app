@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Feature\Idea;
 
 use App\Http\Livewire\CreateIdea;
 use App\Models\Category;
@@ -75,7 +75,6 @@ class CreateIdeaTest extends TestCase
         ]);
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         Livewire::actingAs($user)
@@ -92,48 +91,9 @@ class CreateIdeaTest extends TestCase
         $response->assertSee('Lorem ipsum dolor sit amet...');
 
         // Check ideas table
-
         $this->assertDatabaseHas('ideas', [
             'title' => 'My first ideas',
             'description' => 'Lorem ipsum dolor sit amet...',
         ]);
     }
-
-    /** @test */
-    /*    public function creating_two_ideas_with_same_title_still_works_but_has_different_slugs()
-    {
-        $user = User::factory()->create();
-
-        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
-        $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
-
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-        Livewire::actingAs($user)
-            ->test(CreateIdea::class)
-            ->set('title', 'My First Idea')
-            ->set('category', $categoryOne->id)
-            ->set('description', 'This is my first idea')
-            ->call('createIdea')
-            ->assertRedirect(route('idea.index'));
-
-        $this->assertDatabaseHas('ideas', [
-            'title' => 'My First Idea',
-            'slug' => 'my-first-idea'
-        ]);
-
-        Livewire::actingAs($user)
-            ->test(CreateIdea::class)
-            ->set('title', 'My First Idea')
-            ->set('category', $categoryOne->id)
-            ->set('description', 'This is my first idea')
-            ->call('createIdea')
-            ->assertRedirect(route('idea.index'));
-
-        $this->assertDatabaseHas('ideas', [
-            'title' => 'My First Idea',
-            'slug' => 'my-first-idea-2'
-        ]);
-    }*/
-
 }

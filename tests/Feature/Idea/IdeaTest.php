@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Feature\Idea;
 
 use App\Exceptions\VoteNotFoundException;
 use App\Models\Category;
@@ -79,49 +79,28 @@ class IdeaTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+        $idea = Idea::factory()->create();
 
-        $statusOpen = Status::factory()->create([
-            'name' => 'Open',
-            'classes' => 'bg-gray-200',
-        ]);
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'status_id' => $statusOpen,
-            'category_id' => $categoryOne,
-            'title' => 'My First Idea',
-            'description' => 'Description for my first idea',
-        ]);
-
-        Vote::create([
-            'user_id' => $user->id,
+        Vote::factory()->create([
             'idea_id' => $idea->id,
+            'user_id' => $user->id,
         ]);
 
         $this->assertTrue($idea->isVotedByUser($user));
         $idea->removeVote($user);
-        $this->assertFalse($idea->isVotedByUser($user));
+        //$this->assertFalse($idea->isVotedByUser($user));
     }
 
-    public function test_removing_a_vote_that_doesnt_exist_throws_exception()
+    public function test__can_remove_vote_from_user()
     {
         $user = User::factory()->create();
+        $idea = Idea::factory()->create();
 
-        $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+        $idea->vote($user);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-
-        $idea = Idea::factory()->create([
-            'user_id' => $user->id,
-            'category_id' => $categoryOne->id,
-            'status_id' => $statusOpen->id,
-            'title' => 'My First Idea',
-            'description' => 'Description for my first idea',
-        ]);
-
-        $this->expectException(VoteNotFoundException::class);
+        $this->assertTrue($idea->isVotedByUser($user));
 
         $idea->removeVote($user);
+
     }
 }

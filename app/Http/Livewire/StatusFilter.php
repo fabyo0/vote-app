@@ -25,13 +25,9 @@ class StatusFilter extends Component
                 'status' => $this->status,
             ]);
         }
-
-        /*return redirect()->route('idea.index', [
-            'status' => $this->status
-        ]);*/
     }
 
-    public function mount()
+    public function mount(): void
     {
         // Status count
         $this->statusCount = Status::getCount();
@@ -40,7 +36,6 @@ class StatusFilter extends Component
         //TODO: Mevcut url idea.show ise
         if (Route::currentRouteName() === 'idea.show') {
             $this->status = null;
-            // $this->queryString = [];
         }
     }
 
