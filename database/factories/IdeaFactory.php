@@ -27,6 +27,7 @@ class IdeaFactory extends Factory
             'status_id' => Status::factory(),
             'title' => ucwords($this->faker->words(4, true)),
             'description' => $this->faker->paragraph(5),
+            'spam_reports' => $this->faker->numberBetween(1,20)
         ];
     }
 

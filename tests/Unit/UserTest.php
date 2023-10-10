@@ -30,7 +30,7 @@ class UserTest extends TestCase
     {
         $user = User::factory()->create([
             'name' => 'Emre',
-            'email' => 'emre@hotmail.com'
+            'email' => 'emredikmen002@gmail.com'
         ]);
 
         $userB = User::factory()->create([

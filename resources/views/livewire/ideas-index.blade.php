@@ -14,6 +14,7 @@
                 <option value="No Filter">No Filter</option>
                 <option value="Top Voted">Top Voted</option>
                 <option value="My Ideas">My Ideas</option>
+                <option value="Spam Ideas">Spam Ideas</option>
             </select>
         </div>
         <div class="w-full md:w-2/3 relative">

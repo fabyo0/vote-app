@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/user', function () {
-    return response()->json(\App\Models\User::all());
+    return response()->json([
+       'user' => \App\Models\User::all()
+    ]);
 });
 
 Route::get('/clear-cache', function () {

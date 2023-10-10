@@ -23,9 +23,9 @@ class DeleteIdea extends Component
             abort(Response::HTTP_FORBIDDEN);
         }
 
-       Idea::destroy($this->idea->id);
+        Idea::destroy($this->idea->id);
 
-       return Redirect::route('idea.index');
+        return Redirect::route('idea.index');
     }
 
     public function render()

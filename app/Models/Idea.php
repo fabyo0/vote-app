@@ -23,6 +23,7 @@ class Idea extends Model
         'title',
         'slug',
         'description',
+        'spam_reports'
     ];
 
     public function sluggable(): array
