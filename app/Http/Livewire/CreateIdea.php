@@ -17,11 +17,13 @@ class CreateIdea extends Component
 
     public $description;
 
+
     protected $rules = [
         'title' => 'required|string|min:4',
-        'category' => 'required|integer',
+        'category' => 'required|integer|exists:categories,id',
         'description' => 'required|min:4|string',
     ];
+
 
     public function createIdea()
     {
@@ -38,13 +40,11 @@ class CreateIdea extends Component
                 'description' => $this->description,
             ]);
 
-            //$idea->vote(\auth()->user());
-
             session()->flash('success_message', 'Idea was added successfully.');
 
             $this->reset();
 
-            return Redirect::route('idea.index');
+            return redirect()->route('idea.index');
         }
         abort(Response::HTTP_FORBIDDEN);
     }

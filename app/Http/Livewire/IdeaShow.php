@@ -16,7 +16,12 @@ class IdeaShow extends Component
 
     public $hasVoted;
 
-    protected $listeners = ['statusWasUpdating'];
+
+    protected $listeners = [
+        'statusWasUpdating' => '$refresh',
+        'ideaWasUpdated' => '$refresh',
+    ];
+
 
     public function mount(Idea $idea, $votesCount): void
     {
@@ -30,29 +35,30 @@ class IdeaShow extends Component
         $this->idea->refresh();
     }
 
+    public function ideaWasUpdating(): void
+    {
+        $this->idea->refresh();
+    }
+
     public function vote()
     {
         if (!auth()->check()) {
             return Redirect::route('login');
         }
 
-        if ($this->hasVoted) {
-            try {
+        try {
+            if ($this->hasVoted) {
                 $this->idea->removeVote(auth()->user());
-            } catch (VoteNotFoundException $exception) {
-                return $exception->getMessage();
-            }
-
-            $this->updateVoteCountAndType(-1, false);
-        } else {
-            try {
+                $this->updateVoteCountAndType(-1, false);
+            } else {
                 $this->idea->vote(auth()->user());
-            } catch (DuplicateVoteException $exception) {
-                return $exception->getMessage();
+                $this->updateVoteCountAndType(1, true);
             }
-            $this->updateVoteCountAndType(1, true);
+        } catch (DuplicateVoteException|VoteNotFoundException $exception) {
+            return $exception->getMessage();
         }
     }
+
 
     private function updateVoteCountAndType(int $change, bool $hasVoted): void
     {

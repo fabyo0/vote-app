@@ -30,7 +30,9 @@ class IdeasIndex extends Component
         'search' => ['except' => ''],
     ];
 
-    protected $listeners = ['queryStringUpdatedStatus'];
+    protected $listeners = [
+        'queryStringUpdatedStatus',
+    ];
 
     public function updatingCategory(): void
     {

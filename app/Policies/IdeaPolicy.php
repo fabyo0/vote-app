@@ -47,7 +47,21 @@ class IdeaPolicy
      */
     public function update(User $user, Idea $idea)
     {
-        //
+        /*return $user->id === (int)$idea->user_id
+           // && $user->isAdmin()
+            && now()->subHour() <= $idea->created_at;*/
+
+        if ($user->id !== (int)$idea->user_id) {
+            return false;
+        }
+
+        // if (!$user->isAdmin()) {
+        //     return false;
+        // }
+
+        $oneHourAgo = now()->subHour();
+
+        return $idea->created_at->greaterThanOrEqualTo($oneHourAgo);
     }
 
     /**
