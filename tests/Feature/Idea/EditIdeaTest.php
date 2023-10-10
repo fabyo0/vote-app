@@ -181,7 +181,6 @@ class EditIdeaTest extends TestCase
             ->set('description', 'Idea update success')
             ->call('updateIdea')
             ->assertStatus(Response::HTTP_FORBIDDEN);
-
     }
 
 
