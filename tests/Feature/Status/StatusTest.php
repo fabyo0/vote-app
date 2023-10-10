@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Feature\Status;
 
 use App\Models\Category;
 use App\Models\Idea;

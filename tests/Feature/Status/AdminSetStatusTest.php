@@ -1,15 +1,14 @@
 <?php
 
-namespace Tests\Feature;
+namespace Feature\Status;
 
 use App\Http\Livewire\SetStatus;
 use App\Jobs\NotifyAllVotes;
-use Illuminate\Support\Facades\Queue;
-use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
 class AdminSetStatusTest extends TestCase

@@ -28,6 +28,7 @@ class StatusFilterTest extends TestCase
         $idea = Idea::factory()->create();
         $this->get(route('idea.show', $idea))
             ->assertSeeLivewire('status-filter');
+
     }
 
     public function test_shows_correct_status_count()
