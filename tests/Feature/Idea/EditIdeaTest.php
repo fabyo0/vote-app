@@ -170,7 +170,6 @@ class EditIdeaTest extends TestCase
         $idea = Idea::factory()->create([
             'user_id' => $user->id,
             'category_id' => $categoryOne,
-//            'created_at' => now()->subHours(2)
         ]);
 
         Livewire::actingAs($userB)
@@ -186,7 +185,7 @@ class EditIdeaTest extends TestCase
     }
 
 
-    
+
     /** @test */
     public function editing_an_idea_does_not_work_when_user_does_not_have_authorization_because_idea_was_created_longer_than_an_hour_ago()
     {
