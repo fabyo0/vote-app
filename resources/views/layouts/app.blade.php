@@ -100,6 +100,7 @@
         </div>
     </div>
 </main>
+
 <livewire:scripts/>
 </body>
 </html>
