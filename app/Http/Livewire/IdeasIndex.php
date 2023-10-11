@@ -81,13 +81,13 @@ class IdeasIndex extends Component
                 $query->orderByDesc('votes_count');
             })
             ->when($this->filter && $this->filter === 'My Ideas', function ($query) {
-                $query->where('user_id', auth()->id())->get();
+                $query->where('user_id', auth()->id())->orderByDesc('created_at');
             })
             ->when($this->filter && $this->filter === 'Spam Ideas', function ($query) {
-                $query->where('spam_reports', '>' ,0)->orderByDesc('spam_reports');
+                $query->where('spam_reports', '>', 0)->orderByDesc('spam_reports');
             })
             ->when(strlen($this->search) >= 3, function ($query) {
-                return $query->where('title', 'like', '%'.$this->search.'%');
+                return $query->where('title', 'like', '%' . $this->search . '%');
             })
             ->addSelect(['voted_by_user' => Vote::query()->select('ideas.id')
                 ->where('user_id', Auth::id())

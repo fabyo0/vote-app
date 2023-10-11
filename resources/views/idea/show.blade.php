@@ -13,6 +13,8 @@
         :votesCount="$votesCount"
     />
 
+    <x-notification-success/>
+
     <x-modal-container :idea="$idea"/>
     <div class="comments-container relative space-y-6 md:ml-22 pt-4 my-8 mt-1">
 
@@ -78,6 +80,7 @@
                 </div>
             </div> <!-- end comment-container -->
         @endforeach
+
         {{-- <div class="is-admin comment-container relative bg-white rounded-xl flex mt-4">
             <div class="flex flex-1 px-4 py-6">
                 <div class="flex-none">
