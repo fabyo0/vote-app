@@ -3,7 +3,7 @@
     x-data="{ isOpen: false }"
     x-show="isOpen"
     x-init="
-        window.livewire.on('ideaWasUpdated', () => {
+        Livewire.on('ideaWasUpdated', () => {
             isOpen = false
         })
     "

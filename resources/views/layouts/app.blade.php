@@ -52,8 +52,8 @@
 <main class="container mx-auto max-w-custom flex flex-col md:flex-row">
     <div class="w-70 mx-auto md:mx-0 md:mr-5">
         <div
-            class="bg-white md:sticky md:top-8 border-2 border-blue rounded-xl mt-16"
-            style="
+                class="bg-white md:sticky md:top-8 border-2 border-blue rounded-xl mt-16"
+                style="
                           border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
                             border-image-slice: 1;
                             background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
@@ -77,14 +77,14 @@
             @else
                 <div class="my-6 text-center">
                     <a
-                        href="{{ route('login') }}"
-                        class="inline-block justify-center w-1/2 h-11 text-xs bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3"
+                            href="{{ route('login') }}"
+                            class="inline-block justify-center w-1/2 h-11 text-xs bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3"
                     >
                         <span class="ml-1">Login</span>
                     </a>
                     <a
-                        href="{{ route('register') }}"
-                        class="inline-block justify-center w-1/2 h-11 text-xs bg-gray-200 font-semibold rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3 mt-4"
+                            href="{{ route('register') }}"
+                            class="inline-block justify-center w-1/2 h-11 text-xs bg-gray-200 font-semibold rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3 mt-4"
                     >
                         Sign Up
                     </a>
@@ -100,6 +100,13 @@
         </div>
     </div>
 </main>
+
+@if(session('success_message'))
+    <x-notification-success
+            :redirect="true"
+            message-to-display="{{ session('success_message')}}"
+    />
+@endif
 
 <livewire:scripts/>
 </body>

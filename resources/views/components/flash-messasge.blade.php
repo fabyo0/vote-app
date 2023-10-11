@@ -1,3 +1,4 @@
+{{--
 @if (session('success_message'))
     <div
         x-data="{ isVisible: true }"
@@ -42,3 +43,4 @@
         {{ session('warning_message') }}
     </div>
 @endif
+--}}

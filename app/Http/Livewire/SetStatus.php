@@ -14,9 +14,9 @@ class SetStatus extends Component
     public $notifyAllVoters;
 
 
-  /*  protected $rules = [
-        'status' => 'required'
-    ];*/
+    /*  protected $rules = [
+          'status' => 'required'
+      ];*/
 
     public function mount(Idea $idea): void
     {
@@ -26,7 +26,7 @@ class SetStatus extends Component
 
     public function setStatus(): void
     {
-       // $this->validate();
+        // $this->validate();
         // admin check
         $this->authorizeAdmin();
         /*    $this->idea->status_id = $this->status;
@@ -40,7 +40,7 @@ class SetStatus extends Component
         }
 
         //Emit Event
-        $this->emit('statusWasUpdating');
+        $this->emit('statusWasUpdating', 'Status was updated successfully!');
     }
 
     protected function authorizeAdmin(): void
