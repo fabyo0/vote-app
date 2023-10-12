@@ -22,8 +22,8 @@ class IdeaController extends Controller
                 ->where('user_id', Auth::id())
                 ->whereColumn('idea_id', 'ideas.id'),
             ])
-            ->with(['category', 'user', 'status'])
-            ->withCount('votes')
+            ->with(['category', 'user', 'status','comments'])
+            ->withCount(['votes', 'comments'])
             ->latest()
             ->simplePaginate(Idea::PAGINATION_COUNT);
 

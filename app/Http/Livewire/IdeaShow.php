@@ -13,7 +13,6 @@ class IdeaShow extends Component
     public $idea;
 
     public $votesCount;
-
     public $hasVoted;
 
 

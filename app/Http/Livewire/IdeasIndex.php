@@ -95,6 +95,7 @@ class IdeasIndex extends Component
             ])
             ->with(['category', 'user', 'status'])
             ->withCount('votes')
+            ->withCount('comments')
             ->simplePaginate(Idea::PAGINATION_COUNT);
 
         return view('livewire.ideas-index', [
