@@ -19,7 +19,7 @@ class StatusFactory extends Factory
     public function definition()
     {
 
-        $statusOptions = [
+        /*$statusOptions = [
             ['name' => 'Open', 'classes' => 'bg-gray-200'],
             ['name' => 'Considering', 'classes' => 'bg-purple text-white'],
             ['name' => 'In Progress', 'classes' => 'bg-yellow text-white'],
@@ -27,11 +27,11 @@ class StatusFactory extends Factory
             ['name' => 'Closed', 'classes' => 'bg-red text-white'],
         ];
 
-        $randomStatus = $this->faker->randomElement($statusOptions);
+        $randomStatus = $this->faker->randomElement($statusOptions);*/
 
         return [
-            'name' => $randomStatus['name'],
-            'classes' => $randomStatus['classes'],
+            'name' => $this->faker->words(2, true),
+            'classes' => 'bg-gray-200',
         ];
 
     }

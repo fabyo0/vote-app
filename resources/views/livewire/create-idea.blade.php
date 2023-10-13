@@ -20,7 +20,7 @@
     <p class="text-red text-xs mt-1">{{ $message }}</p>
     @enderror
     <div>
-        <textarea wire:model="description" id="idea" cols="30" rows="4"
+        <textarea wire:model.defer="description" id="idea" cols="30" rows="4"
                   class="w-full bg-gray-100 rounded-xl border-none placeholder-gray-900 text-sm px-4 py-2"
                   placeholder="Describe your idea"></textarea>
     </div>
