@@ -5,7 +5,17 @@
             isOpen = false
         })
 
-        Livewire.hook('message.processed', (message, component) => {
+        Livewire.hook('message.processed', (message) => {
+           /*if(message.updateQueue[0].method === 'gotoPage' || message.updateQueue[0].method === 'nextPage' ||
+            message.updateQueue[0].method === 'previousPage')
+            */
+
+            if (['gotoPage','nextPage','previousPage'].includes(message.updateQueue[0].method))
+            {
+                const firstComment = document.querySelector('.comment-container:first-child')
+                firstComment.scrollIntoView({ behavior: 'smooth'})
+           }
+
             if (message.updateQueue[0].payload.event === 'commentWasAdded'
              && message.component.fingerprint.name === 'idea-comments') {
                 const lastComment = document.querySelector('.comment-container:last-child')
@@ -15,8 +25,7 @@
                     lastComment.classList.remove('bg-green-50')
                 }, 5000)
             }
-        })
-"
+        })"
     class="relative"
 >
     <button

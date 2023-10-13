@@ -25,7 +25,7 @@ class IdeaController extends Controller
             ->with(['category', 'user', 'status','comments'])
             ->withCount(['votes', 'comments'])
             ->latest()
-            ->simplePaginate(Idea::PAGINATION_COUNT);
+            ->simplePaginate();
 
         return response()->view('idea.index', [
             'ideas' => $ideas,

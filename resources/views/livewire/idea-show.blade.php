@@ -13,9 +13,9 @@
                 </h4>
                 <div class="text-gray-600 mt-3">
                     @admin
-                    @if($idea->spam_reports)
-                        <div class="text-red mb-2">Spam Reports: {{ $idea->spam_reports }}</div>
-                    @endif
+                        @if($idea->spam_reports)
+                            <div class="text-red mb-2">Spam Reports: {{ $idea->spam_reports }}</div>
+                        @endif
                     @endadmin
                     {{ $idea->description }}
                 </div>
@@ -28,7 +28,7 @@
                         <div>&bull;</div>
                         <div>{{ $idea->category->name }}</div>
                         <div>&bull;</div>
-                        <div class="text-gray-900">{{ $idea->comments->count() }} Comments</div>
+                        <div class="text-gray-900">{{ $idea->comments()->count() }} Comments</div>
                     </div>
                     <div
                         class="flex items-center space-x-2 mt-4 md:mt-0"

@@ -15,7 +15,7 @@ class Idea extends Model
     use HasFactory;
     use Sluggable;
 
-    const PAGINATION_COUNT = 10;
+    protected $perPage = 10;
 
     protected $fillable = [
         'user_id',
@@ -69,7 +69,7 @@ class Idea extends Model
 
     public function isVotedByUser(?User $user): bool
     {
-        if (! $user) {
+        if (!$user) {
             return false;
         }
 

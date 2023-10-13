@@ -16,6 +16,9 @@ class Comment extends Model
         'body'
     ];
 
+    protected $perPage = 7;
+
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
