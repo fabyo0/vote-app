@@ -20,7 +20,7 @@ class EditComment extends Component
         'body' => 'required|min:4'
     ];
 
-    public function setEditComment($commentId)
+    public function setEditComment($commentId): void
     {
         $this->comment = Comment::query()->findOrFail($commentId);
         $this->body = $this->comment->body;
