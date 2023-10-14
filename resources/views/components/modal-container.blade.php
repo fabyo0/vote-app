@@ -20,5 +20,10 @@
 
 <!-- Edit Comment -->
 @auth
-<livewire:edit-comment/>
+    <livewire:edit-comment/>
+@endauth
+
+<!-- Delete Comment -->
+@auth
+    <livewire:delete-comment/>
 @endauth

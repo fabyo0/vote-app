@@ -22,6 +22,7 @@ class IdeaShow extends Component
         'ideaWasMarkedAsSpam' => '$refresh',
         'ideaWasMarkedAsNotSpam' => '$refresh',
         'commentWasAdded' => '$refresh',
+        'commentWasDeleted' => '$refresh',
     ];
 
     public function mount(Idea $idea, $votesCount): void
@@ -37,6 +38,11 @@ class IdeaShow extends Component
     }
 
     public function ideaWasUpdating(): void
+    {
+        $this->idea->refresh();
+    }
+
+    public function commentWasDeleted(): void
     {
         $this->idea->refresh();
     }

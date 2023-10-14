@@ -15,13 +15,21 @@ class IdeaComments extends Component
 
 
     protected $listeners = [
-        'commentWasAdded'
+        'commentWasAdded',
+        'commentWasDeleted' => '$refresh'
     ];
 
 
     public function mount(Idea $idea)
     {
         $this->idea = $idea;
+    }
+
+
+    public function commentWasDeleted()
+    {
+        $this->idea->refresh();
+        $this->goToPage(1);
     }
 
 
