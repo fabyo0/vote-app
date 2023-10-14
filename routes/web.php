@@ -21,7 +21,7 @@ Route::get('/user', function () {
     ]);
 });
 
-Route::get('/clear-cache', function () {
+Route::get('/clear', function () {
 
     Artisan::call('cache:clear');
     Artisan::call('route:cache');

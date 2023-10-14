@@ -17,3 +17,8 @@
 @admin
 <livewire:mark-idea-not-spam :idea="$idea"/>
 @endadmin
+
+<!-- Edit Comment -->
+@auth
+<livewire:edit-comment/>
+@endauth
