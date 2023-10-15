@@ -16,7 +16,7 @@ class IdeaComments extends Component
 
     protected $listeners = [
         'commentWasAdded',
-        'commentWasDeleted' => '$refresh'
+        'commentWasDeleted' => '$refresh',
     ];
 
 

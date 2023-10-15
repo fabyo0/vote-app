@@ -2,10 +2,7 @@
 
 namespace Feature\Comments;
 
-use App\Http\Livewire\EditIdea;
 use App\Http\Livewire\IdeaComment;
-use App\Http\Livewire\IdeaShow;
-use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\User;

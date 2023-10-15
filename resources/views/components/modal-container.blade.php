@@ -27,3 +27,13 @@
 @auth
     <livewire:delete-comment/>
 @endauth
+
+<!-- Mark Comment As Spam -->
+@auth
+    <livewire:mark-comment-as-spam/>
+@endauth
+
+<!-- Mark Comment As Not Spam -->
+@admin
+<livewire:mark-comment-as-not-spam />
+@endadmin
