@@ -4,11 +4,12 @@ namespace App\Http\Livewire;
 
 use App\Jobs\NotifyAllVotes;
 use App\Models\Idea;
-use Illuminate\Http\Response;
 use Livewire\Component;
+use Symfony\Component\HttpFoundation\Response;
 
 class SetStatus extends Component
 {
+
     public $idea;
     public $status;
     public $notifyAllVoters;

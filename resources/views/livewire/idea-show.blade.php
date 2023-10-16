@@ -35,7 +35,7 @@
                         x-data="{ isOpen: false }"
                     >
                         <div
-                            class="{{ $idea->status->classes }} text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">{{ $idea->status->name }}</div>
+                            class="{{ 'status-'.Str::kebab($idea->status->name)}} text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">{{ $idea->status->name }}</div>
                         @auth
                             <div class="relative">
                                 <button

@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EditComment extends Component
 {
-    public Comment $comment;
+    public ?Comment $comment;
 
     public $body;
 
@@ -29,7 +29,7 @@ class EditComment extends Component
     }
 
 
-    public function updateComment()
+    public function updateComment(): void
     {
         // Validate
         $this->validate();
