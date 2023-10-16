@@ -32,10 +32,10 @@ class IdeaShow extends Component
         $this->hasVoted = $idea->isVotedByUser(auth()->user());
     }
 
-    public function statusWasUpdating(): void
+   /* public function statusWasUpdating(): void
     {
         $this->idea->refresh();
-    }
+    }*/
 
     public function ideaWasUpdating(): void
     {

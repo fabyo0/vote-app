@@ -13,9 +13,9 @@
         })
     "
     @keydown.escape.window="isOpen = false"
-   {{-- @custom-show-edit-modal.window="isOpen = true
-         $nextTick(() => $refs.editComment.focus());
-     "--}}
+    {{-- @custom-show-edit-modal.window="isOpen = true
+          $nextTick(() => $refs.editComment.focus());
+      "--}}
     class="fixed z-10 inset-0 overflow-y-auto"
     aria-labelledby="modal-title"
     role="dialog"
@@ -50,7 +50,7 @@
 
                 <form wire:submit.prevent="updateComment" action="#" method="POST" class="space-y-4 px-4 py-6">
                     <div>
-                        <textarea x-ref="editComment" wire:model.defer="body" name="body" id="idea" cols="30" rows="4"
+                        <textarea x-ref="editComment" wire:model.defer="body" name="body" cols="30" rows="4"
                                   class="w-full bg-gray-100 rounded-xl border-none placeholder-gray-900 text-sm px-4 py-2"
                                   placeholder="Comment your idea"></textarea>
                         @error('body')

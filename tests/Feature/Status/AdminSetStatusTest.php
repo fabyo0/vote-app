@@ -69,7 +69,7 @@ class AdminSetStatusTest extends TestCase
             ])->assertSet('status', $statusConsidering->id);
     }
 
-    public function test_can_set_status_correctly()
+    public function test_can_set_status_correctly_no_comment()
     {
         $user = User::factory()->admin()->create();
 
@@ -92,7 +92,47 @@ class AdminSetStatusTest extends TestCase
             'id' => $idea->id,
             'status_id' => $statusInProgress->id,
         ]);
+
+        $this->assertDatabaseHas('comments', [
+            'body' => 'No comment was added',
+            'is_status_update' => true
+        ]);
+
     }
+
+
+    public function test_can_set_status_correctly_with_comment()
+    {
+        $user = User::factory()->admin()->create();
+
+        $statusConsidering = Status::factory()->create(['id' => 2, 'name' => 'Considering']);
+        $statusInProgress = Status::factory()->create(['id' => 3, 'name' => 'In Progress']);
+
+        $idea = Idea::factory()->create([
+            'status_id' => $statusConsidering->id,
+        ]);
+
+        \Livewire::actingAs($user)
+            ->test(SetStatus::class, [
+                'idea' => $idea,
+            ])
+            ->set('status', $statusInProgress->id)
+            ->set('comment', 'This is a comment when setting a status')
+            ->call('setStatus')
+            ->assertEmitted('statusWasUpdating');
+
+        $this->assertDatabaseHas('ideas', [
+            'id' => $idea->id,
+            'status_id' => $statusInProgress->id,
+        ]);
+
+        $this->assertDatabaseHas('comments', [
+            'body' => 'This is a comment when setting a status',
+            'is_status_update' => true
+        ]);
+
+    }
+
 
     public function test_can_set_status_correctly_while_notifying_all_voters()
     {

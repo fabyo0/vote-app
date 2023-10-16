@@ -152,9 +152,15 @@
 
     <div class="buttons-container flex items-center justify-between mt-6">
 
-        <livewire:add-comment
-            :idea="$idea"
-        />
+        <div class="flex flex-col md:flex-row items-center space-x-4 md:ml-6">
+
+            <livewire:add-comment :idea="$idea"/>
+
+            @admin
+                <livewire:set-status :idea="$idea"/>
+            @endadmin
+
+        </div>
 
         <div class="hidden md:flex items-center space-x-3">
             <div class="bg-white font-semibold text-center rounded-xl px-3 py-2">

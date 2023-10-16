@@ -31,7 +31,7 @@
             showNotification(message)
         })
 
-        Livewire.on('statusWasUpdated', message => {
+        Livewire.on('statusWasUpdating', message => {
             showNotification(message)
         })
 

@@ -6,9 +6,6 @@
         })
 
         Livewire.hook('message.processed', (message) => {
-           /*if(message.updateQueue[0].method === 'gotoPage' || message.updateQueue[0].method === 'nextPage' ||
-            message.updateQueue[0].method === 'previousPage')
-            */
 
             if (['gotoPage','nextPage','previousPage'].includes(message.updateQueue[0].method))
             {
@@ -16,8 +13,8 @@
                 firstComment.scrollIntoView({ behavior: 'smooth'})
            }
 
-            if (message.updateQueue[0].payload.event === 'commentWasAdded'
-             && message.component.fingerprint.name === 'idea-comments') {
+            if (['commentWasAdded', 'statusWasUpdated'].includes(message.updateQueue[0].payload.event))
+              {
                 const lastComment = document.querySelector('.comment-container:last-child')
                 lastComment.scrollIntoView({ behavior: 'smooth'})
                 lastComment.classList.add('bg-green-50')

@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Enums\StatusEnum;
 use App\Jobs\NotifyAllVotes;
+use App\Models\Comment;
 use App\Models\Idea;
 use Livewire\Component;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +16,12 @@ class SetStatus extends Component
     public $status;
     public $notifyAllVoters;
 
+    public $comment;
 
     /*  protected $rules = [
           'status' => 'required'
       ];*/
+
 
     public function mount(Idea $idea): void
     {
@@ -39,6 +43,17 @@ class SetStatus extends Component
             //$this->notifyAllVoters();
             NotifyAllVotes::dispatch($this->idea);
         }
+
+        Comment::create([
+            'user_id' => auth()->id(),
+            'status_id' => $this->status,
+            'idea_id' => $this->idea->id,
+            'body' => $this->comment ?? 'No comment was added',
+            'is_status_update' => 1
+        ]);
+
+
+        //$this->reset('comment');
 
         //Emit Event
         $this->emit('statusWasUpdating', 'Status was updated successfully!');

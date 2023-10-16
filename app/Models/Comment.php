@@ -14,7 +14,8 @@ class Comment extends Model
         'user_id',
         'idea_id',
         'status_id',
-        'body'
+        'body',
+        'is_status_update'
     ];
 
     protected $perPage = 7;
