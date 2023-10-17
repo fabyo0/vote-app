@@ -13,13 +13,17 @@ class IdeaStatusUpdatedMailable extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
+    public $idea;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(public Idea $idea)
-    {}
+    public function __construct(Idea $idea)
+    {
+        $this->idea = $idea;
+    }
 
 
     /**

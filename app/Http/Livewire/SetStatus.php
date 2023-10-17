@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Enums\StatusEnum;
 use App\Jobs\NotifyAllVotes;
 use App\Models\Comment;
 use App\Models\Idea;
@@ -18,10 +17,6 @@ class SetStatus extends Component
 
     public $comment;
 
-    /*  protected $rules = [
-          'status' => 'required'
-      ];*/
-
 
     public function mount(Idea $idea): void
     {
@@ -31,12 +26,9 @@ class SetStatus extends Component
 
     public function setStatus(): void
     {
-        // $this->validate();
         // admin check
         $this->authorizeAdmin();
-        /*    $this->idea->status_id = $this->status;
-            $this->idea->save();
-        */
+
         $this->idea->update(['status_id' => $this->status]);
 
         if ($this->notifyAllVoters) {
@@ -53,7 +45,7 @@ class SetStatus extends Component
         ]);
 
 
-        //$this->reset('comment');
+        $this->reset('comment');
 
         //Emit Event
         $this->emit('statusWasUpdating', 'Status was updated successfully!');
