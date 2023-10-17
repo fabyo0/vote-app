@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Laracasts Voting</title>
+    <title>Voting App</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <livewire:styles />
+    <livewire:styles/>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -34,107 +34,8 @@
                                 {{ __('Log out') }}
                             </a>
                         </form>
-
-                        <div x-data="{ isOpen: false }"class="relative" >
-                            <button @click="isOpen = !isOpen">
-                                <svg style="color: #338AF1;"  class="h-8 w-8 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-                                </svg>
-                                <div class="absolute rounded-full bg-red text-white text-xxs w-6 h-6 flex justify-center items-center border-2 -top-1 -right-1">8</div>
-                            </button>
-                            <ul
-                                class="absolute w-76 md:w-96 text-left text-gray-700 text-sm bg-white shadow-dialog rounded-xl max-h-128 overflow-y-auto z-10 -right-28 md:-right-12"
-                                {{-- style="right: -46px" --}}
-                                x-cloak
-                                x-show.transition.origin.top="isOpen"
-                                @click.away="isOpen = false"
-                                @keydown.escape.window="isOpen = false"
-                            >
-                                <li>
-                                    <a
-                                        href="#"
-                                        @click.prevent="
-                                                    isOpen = false
-                                                "
-                                        class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-3"
-                                    >
-                                        <img src="https://www.gravatar.com/avatar/c6ad550c8f30082474d1e58d20f67b3a" class="rounded-xl w-10 h-10" alt="avatar">
-                                        <div class="ml-4">
-                                            <div class="line-clamp-6">
-                                                <span class="font-semibold">drehimself</span> commented on
-                                                <span class="font-semibold">This is my idea</span>:
-                                                <span>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis ea eum nobis quae! Explicabo perferendis esse in reiciendis numquam repellat ipsam nam corporis enim! Consequuntur repellendus fugit perspiciatis vel ea aut atque quibusdam fuga laudantium impedit dignissimos amet quod corrupti, esse labore facere exercitationem porro provident voluptates repudiandae iste accusantium quo est dolor. Ipsum alias, delectus nulla eveniet est maiores labore beatae temporibus. Voluptatibus fugiat esse aliquam autem temporibus at labore, exercitationem qui sit omnis et sapiente perspiciatis aliquid obcaecati vero minus architecto quaerat quod porro quas voluptates eos. Fuga nobis neque debitis consectetur impedit dolorum accusamus aut vero ducimus."</span>
-                                            </div>
-                                            <div class="text-xs text-gray-500 mt-2">1 hour ago</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        @click.prevent="
-                                                    isOpen = false
-                                                "
-                                        class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-3"
-                                    >
-                                        <img src="https://www.gravatar.com/avatar/c6ad550c8f30082474d1e58d20f67b3a" class="rounded-xl w-10 h-10" alt="avatar">
-                                        <div class="ml-4">
-                                            <div>
-                                                <span class="font-semibold">drehimself</span> commented on
-                                                <span class="font-semibold">This is my idea</span>:
-                                                <span>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quos, eveniet consequatur aspernatur dolor vitae culpa voluptatem maiores tempore reprehenderit!"</span>
-                                            </div>
-                                            <div class="text-xs text-gray-500 mt-2">1 hour ago</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        @click.prevent="
-                                                    isOpen = false
-                                                "
-                                        class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-3"
-                                    >
-                                        <img src="https://www.gravatar.com/avatar/c6ad550c8f30082474d1e58d20f67b3a" class="rounded-xl w-10 h-10" alt="avatar">
-                                        <div class="ml-4">
-                                            <div>
-                                                <span class="font-semibold">drehimself</span> commented on
-                                                <span class="font-semibold">This is my idea</span>:
-                                                <span>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quos, eveniet consequatur aspernatur dolor vitae culpa voluptatem maiores tempore reprehenderit!"</span>
-                                            </div>
-                                            <div class="text-xs text-gray-500 mt-2">1 hour ago</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        @click.prevent="
-                                                    isOpen = false
-                                                "
-                                        class="flex hover:bg-gray-100 transition duration-150 ease-in px-5 py-3"
-                                    >
-                                        <img src="https://www.gravatar.com/avatar/c6ad550c8f30082474d1e58d20f67b3a" class="rounded-xl w-10 h-10" alt="avatar">
-                                        <div class="ml-4">
-                                            <div>
-                                                <span class="font-semibold">drehimself</span> commented on
-                                                <span class="font-semibold">This is my idea</span>:
-                                                <span>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quos, eveniet consequatur aspernatur dolor vitae culpa voluptatem maiores tempore reprehenderit!"</span>
-                                            </div>
-                                            <div class="text-xs text-gray-500 mt-2">1 hour ago</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="border-t border-gray-300 text-center">
-                                    <button
-                                        class="w-full block font-semibold hover:bg-gray-100 transition duration-150 ease-in px-5 py-4"
-                                    >
-                                        Mark all as read
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
+                        <!-- Notification -->
+                        <livewire:comment-notifications/>
                     </div>
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
@@ -146,7 +47,8 @@
             </div>
         @endif
         <a href="#">
-            <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp" alt="avatar" class="w-10 h-10 rounded-full">
+            <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp" alt="avatar"
+                 class="w-10 h-10 rounded-full">
         </a>
     </div>
 </header>
@@ -175,7 +77,7 @@
             </div>
 
             @auth
-                <livewire:create-idea />
+                <livewire:create-idea/>
             @else
                 <div class="my-6 text-center">
                     <a
@@ -196,7 +98,7 @@
         </div>
     </div>
     <div class="w-full px-2 md:px-0 md:w-175">
-        <livewire:status-filter />
+        <livewire:status-filter/>
 
         <div class="mt-8">
             {{ $slot }}
@@ -211,6 +113,6 @@
     />
 @endif
 
-<livewire:scripts />
+<livewire:scripts/>
 </body>
 </html>
