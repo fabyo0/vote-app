@@ -1,5 +1,5 @@
 <div
-    wire:poll.750ms="getNotificationCount"
+    wire:poll="getNotificationCount"
     x-data="{ isOpen: false }"
     class="relative">
     <button

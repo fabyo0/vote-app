@@ -6,6 +6,7 @@ use App\Http\Livewire\AddComment;
 use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\User;
+use App\Notifications\CommentAdded;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Tests\TestCase;
@@ -70,6 +71,10 @@ class AddCommentsTest extends TestCase
 
         $idea = Idea::factory()->create();
 
+        \Notification::fake();
+
+        \Notification::assertNothingSent();
+
         Livewire::actingAs($user)
             ->test(AddComment::class, [
                 'idea' => $idea
@@ -77,6 +82,10 @@ class AddCommentsTest extends TestCase
             ->set('comment', 'This first comment')
             ->call('addComment')
             ->assertEmitted('commentWasAdded');
+
+        \Notification::assertSentTo(
+            [$idea->user], CommentAdded::class
+        );
 
         $this->equalTo(1, Comment::count());
         $this->equalTo('This first comment', $idea->comments->first()->body);

@@ -58,7 +58,7 @@
         @auth
             <form wire:submit.prevent="addComment" action="#" class="space-y-4 px-4 py-6">
                 <div>
-                    <textarea x-ref="comment" wire:model="comment" name="post_comment" id="post_comment" cols="30"
+                    <textarea x-ref="comment" wire:model.defer="comment" name="post_comment" id="post_comment" cols="30"
                               rows="4"
                               class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 border-none px-4 py-2"
                               placeholder="Go ahead, don't be shy. Share your thoughts..." required></textarea>

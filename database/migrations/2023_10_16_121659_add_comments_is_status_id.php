@@ -14,7 +14,7 @@ class AddCommentsIsStatusId extends Migration
     public function up()
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->foreignId('status_id')->nullable()->constrained();
+            $table->foreignId('status_id')->constrained();
         });
     }
 

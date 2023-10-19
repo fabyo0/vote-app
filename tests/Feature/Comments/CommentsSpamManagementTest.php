@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Feature\Comments;
 
 use App\Http\Livewire\IdeaComment;
 use App\Http\Livewire\MarkCommentAsNotSpam;
@@ -9,7 +9,6 @@ use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
