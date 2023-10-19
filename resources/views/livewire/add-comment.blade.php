@@ -6,13 +6,14 @@
         })
 
         Livewire.hook('message.processed', (message) => {
-
+        {{-- Pagination --}}
             if (['gotoPage','nextPage','previousPage'].includes(message.updateQueue[0].method))
             {
                 const firstComment = document.querySelector('.comment-container:first-child')
                 firstComment.scrollIntoView({ behavior: 'smooth'})
            }
 
+        {{-- Add Comment --}}
             if (['commentWasAdded', 'statusWasUpdated'].includes(message.updateQueue[0].payload.event))
               {
                 const lastComment = document.querySelector('.comment-container:last-child')
@@ -22,7 +23,17 @@
                     lastComment.classList.remove('bg-green-50')
                 }, 5000)
             }
-        })"
+        })
+        {{--   Scroll Comment  --}}
+          @if (session('scrollToComment'))
+                const commentToScrollTo = document.querySelector('#comment-{{ session('scrollToComment') }}')
+                commentToScrollTo.scrollIntoView({ behavior: 'smooth'})
+                commentToScrollTo.classList.add('bg-green-50')
+                setTimeout(() => {
+                    commentToScrollTo.classList.remove('bg-green-50')
+                }, 5000)
+            @endif
+            "
     class="relative"
 >
     <button
