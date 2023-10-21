@@ -15,12 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/user', function (\App\Models\User $user) {
-    return response()->json([
-       'user' => \App\Models\User::with('ideas.comments')->get()
-    ]);
-});
-
 Route::get('/clear', function () {
 
     Artisan::call('cache:clear');
