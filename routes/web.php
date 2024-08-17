@@ -15,16 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/clear', function () {
-
-    Artisan::call('cache:clear');
-    Artisan::call('route:cache');
-    Artisan::call('config:cache');
-    Artisan::call('view:clear');
-
-    dd('Application cache has been cleared');
-});
-
 Route::get('/', [IdeaController::class, 'index'])->name('idea.index');
 
 Route::get('/ideas/{idea}', [IdeaController::class, 'show'])->name('idea.show');
