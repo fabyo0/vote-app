@@ -14,33 +14,21 @@ class IdeaController extends Controller
 {
     public function index(Request $request)
     {
-        $ideas = Idea::query()
-            ->when($request->status !== 'All', function ($query) {
-                return $query->where('status_id', StatusEnum::Open);
-            })
-            ->addSelect(['voted_by_user' => Vote::query()->select('ideas.id')
-                ->where('user_id', Auth::id())
-                ->whereColumn('idea_id', 'ideas.id'),
-            ])
-            ->with(['category', 'user', 'status', 'comments'])
-            ->withCount(['votes', 'comments'])
-            ->latest()
-            ->simplePaginate();
-
         return response()->view('idea.index', [
-            'ideas' => $ideas,
+            'ideas' => Idea::query()
+                ->when($request->status !== 'All', function ($query) {
+                    return $query->where('status_id', StatusEnum::Open);
+                })
+                ->addSelect(['voted_by_user' => Vote::query()->select('ideas.id')
+                    ->where('user_id', Auth::id())
+                    ->whereColumn('idea_id', 'ideas.id'),
+                ])
+                ->with(['category', 'user', 'status', 'comments'])
+                ->withCount(['votes', 'comments'])
+                ->latest()
+                ->simplePaginate(),
         ]);
 
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(StoreIdeaRequest $request)
-    {
-        //
     }
 
     public function show(Idea $idea)
@@ -53,20 +41,5 @@ class IdeaController extends Controller
                 ? url()->previous()
                 : route('idea.show', $idea),
         ]);
-    }
-
-    public function edit(Idea $idea)
-    {
-        //
-    }
-
-    public function update(UpdateIdeaRequest $request, Idea $idea)
-    {
-        //
-    }
-
-    public function destroy(Idea $idea)
-    {
-        //
     }
 }

@@ -1,11 +1,12 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Vote App",
     "keywords": [
         "framework",
         "laravel"
     ],
+    "author": "Emre Dikmen",
     "license": "MIT",
     "require": {
         "php": "^8.0",
@@ -13,7 +14,7 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "^9.19",
+        "laravel/framework": "^9.52",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.4",
         "opcodesio/log-viewer": "^3.1",

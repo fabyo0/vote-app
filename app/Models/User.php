@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
 
 class User extends Authenticatable
 {
@@ -59,28 +60,19 @@ class User extends Authenticatable
         return $this->belongsToMany(Vote::class, 'votes');
     }
 
-
     public function getAvatar(): string
     {
-        //  Kullanıcının e-posta adresinin ilk karakterini alın
-        $firstCharacter = $this->email[0];
-
-        // İlk karakterin bir sayı olup olmadığını kontrol edin
-        $integerToUse = is_numeric($firstCharacter)
-            ? ord(strtolower($firstCharacter)) - 21
-            : ord(strtolower($firstCharacter)) - 96;
-
-        //  Gravatar için avatar URL'sini oluşturun
-        return 'https://www.gravatar.com/avatar/'
-            . md5($this->email) // Kullanıcının e-posta adresini md5 ile hashleyin
-            . '?s=200' // Avatarın boyutunu 200x200 piksel olarak ayarlayın
-            . '&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-'
-            . $integerToUse
-            . '.png'; // Varsayılan avatarın URL'sini oluşturun
+        return 'https://robohash.org/' . md5($this->email) . '?set=set4';
     }
 
+    //Human
+    /*public function getAvatar(): string
+    {
+        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&background=random&color=fff';
+    }*/
 
-    public function isAdmin():bool
+
+    public function isAdmin(): bool
     {
         return $this->email == 'emredikmen002@gmail.com';
     }
