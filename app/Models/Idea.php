@@ -16,6 +16,52 @@ use App\Enums\IdeaStatus;
 use Illuminate\Support\Str;
 
 
+/**
+ * App\Models\Idea
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $category_id
+ * @property int $status_id
+ * @property int $spam_reports
+ * @property string $title
+ * @property string|null $slug
+ * @property string $description
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
+ * @property-read int|null $comments_count
+ * @property-read \App\Models\Status|null $status
+ * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $votes
+ * @property-read int|null $votes_count
+ * @method static Builder|Idea applyFilter(?string $filter)
+ * @method static Builder|Idea byCategory(?string $category)
+ * @method static Builder|Idea byStatus(?string $status)
+ * @method static Builder|Idea byUser(?int $userId = null)
+ * @method static \Database\Factories\IdeaFactory factory($count = null, $state = [])
+ * @method static Builder|Idea forIndex(array $filters = [])
+ * @method static Builder|Idea newModelQuery()
+ * @method static Builder|Idea newQuery()
+ * @method static Builder|Idea query()
+ * @method static Builder|Idea search(?string $search)
+ * @method static Builder|Idea spamComments()
+ * @method static Builder|Idea spamIdeas()
+ * @method static Builder|Idea topVoted()
+ * @method static Builder|Idea whereCategoryId($value)
+ * @method static Builder|Idea whereCreatedAt($value)
+ * @method static Builder|Idea whereDescription($value)
+ * @method static Builder|Idea whereId($value)
+ * @method static Builder|Idea whereSlug($value)
+ * @method static Builder|Idea whereSpamReports($value)
+ * @method static Builder|Idea whereStatusId($value)
+ * @method static Builder|Idea whereTitle($value)
+ * @method static Builder|Idea whereUpdatedAt($value)
+ * @method static Builder|Idea whereUserId($value)
+ * @method static Builder|Idea withUserVote(?int $userId = null)
+ * @mixin \Eloquent
+ */
 class Idea extends Model
 {
     use HasFactory;

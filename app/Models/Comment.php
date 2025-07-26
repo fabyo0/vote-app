@@ -10,6 +10,44 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * App\Models\Comment
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $idea_id
+ * @property string $body
+ * @property int $spam_reports
+ * @property bool $is_status_update
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $status_id
+ * @property int|null $parent_id
+ * @property-read int|null $replies_count
+ * @property-read \App\Models\Idea $idea
+ * @property-read Comment|null $parent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Comment> $replies
+ * @property-read \App\Models\Status $status
+ * @property-read \App\Models\User $user
+ * @method static \Database\Factories\CommentFactory factory($count = null, $state = [])
+ * @method static Builder|Comment newModelQuery()
+ * @method static Builder|Comment newQuery()
+ * @method static Builder|Comment parentOnly()
+ * @method static Builder|Comment query()
+ * @method static Builder|Comment repliesOnly()
+ * @method static Builder|Comment whereBody($value)
+ * @method static Builder|Comment whereCreatedAt($value)
+ * @method static Builder|Comment whereId($value)
+ * @method static Builder|Comment whereIdeaId($value)
+ * @method static Builder|Comment whereIsStatusUpdate($value)
+ * @method static Builder|Comment whereParentId($value)
+ * @method static Builder|Comment whereSpamReports($value)
+ * @method static Builder|Comment whereStatusId($value)
+ * @method static Builder|Comment whereUpdatedAt($value)
+ * @method static Builder|Comment whereUserId($value)
+ * @method static Builder|Comment withReplies()
+ * @mixin \Eloquent
+ */
 class Comment extends Model
 {
     use HasFactory;
