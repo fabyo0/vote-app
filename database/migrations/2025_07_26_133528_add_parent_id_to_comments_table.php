@@ -12,8 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('comments', function (Blueprint $table) {
-            $table->unsignedBigInteger('parent_id')->nullable()->after('idea_id');
-            $table->foreignId('parent_id')->constrained('comments')->cascadeOnDelete();
+
+            $table->foreignId('parent_id')
+                ->nullable()
+                ->constrained('comments')
+                ->onDelete('cascade')
+                ->after('idea_id');
+
+            // Performance için index
             $table->index(['idea_id', 'parent_id']);
         });
     }
