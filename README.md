@@ -138,7 +138,7 @@ Happy coding! 🧑‍💻
 
 ## 🧪 Running Tests
 
-This project may include automated tests using Pestphp.
+This project may include automated tests using Phpunit.
 
 ### Run All Tests
 
@@ -146,10 +146,10 @@ This project may include automated tests using Pestphp.
 php artisan test
 ```
 
-Or directly via Pestphp:
+Or directly via Phpunit:
 
 ```bash
-./vendor/bin/pest
+./vendor/bin/phpunit
 ```
 
 ### Recommended: Use a dedicated testing database
