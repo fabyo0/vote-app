@@ -13,6 +13,7 @@
         "erag/laravel-disposable-email": "^3.6",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^10.0",
+        "laravel/socialite": "^5.23",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.12",
         "opcodesio/log-viewer": "^3.1",

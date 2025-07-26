@@ -11,6 +11,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\SocialiteController;
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
     ->middleware('guest')
@@ -39,7 +40,7 @@ Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
     ->name('password.reset');
 
 Route::post('/reset-password', [NewPasswordController::class, 'store'])
-   ->middleware(['guest', 'honeypot'])
+    ->middleware(['guest', 'honeypot'])
     ->name('password.update');
 
 Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])
@@ -64,3 +65,10 @@ Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
+
+// Social Auth
+Route::get('auth/{provider}/redirect', [SocialiteController::class, 'loginSocial'])
+    ->name('socialite.auth');
+
+Route::get('auth/{provider}/callback', [SocialiteController::class, 'callbackSocial'])
+    ->name('socialite.callback');
