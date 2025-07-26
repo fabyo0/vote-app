@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Http\Controllers;
 
 use App\Enums\IdeaStatus;
@@ -17,7 +15,9 @@ class IdeaController extends Controller
     {
         return response()->view('idea.index', [
             'ideas' => Idea::query()
-                ->when(IdeaStatus::All !== $request->status, fn($query) => $query->where('status_id', StatusEnum::Open))
+                ->when($request->status !== IdeaStatus::All->value, function ($query) {
+                    return $query->where('status_id', StatusEnum::Open);
+                })
                 ->addSelect(['voted_by_user' => Vote::query()->select('ideas.id')
                     ->where('user_id', Auth::id())
                     ->whereColumn('idea_id', 'ideas.id'),
