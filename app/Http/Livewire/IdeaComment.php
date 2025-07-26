@@ -10,13 +10,14 @@ use Livewire\Component;
 class IdeaComment extends Component
 {
     public $comment;
-
     public $ideaUserID;
+    public $showReplyForm = false;
 
     protected $listeners = [
         'commentWasUpdated',
         'commentWasMarkedAsSpam' => '$refresh',
         'commentWasMarkedAsNotSpam',
+        'replyWasAdded' => 'handleReplyAdded',
     ];
 
     public function commentWasUpdated(): void
@@ -33,6 +34,22 @@ class IdeaComment extends Component
     {
         $this->comment = $comment;
         $this->ideaUserID = $ideaUserID;
+    }
+
+    public function toggleReplyForm()
+    {
+        if (auth()->guest()) {
+            return redirect()->route('login');
+        }
+
+        $this->showReplyForm = !$this->showReplyForm;
+    }
+
+    public function handleReplyAdded(): void
+    {
+        $this->showReplyForm = false;
+        $this->comment->refresh();
+        $this->comment->load('replies.user', 'replies.status');
     }
 
     public function render()

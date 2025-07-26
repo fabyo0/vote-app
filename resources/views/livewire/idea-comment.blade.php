@@ -39,6 +39,10 @@
                         <div>&bull;</div>
                     @endif
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
+                    @if ($comment->hasReplies())
+                        <div>&bull;</div>
+                        <div class="text-blue font-bold">{{ $comment->replies_count }} {{ Str::plural('Reply', $comment->replies_count) }}</div>
+                    @endif
                 </div>
                 @auth
                     <div
@@ -59,6 +63,20 @@
                                 @click.away="isOpen = false"
                                 @keydown.escape.window="isOpen = false"
                             >
+                                <!-- Reply Option - Her zaman göster (sadece parent comment'ler için) -->
+                                @if (!$comment->isReply())
+                                    <li>
+                                        <a
+                                            href="#"
+                                            wire:click.prevent="toggleReplyForm"
+                                            @click="isOpen = false"
+                                            class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"
+                                        >
+                                            Reply
+                                        </a>
+                                    </li>
+                                @endif
+
                                 @can('update', $comment)
                                     <li>
                                         <a
@@ -123,6 +141,47 @@
                     </div>
                 @endauth
             </div>
+
+            <!-- Reply Form -->
+            @if ($showReplyForm)
+                <div class="mt-4 ml-4 border-l-2 border-gray-200 pl-4">
+                    <livewire:add-reply
+                        :key="'reply-'.$comment->id"
+                        :idea="$comment->idea"
+                        :parentComment="$comment"
+                    />
+                </div>
+            @endif
+
+            <!-- Display Replies -->
+            @if ($comment->hasReplies())
+                <div class="mt-6 ml-4 border-l-2 border-gray-200 pl-4 space-y-4">
+                    @foreach ($comment->replies as $reply)
+                        <div class="bg-gray-50 rounded-lg p-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="flex-none">
+                                    <img src="{{ $reply->user->getAvatar() }}" alt="avatar" class="w-10 h-10 rounded-lg">
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-2 mb-2">
+                                        <span class="font-semibold text-sm text-gray-900">{{ $reply->user->name }}</span>
+                                        @if ($reply->user->id === $ideaUserID)
+                                            <span class="bg-blue text-white text-xs px-2 py-1 rounded-full">OP</span>
+                                        @endif
+                                        @if ($reply->user->isAdmin())
+                                            <span class="bg-red text-white text-xs px-2 py-1 rounded-full">Admin</span>
+                                        @endif
+                                        <span class="text-xs text-gray-500">{{ $reply->created_at->diffForHumans() }}</span>
+                                    </div>
+                                    <div class="text-gray-700 text-sm">
+                                        {{ $reply->body }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
 </div> <!-- end comment-container -->
