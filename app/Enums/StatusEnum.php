@@ -13,4 +13,15 @@ enum StatusEnum: int
     case Implemented = 4;
 
     case Closes = 5;
+
+    public function label(): string
+    {
+        return match ($this) {
+            self::Open => 'Open',
+            self::Considering => 'Considering',
+            self::InProgress => 'In Progress',
+            self::Implemented => 'Implemented',
+            self::Closes => 'Closed',
+        };
+    }
 }
