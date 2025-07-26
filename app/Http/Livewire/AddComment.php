@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Enums\StatusEnum;
@@ -12,13 +14,14 @@ use Symfony\Component\HttpFoundation\Response;
 class AddComment extends Component
 {
     public $idea;
+
     public $comment;
 
     protected $rules = [
-        'comment' => 'required|min:4'
+        'comment' => 'required|min:4',
     ];
 
-    public function mount(Idea $idea, Comment $comment)
+    public function mount(Idea $idea, Comment $comment): void
     {
         $this->idea = $idea;
         $this->comment = $comment;
@@ -36,7 +39,7 @@ class AddComment extends Component
             'user_id' => auth()->id(),
             'status_id' => StatusEnum::Open,
             'idea_id' => $this->idea->id,
-            'body' => $this->comment
+            'body' => $this->comment,
         ]);
 
         $this->reset('comment');

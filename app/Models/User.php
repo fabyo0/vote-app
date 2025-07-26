@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -7,11 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Cache;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -43,7 +45,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
     public function ideas(): HasMany
     {
         return $this->hasMany(Idea::class);
@@ -53,7 +54,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
-
 
     public function votes(): BelongsToMany
     {
@@ -71,9 +71,8 @@ class User extends Authenticatable
         return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&background=random&color=fff';
     }*/
 
-
     public function isAdmin(): bool
     {
-        return $this->email == 'emredikmen002@gmail.com';
+        return 'emredikmen002@gmail.com' === $this->email;
     }
 }

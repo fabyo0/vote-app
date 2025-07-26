@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Models\Comment;
@@ -16,14 +18,13 @@ class IdeaComments extends Component
     protected $listeners = [
         'commentWasAdded' => '$refresh',
         'commentWasDeleted' => '$refresh',
-        'statusWasUpdating' => '$refresh'
+        'statusWasUpdating' => '$refresh',
     ];
 
-    public function mount(Idea $idea)
+    public function mount(Idea $idea): void
     {
         $this->idea = $idea;
     }
-
 
     public function commentWasDeleted(): void
     {
@@ -37,7 +38,6 @@ class IdeaComments extends Component
         $this->goToPage(1);
     }
 
-
     public function commentWasAdded(): void
     {
         $this->idea->refresh();
@@ -48,7 +48,7 @@ class IdeaComments extends Component
     {
         return view('livewire.idea-comments', [
             'comments' => Comment::with(['user', 'status'])
-                ->where('idea_id', $this->idea->id)->paginate()
+                ->where('idea_id', $this->idea->id)->paginate(),
         ]);
     }
 }

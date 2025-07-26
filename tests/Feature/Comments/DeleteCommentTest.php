@@ -2,6 +2,7 @@
 
 namespace Feature\Comments;
 
+use App\Http\Livewire\DeleteComment;
 use App\Http\Livewire\IdeaComment;
 use App\Models\Comment;
 use App\Models\Idea;
@@ -10,11 +11,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
-use App\Http\Livewire\DeleteComment;
 
 class DeleteCommentTest extends TestCase
 {
-
     use RefreshDatabase;
 
     /**
@@ -35,7 +34,7 @@ class DeleteCommentTest extends TestCase
         $user = User::factory()->create();
 
         $idea = Idea::factory()->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $this->actingAs($user)
@@ -54,7 +53,6 @@ class DeleteCommentTest extends TestCase
             ->assertDontSeeLivewire('edit-comment');
     }
 
-
     public function test_delete_comment_is_set_correctly_when_user_clicks_it_from_user()
     {
         $user = User::factory()->create();
@@ -64,7 +62,7 @@ class DeleteCommentTest extends TestCase
         $comment = Comment::factory()->create([
             'user_id' => $user->id,
             'idea_id' => $idea->id,
-            'body' => 'My first comment'
+            'body' => 'My first comment',
         ]);
 
         Livewire::actingAs($user)
@@ -72,7 +70,6 @@ class DeleteCommentTest extends TestCase
             ->call('setDeleteComment', $comment->id)
             ->assertEmitted('deleteCommentWasSet');
     }
-
 
     /** @test */
     public function test_deleting_a_comment_works_when_user_has_authorization()
@@ -94,7 +91,6 @@ class DeleteCommentTest extends TestCase
 
         $this->assertEquals(0, Comment::count());
     }
-
 
     /** @test */
     public function test_deleting_a_comment_does_not_work_when_user_has_authorization()
@@ -127,13 +123,12 @@ class DeleteCommentTest extends TestCase
         ]);
 
         Livewire::actingAs($user)
-            ->test(IdeaComment::class,[
-               'comment' => $comment,
-                'ideaUserID' => $idea->user_id
+            ->test(IdeaComment::class, [
+                'comment' => $comment,
+                'ideaUserID' => $idea->user_id,
             ])
             ->assertSee('Delete Comment');
     }
-
 
     /* @test */
     public function test_deleting_a_does_not_comment_shows_on_menu_when_user_has_authorization()
@@ -147,9 +142,9 @@ class DeleteCommentTest extends TestCase
         ]);
 
         Livewire::actingAs($user)
-            ->test(IdeaComment::class,[
+            ->test(IdeaComment::class, [
                 'comment' => $comment,
-                'ideaUserID' => $idea->user_id
+                'ideaUserID' => $idea->user_id,
             ])
             ->assertDontSee('Delete Comment');
     }

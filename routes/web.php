@@ -1,7 +1,8 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\IdeaController;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*

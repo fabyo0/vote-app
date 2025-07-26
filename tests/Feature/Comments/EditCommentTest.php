@@ -15,6 +15,7 @@ use Tests\TestCase;
 class EditCommentTest extends TestCase
 {
     use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -49,7 +50,6 @@ class EditCommentTest extends TestCase
             ->assertDontSeeLivewire('edit-comment');
     }
 
-
     public function test_edit_comment_is_set_correctly_when_user_clicks_it_from_user()
     {
         $user = User::factory()->create();
@@ -59,7 +59,7 @@ class EditCommentTest extends TestCase
         $comment = Comment::factory()->create([
             'user_id' => $user->id,
             'idea_id' => $idea->id,
-            'body' => 'My first comment'
+            'body' => 'My first comment',
         ]);
 
         Livewire::actingAs($user)
@@ -67,7 +67,6 @@ class EditCommentTest extends TestCase
             ->call('setEditComment', $comment->id)
             ->assertEmitted('editCommentWasSet');
     }
-
 
     /** @test */
     public function test_edit_a_comment_works_when_user_has_authorization()
@@ -88,7 +87,6 @@ class EditCommentTest extends TestCase
             ->assertEmitted('commentWasUpdated');
     }
 
-
     public function test_edit_comment_form_validation_work()
     {
         $user = User::factory()->create();
@@ -102,11 +100,11 @@ class EditCommentTest extends TestCase
 
         Livewire::actingAs($user)
             ->test(EditComment::class)
-            ->call('setEditComment',$comment->id)
-            ->set('body','')
+            ->call('setEditComment', $comment->id)
+            ->set('body', '')
             ->call('updateComment')
             ->assertHasErrors(['body'])
-            ->set('body','ab')
+            ->set('body', 'ab')
             ->call('updateComment')
             ->assertHasErrors(['body']);
 
@@ -145,11 +143,10 @@ class EditCommentTest extends TestCase
         Livewire::actingAs($user)
             ->test(EditComment::class, [
                 'comment' => $comment,
-                'ideaUserID' => $idea->user_id
+                'ideaUserID' => $idea->user_id,
             ])
             ->assertSee('Edit Comment');
     }
-
 
     /* @test */
     public function test_edit_a_does_not_comment_shows_on_menu_when_user_has_authorization()

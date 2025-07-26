@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
-use App\Models\User;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         if ($this->app->isLocal()) {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
@@ -25,16 +26,13 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->adminBladeDirective();
     }
 
-    private function adminBladeDirective()
+    private function adminBladeDirective(): void
     {
-        Blade::if('admin', function () {
-            return auth()->check() && auth()->user()->isAdmin();
-        });
+        Blade::if('admin', fn() => auth()->check() && auth()->user()->isAdmin());
     }
-
 }

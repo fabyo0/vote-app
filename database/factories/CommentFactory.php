@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Idea;
@@ -24,13 +26,12 @@ class CommentFactory extends Factory
         ];
     }
 
-
     public function existing()
     {
         return $this->state(function () {
             return [
                 'user_id' => $this->faker->numberBetween(1, 20),
-                'status_id' => 1
+                'status_id' => 1,
             ];
         });
     }

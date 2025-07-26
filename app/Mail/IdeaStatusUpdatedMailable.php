@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mail;
 
 use App\Models\Idea;
@@ -7,11 +9,11 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Log;
 
 class IdeaStatusUpdatedMailable extends Mailable implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public $idea;
 
@@ -24,7 +26,6 @@ class IdeaStatusUpdatedMailable extends Mailable implements ShouldQueue
     {
         $this->idea = $idea;
     }
-
 
     /**
      * Build the message.

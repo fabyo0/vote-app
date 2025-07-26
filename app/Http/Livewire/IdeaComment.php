@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Models\Comment;
@@ -8,8 +10,8 @@ use Livewire\Component;
 class IdeaComment extends Component
 {
     public $comment;
-    public $ideaUserID;
 
+    public $ideaUserID;
 
     protected $listeners = [
         'commentWasUpdated',
@@ -20,21 +22,19 @@ class IdeaComment extends Component
     public function commentWasUpdated(): void
     {
         $this->comment->refresh();
-      //  $this->goToPage(1);
+        //  $this->goToPage(1);
     }
-
 
     public function commentWasMarkedAsNotSpam(): void
     {
         $this->comment->refresh();
     }
 
-    public function mount(Comment $comment, $ideaUserID)
+    public function mount(Comment $comment, $ideaUserID): void
     {
         $this->comment = $comment;
         $this->ideaUserID = $ideaUserID;
     }
-
 
     public function render()
     {

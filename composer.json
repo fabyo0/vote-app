@@ -57,6 +57,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "pint" : "pint",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

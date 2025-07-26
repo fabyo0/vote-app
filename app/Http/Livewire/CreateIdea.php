@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Models\Category;
 use App\Models\Idea;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -17,13 +18,11 @@ class CreateIdea extends Component
 
     public $description;
 
-
     protected $rules = [
         'title' => 'required|string|min:4',
         'category' => 'required|integer|exists:categories,id',
         'description' => 'required|min:4|string',
     ];
-
 
     public function createIdea()
     {

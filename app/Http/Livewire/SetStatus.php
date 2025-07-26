@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Jobs\NotifyAllVotes;
@@ -10,13 +12,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SetStatus extends Component
 {
-
     public $idea;
+
     public $status;
+
     public $notifyAllVoters;
 
     public $comment;
-
 
     public function mount(Idea $idea): void
     {
@@ -41,9 +43,8 @@ class SetStatus extends Component
             'status_id' => $this->status,
             'idea_id' => $this->idea->id,
             'body' => $this->comment ?? 'No comment was added',
-            'is_status_update' => 1
+            'is_status_update' => 1,
         ]);
-
 
         $this->reset('comment');
 
@@ -51,15 +52,15 @@ class SetStatus extends Component
         $this->emit('statusWasUpdating', 'Status was updated successfully!');
     }
 
-    protected function authorizeAdmin(): void
-    {
-        if (!auth()->check() || !auth()->user()->isAdmin()) {
-            abort(Response::HTTP_FORBIDDEN);
-        }
-    }
-
     public function render()
     {
         return view('livewire.set-status');
+    }
+
+    protected function authorizeAdmin(): void
+    {
+        if ( ! auth()->check() || ! auth()->user()->isAdmin()) {
+            abort(Response::HTTP_FORBIDDEN);
+        }
     }
 }

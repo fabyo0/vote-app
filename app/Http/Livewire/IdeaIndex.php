@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Exceptions\DuplicateVoteException;
@@ -25,7 +27,7 @@ class IdeaIndex extends Component
 
     public function vote()
     {
-        if (!auth()->check()) {
+        if ( ! auth()->check()) {
             return Redirect::route('login');
         }
 
@@ -47,14 +49,14 @@ class IdeaIndex extends Component
         }
     }
 
+    public function render()
+    {
+        return view('livewire.idea-index');
+    }
+
     private function updateVoteCountAndType(int $change, bool $hasVoted): void
     {
         $this->votesCount += $change;
         $this->hasVoted = $hasVoted;
-    }
-
-    public function render()
-    {
-        return view('livewire.idea-index');
     }
 }

@@ -131,24 +131,23 @@ class ShowIdeaTest extends TestCase
         $this->assertTrue(request()->path() === 'ideas/my-first-idea-1');
     }
 
-
     /** @test */
-/*    public function test_ideas_pagination_works()
-    {
-        $ideaOne = Idea::factory()->create();
+    /*    public function test_ideas_pagination_works()
+        {
+            $ideaOne = Idea::factory()->create();
 
-        Idea::factory($ideaOne->getPerPage())->create();
+            Idea::factory($ideaOne->getPerPage())->create();
 
-        $response = $this->get('/');
+            $response = $this->get('/');
 
-        $response->assertSee(Idea::find(Idea::count())->title);
-        $response->assertDontSee($ideaOne->title);
+            $response->assertSee(Idea::find(Idea::count())->title);
+            $response->assertDontSee($ideaOne->title);
 
-        $response = $this->get('/?page=2');
+            $response = $this->get('/?page=2');
 
-        $response->assertDontSee(Idea::find(Idea::count())->title);
-        $response->assertSee($ideaOne->title);
-    }*/
+            $response->assertDontSee(Idea::find(Idea::count())->title);
+            $response->assertSee($ideaOne->title);
+        }*/
 
     public function test_in_app_back_button_work_when_index_page_visited_first()
     {

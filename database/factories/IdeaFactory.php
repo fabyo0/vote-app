@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Category;
@@ -10,7 +12,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class IdeaFactory extends Factory
 {
-
     protected $model = Idea::class;
 
     /**
@@ -26,7 +27,7 @@ class IdeaFactory extends Factory
             'status_id' => Status::factory(),
             'title' => ucwords($this->faker->words(4, true)),
             'description' => $this->faker->paragraph(5),
-            'spam_reports' => $this->faker->numberBetween(1,20)
+            'spam_reports' => $this->faker->numberBetween(1, 20),
         ];
     }
 

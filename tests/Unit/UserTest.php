@@ -2,14 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Http\Livewire\SetStatus;
-use App\Models\Category;
-use App\Models\Idea;
-use App\Models\Status;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Livewire\Livewire;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -30,16 +24,15 @@ class UserTest extends TestCase
     {
         $user = User::factory()->create([
             'name' => 'Emre',
-            'email' => 'emredikmen002@gmail.com'
+            'email' => 'emredikmen002@gmail.com',
         ]);
 
         $userB = User::factory()->create([
             'name' => 'Test',
-            'email' => 'test@hotmail.com'
+            'email' => 'test@hotmail.com',
         ]);
 
         $this->assertTrue($user->isAdmin());
         $this->assertFalse($userB->isAdmin());
     }
-
 }

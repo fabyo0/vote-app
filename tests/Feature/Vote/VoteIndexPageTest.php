@@ -33,14 +33,13 @@ class VoteIndexPageTest extends TestCase
 
         Vote::factory()->create([
             'user_id' => $user,
-            'idea_id' => $idea
+            'idea_id' => $idea,
         ]);
 
         Vote::factory()->create([
             'user_id' => $userB,
-            'idea_id' => $idea
+            'idea_id' => $idea,
         ]);
-
 
         Livewire::test(IdeasIndex::class)
             ->assertViewHas('ideas', function ($ideas) {
@@ -65,7 +64,7 @@ class VoteIndexPageTest extends TestCase
 
         Vote::factory()->create([
             'user_id' => $user->id,
-            'idea_id' => $idea->id
+            'idea_id' => $idea->id,
         ]);
 
         $idea->votes_count = 1;
@@ -74,7 +73,7 @@ class VoteIndexPageTest extends TestCase
         Livewire::actingAs($user)
             ->test(IdeaIndex::class, [
                 'idea' => $idea,
-                'votesCount' => 5
+                'votesCount' => 5,
             ])->assertSet('hasVoted', true)
             ->assertSee('Voted');
     }
@@ -98,7 +97,7 @@ class VoteIndexPageTest extends TestCase
 
         $this->assertDatabaseMissing('votes', [
             'user_id' => $user->id,
-            'idea_id' => $idea->id
+            'idea_id' => $idea->id,
         ]);
 
         Livewire::actingAs($user)
@@ -141,9 +140,9 @@ class VoteIndexPageTest extends TestCase
             ->assertSee('Vote')
             ->assertDontSee('Voted');
 
-      /*  $this->assertDatabaseMissing('votes', [
-            'user_id' => $user->id,
-            'idea_id' => $idea->id,
-        ]);*/
+        /*  $this->assertDatabaseMissing('votes', [
+              'user_id' => $user->id,
+              'idea_id' => $idea->id,
+          ]);*/
     }
 }

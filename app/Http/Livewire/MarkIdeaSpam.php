@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use Livewire\Component;
@@ -7,7 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MarkIdeaSpam extends Component
 {
-
     public $idea;
 
     public function markAsSpam(): void
@@ -17,7 +18,7 @@ class MarkIdeaSpam extends Component
         $this->idea->spam_reports++;
         $this->idea->save();
 
-        $this->emit('ideaWasMarkedAsSpam','Idea was marked as spam!');
+        $this->emit('ideaWasMarkedAsSpam', 'Idea was marked as spam!');
     }
 
     public function render()

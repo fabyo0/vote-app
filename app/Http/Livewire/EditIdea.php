@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Models\Category;
@@ -9,12 +11,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EditIdea extends Component
 {
-
     public $idea;
-    public $title;
-    public $category;
-    public $description;
 
+    public $title;
+
+    public $category;
+
+    public $description;
 
     protected $rules = [
         'title' => 'required|string|min:4',
@@ -35,10 +38,10 @@ class EditIdea extends Component
         $this->idea->update([
             'title' => $this->title,
             'category_id' => $this->category,
-            'description' => $this->description
+            'description' => $this->description,
         ]);
 
-        $this->emit('ideaWasUpdated','Idea was updated successfully!');
+        $this->emit('ideaWasUpdated', 'Idea was updated successfully!');
     }
 
     public function mount(Idea $idea): void

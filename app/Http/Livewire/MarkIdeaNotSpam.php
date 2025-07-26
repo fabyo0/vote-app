@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Models\Idea;
@@ -12,7 +14,7 @@ class MarkIdeaNotSpam extends Component
 
     public function markAsNotSpam(): void
     {
-        abort_if(auth()->guest() || !auth()->user()->isAdmin(), Response::HTTP_FORBIDDEN);
+        abort_if(auth()->guest() || ! auth()->user()->isAdmin(), Response::HTTP_FORBIDDEN);
 
         $this->idea->spam_reports = 0;
         $this->idea->save();
@@ -20,7 +22,7 @@ class MarkIdeaNotSpam extends Component
         $this->emit('ideaWasMarkedAsNotSpam', 'Spam counter was reset!');
     }
 
-    public function mount(Idea $idea)
+    public function mount(Idea $idea): void
     {
         $this->idea = $idea;
     }

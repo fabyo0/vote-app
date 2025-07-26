@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Exceptions\VoteNotFoundException;
@@ -24,7 +26,7 @@ class Idea extends Model
         'title',
         'slug',
         'description',
-        'spam_reports'
+        'spam_reports',
     ];
 
     public function sluggable(): array
@@ -66,10 +68,9 @@ class Idea extends Model
         return $this->hasMany(Comment::class);
     }
 
-
     public function isVotedByUser(?User $user): bool
     {
-        if (!$user) {
+        if ( ! $user) {
             return false;
         }
 
@@ -89,21 +90,6 @@ class Idea extends Model
     /**
      * @throws VoteNotFoundException
      */
-    /*  public function removeVote(User $user): void
-      {
-          $vote = Vote::query()
-              ->where('user_id', $user->id)
-              ->where('idea_id', $this->id)
-              ->first();
-
-          if ($vote) {
-              $vote->delete();
-          }
-          else{
-              throw new VoteNotFoundException;
-          }
-      }*/
-
     public function removeVote(User $user): void
     {
         if ($this->isVotedByUser($user)) {

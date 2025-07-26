@@ -36,11 +36,11 @@ class StatusFilterTest extends TestCase
         $statusImplement = Status::factory()->create(['id' => 4, 'name' => 'Implemented']);
 
         Idea::factory()->create([
-            'status_id' => $statusImplement->id
+            'status_id' => $statusImplement->id,
         ]);
 
         Idea::factory()->create([
-            'status_id' => $statusImplement->id
+            'status_id' => $statusImplement->id,
         ]);
 
         Livewire::test(StatusFilter::class)
@@ -89,26 +89,24 @@ class StatusFilterTest extends TestCase
         $statusImplemented = Status::factory()->create(['name' => 'Implemented']);
 
         $idea = Idea::factory()->create([
-            'status_id' => $statusImplemented->id
+            'status_id' => $statusImplemented->id,
         ]);
 
         $response = $this->get(route('idea.show', $idea));
 
         $response->assertDontSee('border-blue text-gray-900');
     }
-
 
     public function test_index_page_does_not_show_selected_status()
     {
         $statusImplemented = Status::factory()->create(['name' => 'Implemented']);
 
         $idea = Idea::factory()->create([
-            'status_id' => $statusImplemented->id
+            'status_id' => $statusImplemented->id,
         ]);
 
         $response = $this->get(route('idea.show', $idea));
 
         $response->assertDontSee('border-blue text-gray-900');
     }
-
 }

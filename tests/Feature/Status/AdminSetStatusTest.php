@@ -56,16 +56,16 @@ class AdminSetStatusTest extends TestCase
 
         $statusConsidering = Status::factory()->create([
             'id' => 2,
-            'name' => 'Considering'
+            'name' => 'Considering',
         ]);
 
         $idea = Idea::factory()->create([
-            'status_id' => $statusConsidering
+            'status_id' => $statusConsidering,
         ]);
 
         \Livewire::actingAs($user)
             ->test(SetStatus::class, [
-                'idea' => $idea
+                'idea' => $idea,
             ])->assertSet('status', $statusConsidering->id);
     }
 
@@ -95,11 +95,10 @@ class AdminSetStatusTest extends TestCase
 
         $this->assertDatabaseHas('comments', [
             'body' => 'No comment was added',
-            'is_status_update' => true
+            'is_status_update' => true,
         ]);
 
     }
-
 
     public function test_can_set_status_correctly_with_comment()
     {
@@ -128,11 +127,10 @@ class AdminSetStatusTest extends TestCase
 
         $this->assertDatabaseHas('comments', [
             'body' => 'This is a comment when setting a status',
-            'is_status_update' => true
+            'is_status_update' => true,
         ]);
 
     }
-
 
     public function test_can_set_status_correctly_while_notifying_all_voters()
     {
@@ -150,7 +148,7 @@ class AdminSetStatusTest extends TestCase
 
         \Livewire::actingAs($user)
             ->test(SetStatus::class, [
-                'idea' => $idea
+                'idea' => $idea,
             ])
             ->set('status', $statusInProgress->id)
             ->set('notifyAllVoters', true)
@@ -159,5 +157,4 @@ class AdminSetStatusTest extends TestCase
 
         Queue::assertPushed(NotifyAllVotes::class);
     }
-
 }

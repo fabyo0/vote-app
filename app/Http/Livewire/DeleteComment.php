@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Models\Comment;
@@ -13,10 +15,10 @@ class DeleteComment extends Component
     public $body;
 
     protected $listeners = [
-        'setDeleteComment'
+        'setDeleteComment',
     ];
 
-    public function setDeleteComment($commentId)
+    public function setDeleteComment($commentId): void
     {
         $this->comment = Comment::query()->find($commentId);
 

@@ -2,14 +2,11 @@
 
 namespace Feature\Comments;
 
-
 use App\Http\Livewire\AddComment;
 use App\Http\Livewire\CommentNotifications;
-use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Notifications\DatabaseNotification;
 use Livewire\Livewire;
 use Tests\TestCase;
@@ -44,7 +41,7 @@ class CommentNotificationsTest extends TestCase
         $user = User::factory()->create();
 
         $idea = Idea::factory()->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $userCommenting = User::factory()->create();
@@ -60,8 +57,8 @@ class CommentNotificationsTest extends TestCase
         Livewire::actingAs($user)
             ->test(CommentNotifications::class)
             ->call('getNotifications')
-            ->assertSet('notificationCount', $threshold . '+')
-            ->assertSee($threshold . '+');
+            ->assertSet('notificationCount', $threshold.'+')
+            ->assertSee($threshold.'+');
     }
 
     /* @test */
@@ -69,7 +66,7 @@ class CommentNotificationsTest extends TestCase
     {
         $user = User::factory()->create();
         $idea = Idea::factory()->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $userAComment = User::factory()->create();
@@ -100,12 +97,12 @@ class CommentNotificationsTest extends TestCase
         $userBCommenting = User::factory()->create();
 
         Livewire::actingAs($userACommenting)
-            ->test(AddComment::class, ['idea' => $idea,])
+            ->test(AddComment::class, ['idea' => $idea])
             ->set('comment', 'This is the first comment')
             ->call('addComment');
 
         Livewire::actingAs($userBCommenting)
-            ->test(AddComment::class, ['idea' => $idea,])
+            ->test(AddComment::class, ['idea' => $idea])
             ->set('comment', 'This is the second comment')
             ->call('addComment');
 
@@ -132,7 +129,7 @@ class CommentNotificationsTest extends TestCase
         $userCommenting = User::factory()->create();
 
         Livewire::actingAs($userCommenting)
-            ->test(AddComment::class, ['idea' => $idea,])
+            ->test(AddComment::class, ['idea' => $idea])
             ->set('comment', 'This is the first comment')
             ->call('addComment');
 
@@ -146,7 +143,6 @@ class CommentNotificationsTest extends TestCase
             ->assertRedirect(route('idea.index'));
     }
 
-
     /* @test */
     public function test_notification_comment_deleted_redirects_to_index_page()
     {
@@ -158,7 +154,7 @@ class CommentNotificationsTest extends TestCase
         $userCommenting = User::factory()->create();
 
         Livewire::actingAs($userCommenting)
-            ->test(AddComment::class, ['idea' => $idea,])
+            ->test(AddComment::class, ['idea' => $idea])
             ->set('comment', 'This is the first comment')
             ->call('addComment');
 
@@ -170,5 +166,4 @@ class CommentNotificationsTest extends TestCase
             ->call('markAsRead', DatabaseNotification::first()->id)
             ->assertRedirect(route('idea.index'));
     }
-
 }

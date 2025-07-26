@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Models\Idea;
@@ -9,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DeleteIdea extends Component
 {
-
     public $idea;
 
     public function mount(Idea $idea): void

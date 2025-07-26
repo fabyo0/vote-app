@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\User;
@@ -35,7 +37,7 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attribute) {
             return [
-                'email' => 'emredikmen002@gmail.com'
+                'email' => 'emredikmen002@gmail.com',
             ];
         });
     }
@@ -43,7 +45,7 @@ class UserFactory extends Factory
     /**
      * Indicate that the model's email address should be unverified.
      *
-     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     * @return Factory
      */
     public function unverified()
     {

@@ -2,7 +2,6 @@
 
 namespace Feature\Idea;
 
-use App\Exceptions\VoteNotFoundException;
 use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;

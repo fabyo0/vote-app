@@ -15,7 +15,6 @@ use Tests\TestCase;
 
 class CommentsSpamManagementTest extends TestCase
 {
-
     use RefreshDatabase;
 
     /**
@@ -113,7 +112,7 @@ class CommentsSpamManagementTest extends TestCase
         Livewire::actingAs($user)
             ->test(IdeaComment::class, [
                 'comment' => $comment,
-                'ideaUserID' => $idea->user_id
+                'ideaUserID' => $idea->user_id,
             ])
             ->assertSee('Mark As Comment');
     }
@@ -132,7 +131,7 @@ class CommentsSpamManagementTest extends TestCase
 
         Livewire::test(IdeaComment::class, [
             'comment' => $comment,
-            'ideaUserID' => $idea->user_id
+            'ideaUserID' => $idea->user_id,
         ])
             ->assertDontSee('Mark as Spam');
     }
@@ -225,7 +224,7 @@ class CommentsSpamManagementTest extends TestCase
         Livewire::actingAs($user)
             ->test(IdeaComment::class, [
                 'comment' => $comment,
-                'ideaUserID' => $idea->user_id
+                'ideaUserID' => $idea->user_id,
             ])
             ->assertSee('Not Spam');
     }
@@ -245,7 +244,7 @@ class CommentsSpamManagementTest extends TestCase
         Livewire::actingAs($user)
             ->test(IdeaComment::class, [
                 'comment' => $comment,
-                'ideaUserID' => $idea->user_id
+                'ideaUserID' => $idea->user_id,
             ])
             ->assertDontSee('Not Spam');
     }

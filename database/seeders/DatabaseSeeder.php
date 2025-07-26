@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Category;
@@ -13,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         User::factory()->create([
             'name' => 'Emre',
@@ -39,7 +41,7 @@ class DatabaseSeeder extends Seeder
         // Generate unique votes. Ensure idea_id and user_id are unique for each row
         foreach (range(1, 20) as $user_id) {
             foreach (range(1, 100) as $idea_id) {
-                if ($idea_id % 2 === 0) {
+                if (0 === $idea_id % 2) {
                     Vote::factory()->create([
                         'user_id' => $user_id,
                         'idea_id' => $idea_id,
@@ -51,7 +53,7 @@ class DatabaseSeeder extends Seeder
         // Generate comments for idea
         foreach (Idea::all() as $idea) {
             Comment::factory(5)->existing()->create([
-                'idea_id' => $idea->id
+                'idea_id' => $idea->id,
             ]);
         }
     }

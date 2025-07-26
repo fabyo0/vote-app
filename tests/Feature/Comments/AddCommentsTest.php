@@ -15,7 +15,6 @@ class AddCommentsTest extends TestCase
 {
     use RefreshDatabase;
 
-
     /* @test */
     public function test_add_comments_livewire_component_renders()
     {
@@ -54,7 +53,7 @@ class AddCommentsTest extends TestCase
 
         Livewire::actingAs($user)
             ->test(AddComment::class, [
-                'idea' => $idea
+                'idea' => $idea,
             ])
             ->set('comment', '')
             ->call('addComment')
@@ -63,7 +62,6 @@ class AddCommentsTest extends TestCase
             ->call('addComment')
             ->assertHasErrors('comment');
     }
-
 
     public function test_add_comment_form_works()
     {
@@ -77,7 +75,7 @@ class AddCommentsTest extends TestCase
 
         Livewire::actingAs($user)
             ->test(AddComment::class, [
-                'idea' => $idea
+                'idea' => $idea,
             ])
             ->set('comment', 'This first comment')
             ->call('addComment')
@@ -97,7 +95,7 @@ class AddCommentsTest extends TestCase
         $idea = Idea::factory()->create();
 
         $commentOne = Comment::factory()->create([
-            'idea_id' => $idea
+            'idea_id' => $idea,
         ]);
 
         Comment::factory($commentOne->getPerPage())->create([

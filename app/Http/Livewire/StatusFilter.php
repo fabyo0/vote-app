@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Models\Status;
@@ -20,7 +22,7 @@ class StatusFilter extends Component
 
         $this->emit('queryStringUpdatedStatus', $this->status);
 
-        if ($this->getPreviousRouteName() == 'idea.show') {
+        if ('idea.show' === $this->getPreviousRouteName()) {
             return redirect()->route('idea.index', [
                 'status' => $this->status,
             ]);
@@ -34,18 +36,18 @@ class StatusFilter extends Component
         $this->status = request()->status ?? 'All';
 
         //TODO: Mevcut url idea.show ise
-        if (Route::currentRouteName() === 'idea.show') {
+        if ('idea.show' === Route::currentRouteName()) {
             $this->status = null;
         }
-    }
-
-    private function getPreviousRouteName()
-    {
-        return app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
     }
 
     public function render()
     {
         return view('livewire.status-filter');
+    }
+
+    private function getPreviousRouteName()
+    {
+        return app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
     }
 }

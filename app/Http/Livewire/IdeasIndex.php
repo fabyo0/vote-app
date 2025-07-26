@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Enums\IdeaStatus;
 use App\Models\Category;
 use App\Models\Idea;
 use App\Models\Status;
@@ -61,7 +62,7 @@ class IdeasIndex extends Component
 
     public function mount(): void
     {
-        $this->status = request()->status ?? 'All';
+        $this->status = request()->status ?? IdeaStatus::All;
         // $this->category = request()->category ?? 'All Categories';
     }
 

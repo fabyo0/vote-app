@@ -55,7 +55,7 @@ class NotifyAllVotesTest extends TestCase
 
         Mail::assertQueued(IdeaStatusUpdatedMailable::class, function ($email) {
             return $email->hasTo('emredikmen002@gmail.com')
-                && $email->build()->subject === "An idea you voted for has a new status";
+                && $email->build()->subject === 'An idea you voted for has a new status';
         });
     }
 }

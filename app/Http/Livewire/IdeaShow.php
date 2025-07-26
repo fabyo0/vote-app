@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Exceptions\DuplicateVoteException;
@@ -13,8 +15,8 @@ class IdeaShow extends Component
     public $idea;
 
     public $votesCount;
-    public $hasVoted;
 
+    public $hasVoted;
 
     protected $listeners = [
         'statusWasUpdating' => '$refresh',
@@ -32,10 +34,10 @@ class IdeaShow extends Component
         $this->hasVoted = $idea->isVotedByUser(auth()->user());
     }
 
-   /* public function statusWasUpdating(): void
-    {
-        $this->idea->refresh();
-    }*/
+    /* public function statusWasUpdating(): void
+     {
+         $this->idea->refresh();
+     }*/
 
     public function ideaWasUpdating(): void
     {
@@ -59,7 +61,7 @@ class IdeaShow extends Component
 
     public function vote()
     {
-        if (!auth()->check()) {
+        if ( ! auth()->check()) {
             return Redirect::route('login');
         }
 
@@ -76,15 +78,14 @@ class IdeaShow extends Component
         }
     }
 
+    public function render()
+    {
+        return view('livewire.idea-show');
+    }
 
     private function updateVoteCountAndType(int $change, bool $hasVoted): void
     {
         $this->votesCount += $change;
         $this->hasVoted = $hasVoted;
-    }
-
-    public function render()
-    {
-        return view('livewire.idea-show');
     }
 }

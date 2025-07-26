@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Models\Comment;
@@ -8,15 +10,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MarkCommentAsSpam extends Component
 {
-
     public Comment $comment;
-
 
     public $body;
 
-
     protected $listeners = [
-        'setMarkAsSpamComment'
+        'setMarkAsSpamComment',
     ];
 
     public function setMarkAsSpamComment($commentId): void
@@ -25,7 +24,6 @@ class MarkCommentAsSpam extends Component
 
         $this->emit('markAsSpamCommentWasSet');
     }
-
 
     public function markAsSpam(): void
     {
@@ -39,7 +37,6 @@ class MarkCommentAsSpam extends Component
 
         $this->emit('commentWasMarkedAsSpam', 'Comment was marked as spam!');
     }
-
 
     public function render()
     {

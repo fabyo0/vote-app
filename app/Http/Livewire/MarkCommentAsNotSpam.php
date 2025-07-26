@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Models\Comment;
@@ -8,7 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MarkCommentAsNotSpam extends Component
 {
-
     public Comment $comment;
 
     protected $listeners = ['setMarkAsNotSpamComment'];
@@ -22,7 +23,7 @@ class MarkCommentAsNotSpam extends Component
 
     public function markAsNotSpam(): void
     {
-        if (auth()->guest() || !auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->isAdmin()) {
             abort(Response::HTTP_FORBIDDEN);
         }
 

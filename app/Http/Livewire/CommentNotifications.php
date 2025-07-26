@@ -1,28 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Models\Comment;
 use App\Models\Idea;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 use Symfony\Component\HttpFoundation\Response;
 
 class CommentNotifications extends Component
 {
-
+    public const NOTIFICATION_THRESHOLD = 20;
     public $notifications;
 
     public $notificationCount;
 
     public $isLoading;
 
-    public const NOTIFICATION_THRESHOLD = 20;
-
     protected $listeners = ['getNotifications'];
-
 
     public function mount(): void
     {
@@ -54,7 +51,6 @@ class CommentNotifications extends Component
         $this->scrollToComment($notification);
     }
 
-
     public function scrollToComment($notification)
     {
         $ideaId = $notification->data['idea_id'];
@@ -64,28 +60,30 @@ class CommentNotifications extends Component
         $idea = Idea::query()->find($ideaId);
         $comment = Comment::query()->find($commentId);
 
-        if (!$idea || !$comment) {
+        if ( ! $idea || ! $comment) {
             $errorMessage = '';
-            if (!$idea) {
+            if ( ! $idea) {
                 $errorMessage = 'This idea no longer exists!';
-            } elseif (!$comment) {
+            } elseif ( ! $comment) {
                 $errorMessage = 'This comment no longer exists!';
             }
 
             session()->flash('error_message', $errorMessage);
+
             return redirect()->route('idea.index');
         }
 
         $comments = $idea->comments()->pluck('id');
         $indexOfComment = $comments->search($commentId);
 
-        if (!$indexOfComment) {
+        if ( ! $indexOfComment) {
             session()->flash('error_message', 'Comment not found in the idea!');
+
             return redirect()->route('idea.index');
         }
 
         $perPage = $comment->getPerPage();
-        $page = (int)($indexOfComment / $perPage) + 1;
+        $page = (int) ($indexOfComment / $perPage) + 1;
 
         session()->flash('scrollToComment', $commentId);
 
@@ -95,10 +93,8 @@ class CommentNotifications extends Component
         ]);
     }
 
-
-
     // All Read Ideas
-    public function markAllAsRead()
+    public function markAllAsRead(): void
     {
         if (auth()->guest()) {
             abort(Response::HTTP_FORBIDDEN);
@@ -108,7 +104,6 @@ class CommentNotifications extends Component
         $this->getNotificationCount();
         $this->getNotifications();
     }
-
 
     public function getNotifications(): void
     {

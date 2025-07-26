@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Jobs;
 
 use App\Mail\IdeaStatusUpdatedMailable;
@@ -13,7 +15,10 @@ use Illuminate\Support\Facades\Mail;
 
 class NotifyAllVotes implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public $idea;
 
@@ -27,12 +32,11 @@ class NotifyAllVotes implements ShouldQueue
         $this->idea = $idea;
     }
 
-
-    public function handle()
+    public function handle(): void
     {
         $this->idea->votes()
             ->select('name', 'email')
-            ->chunk(100, function ($voters) {
+            ->chunk(100, function ($voters): void {
                 foreach ($voters as $user) {
                     Mail::to($user)
                         ->queue(new IdeaStatusUpdatedMailable($this->idea));

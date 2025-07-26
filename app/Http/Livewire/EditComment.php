@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Models\Comment;
@@ -13,11 +15,11 @@ class EditComment extends Component
     public $body;
 
     protected $listeners = [
-        'setEditComment'
+        'setEditComment',
     ];
 
     protected $rules = [
-        'body' => 'required|min:4'
+        'body' => 'required|min:4',
     ];
 
     public function setEditComment($commentId): void
@@ -27,7 +29,6 @@ class EditComment extends Component
 
         $this->emit('editCommentWasSet');
     }
-
 
     public function updateComment(): void
     {

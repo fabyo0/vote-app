@@ -10,7 +10,6 @@ use Tests\TestCase;
 
 class ShowCommentsTest extends TestCase
 {
-
     use RefreshDatabase;
 
     /**
@@ -30,7 +29,7 @@ class ShowCommentsTest extends TestCase
         $idea = Idea::factory()->create();
 
         Comment::factory()->create([
-            'idea_id' => $idea->id
+            'idea_id' => $idea->id,
         ]);
 
         $this->get(route('idea.show', $idea))
@@ -42,7 +41,7 @@ class ShowCommentsTest extends TestCase
         $idea = Idea::factory()->create();
 
         Comment::factory()->create([
-            'idea_id' => $idea->id
+            'idea_id' => $idea->id,
         ]);
 
         $this->get(route('idea.show', $idea))
@@ -63,12 +62,12 @@ class ShowCommentsTest extends TestCase
 
         Comment::factory()->create([
             'idea_id' => $idea->id,
-            'body' => 'This is fist comment'
+            'body' => 'This is fist comment',
         ]);
 
         Comment::factory()->create([
             'idea_id' => $idea->id,
-            'body' => 'This is second comment'
+            'body' => 'This is second comment',
         ]);
 
         $this->get(route('idea.show', $idea))
@@ -76,19 +75,18 @@ class ShowCommentsTest extends TestCase
             ->assertSee('2 Comments');
     }
 
-
     public function test_list_comments_counts_shows_correctly_on_index_page()
     {
         $idea = Idea::factory()->create();
 
         Comment::factory()->create([
             'idea_id' => $idea->id,
-            'body' => 'This is fist comment'
+            'body' => 'This is fist comment',
         ]);
 
         Comment::factory()->create([
             'idea_id' => $idea->id,
-            'body' => 'This is second comment'
+            'body' => 'This is second comment',
         ]);
 
         $this->get(route('idea.index'))
@@ -101,23 +99,22 @@ class ShowCommentsTest extends TestCase
         $user = User::factory()->create();
 
         $idea = Idea::factory()->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         Comment::factory()->create([
             'idea_id' => $idea->id,
-            'body' => 'This is fist comment'
+            'body' => 'This is fist comment',
         ]);
 
         Comment::factory()->create([
             'idea_id' => $idea->id,
             'user_id' => $user->id,
-            'body' => 'This is second comment'
+            'body' => 'This is second comment',
         ]);
 
         $this->actingAs($user)
             ->get(route('idea.show', $idea))
             ->assertSee('OP');
     }
-
 }
