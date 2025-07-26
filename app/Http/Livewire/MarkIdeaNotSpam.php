@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MarkIdeaNotSpam extends Component
 {
-    public $idea;
+    public Idea $idea;
 
     public function markAsNotSpam(): void
     {
