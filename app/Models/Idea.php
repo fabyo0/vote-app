@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\IdeaStatus;
 use Illuminate\Support\Str;
+use App\Observers\IdeaObserver;
 
 
 /**
@@ -278,31 +279,6 @@ class Idea extends Model
 
     protected static function booted(): void
     {
-        static::creating(function (Idea $idea) {
-            $idea->slug = static::generateUniqueSlug($idea->title);
-        });
-
-        static::updating(function (Idea $idea) {
-            if ($idea->isDirty('title')) {
-                $idea->slug = static::generateUniqueSlug($idea->title, $idea->id);
-            }
-        });
+        Idea::observe(IdeaObserver::class);
     }
-
-    protected static function generateUniqueSlug(string $title, ?int $ignoreId = null): string
-    {
-        $slug = \Str::slug($title);
-        $originalSlug = $slug;
-        $counter = 1;
-
-        while (static::where('slug', $slug)
-            ->when($ignoreId, fn ($q) => $q->where('id', '!=', $ignoreId))
-            ->exists()) {
-            $slug = "{$originalSlug}-{$counter}";
-            $counter++;
-        }
-
-        return $slug;
-    }
-
 }
