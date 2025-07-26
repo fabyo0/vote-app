@@ -13,9 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CreateIdea extends Component
 {
     public $title;
-
     public $category = 1;
-
     public $description;
 
     protected $rules = [
@@ -39,11 +37,12 @@ class CreateIdea extends Component
                 'description' => $this->description,
             ]);
 
-            session()->flash('success_message', 'Idea was added successfully.');
+            $this->reset(['title', 'description']);
+            $this->category = 1; 
 
-            $this->reset();
+            $this->emit('ideaWasCreated', 'Idea was added successfully!');
 
-            return redirect()->route('idea.index');
+            return;
         }
         abort(Response::HTTP_FORBIDDEN);
     }

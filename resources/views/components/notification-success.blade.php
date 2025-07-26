@@ -19,7 +19,7 @@
     x-init="
         @if ($redirect)
         $nextTick(() => showNotification(messageToDisplay))
-@else
+        @else
         Livewire.on('ideaWasUpdated', message => {
             showNotification(message)
         })
@@ -56,7 +56,15 @@
          Livewire.on('commentWasMarkedAsNotSpam', message => {
                 showNotification(message)
          })
-@endif
+
+          Livewire.on('replyWasAdded', message => {
+              showNotification(message)
+         })
+
+         Livewire.on('ideaWasCreated', message => {
+            showNotification(message)
+        })
+        @endif
         "
     x-cloak
     x-show="isOpen"

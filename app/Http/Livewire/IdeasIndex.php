@@ -27,6 +27,8 @@ class IdeasIndex extends Component
 
     protected $listeners = [
         'queryStringUpdatedStatus',
+        'refreshIdeas' => '$refresh',
+        'ideaWasCreated' => 'handleIdeaWasCreated',
     ];
 
     public function updatingCategory(): void
@@ -52,6 +54,13 @@ class IdeasIndex extends Component
     {
         $this->resetPage();
         $this->status = $newStatus;
+    }
+
+    public function handleIdeaWasCreated($message): void
+    {
+        $this->resetPage();
+
+        $this->render();
     }
 
     public function mount(): void
