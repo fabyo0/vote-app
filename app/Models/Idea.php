@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Exceptions\VoteNotFoundException;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,11 +13,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\IdeaStatus;
+use Illuminate\Support\Str;
+
 
 class Idea extends Model
 {
     use HasFactory;
-    use Sluggable;
 
     protected $perPage = 10;
 
@@ -32,14 +32,6 @@ class Idea extends Model
         'spam_reports',
     ];
 
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title',
-            ],
-        ];
-    }
 
     public function getRouteKeyName(): string
     {
@@ -237,4 +229,34 @@ class Idea extends Model
             ->with(['category', 'user', 'status'])
             ->withCount(['votes', 'comments']);
     }
+
+    protected static function booted(): void
+    {
+        static::creating(function (Idea $idea) {
+            $idea->slug = static::generateUniqueSlug($idea->title);
+        });
+
+        static::updating(function (Idea $idea) {
+            if ($idea->isDirty('title')) {
+                $idea->slug = static::generateUniqueSlug($idea->title, $idea->id);
+            }
+        });
+    }
+
+    protected static function generateUniqueSlug(string $title, ?int $ignoreId = null): string
+    {
+        $slug = \Str::slug($title);
+        $originalSlug = $slug;
+        $counter = 1;
+
+        while (static::where('slug', $slug)
+            ->when($ignoreId, fn ($q) => $q->where('id', '!=', $ignoreId))
+            ->exists()) {
+            $slug = "{$originalSlug}-{$counter}";
+            $counter++;
+        }
+
+        return $slug;
+    }
+
 }
