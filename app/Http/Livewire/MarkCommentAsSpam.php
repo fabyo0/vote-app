@@ -27,16 +27,31 @@ class MarkCommentAsSpam extends Component
 
     public function markAsSpam(): void
     {
-        if (auth()->guest()) {
+        $user = auth()->user();
+
+        if ( ! $user) {
             abort(Response::HTTP_FORBIDDEN);
         }
 
-        //Increment spam report
-        $this->comment->spam_reports++;
-        $this->comment->save();
+        if ($user->id === $this->comment->user_id) {
+            $this->emit('spamActionFailed', 'You cannot mark your own comment as spam.');
+            return;
+        }
+
+        $alreadyReported = session()->get('comment_spam_reports', []);
+
+        if (in_array($this->comment->id, $alreadyReported)) {
+            $this->emit('spamActionFailed', 'You have already marked this comment as spam.');
+            return;
+        }
+
+        $this->comment->increment('spam_reports');
+
+        session()->put('comment_spam_reports', array_merge($alreadyReported, [$this->comment->id]));
 
         $this->emit('commentWasMarkedAsSpam', 'Comment was marked as spam!');
     }
+
 
     public function render()
     {
