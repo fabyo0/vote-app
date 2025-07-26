@@ -22,7 +22,6 @@ class IdeaComment extends Component
     public function commentWasUpdated(): void
     {
         $this->comment->refresh();
-        //  $this->goToPage(1);
     }
 
     public function commentWasMarkedAsNotSpam(): void
