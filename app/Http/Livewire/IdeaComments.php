@@ -19,6 +19,7 @@ class IdeaComments extends Component
         'commentWasAdded' => '$refresh',
         'commentWasDeleted' => '$refresh',
         'statusWasUpdating' => '$refresh',
+        'replyWasAdded' => '$refresh',
     ];
 
     public function mount(Idea $idea): void
@@ -44,11 +45,19 @@ class IdeaComments extends Component
         $this->goToPage($this->idea->comments()->paginate()->lastPage());
     }
 
+    public function replyWasAdded(): void
+    {
+        $this->idea->refresh();
+    }
+
     public function render()
     {
         return view('livewire.idea-comments', [
-            'comments' => Comment::with(['user', 'status'])
-                ->where('idea_id', $this->idea->id)->paginate(),
+            'comments' => Comment::with(['user', 'status', 'replies.user', 'replies.status'])
+                ->where('idea_id', $this->idea->id)
+                ->whereNull('parent_id') 
+                ->latest()
+                ->paginate(),
         ]);
     }
 }
