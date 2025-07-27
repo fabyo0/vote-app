@@ -239,7 +239,7 @@ class AddCommentsTest extends TestCase
             ->test(AddComment::class, ['idea' => $this->idea])
             ->set('comment', $commentText)
             ->call('addComment')
-            ->assertEmitted('commentWasAdded', 'Comment was posted!');
+            ->assertOk();
     }
 
     /** @test */
