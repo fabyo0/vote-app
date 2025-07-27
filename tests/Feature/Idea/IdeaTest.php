@@ -7,10 +7,13 @@ use App\Models\Idea;
 use App\Models\Status;
 use App\Models\User;
 use App\Models\Vote;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class IdeaTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
@@ -31,13 +34,12 @@ class IdeaTest extends TestCase
 
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
         ]);
 
         $idea = Idea::factory()->create([
             'user_id' => $user->id,
-            'status_id' => $statusOpen,
-            'category_id' => $categoryOne,
+            'status_id' => $statusOpen->id,
+            'category_id' => $categoryOne->id,
             'title' => 'My First Idea',
             'description' => 'Description for my first idea',
         ]);
@@ -58,13 +60,13 @@ class IdeaTest extends TestCase
 
         $statusOpen = Status::factory()->create([
             'name' => 'Open',
-            'classes' => 'bg-gray-200',
+
         ]);
 
         $idea = Idea::factory()->create([
             'user_id' => $user->id,
-            'status_id' => $statusOpen,
-            'category_id' => $categoryOne,
+            'status_id' => $statusOpen->id,
+            'category_id' => $categoryOne->id,
             'title' => 'My First Idea',
             'description' => 'Description for my first idea',
         ]);
@@ -87,10 +89,9 @@ class IdeaTest extends TestCase
 
         $this->assertTrue($idea->isVotedByUser($user));
         $idea->removeVote($user);
-        //$this->assertFalse($idea->isVotedByUser($user));
     }
 
-    public function test__can_remove_vote_from_user()
+    public function test_can_remove_vote_from_user()
     {
         $user = User::factory()->create();
         $idea = Idea::factory()->create();
@@ -100,6 +101,5 @@ class IdeaTest extends TestCase
         $this->assertTrue($idea->isVotedByUser($user));
 
         $idea->removeVote($user);
-
     }
 }
