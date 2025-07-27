@@ -38,8 +38,8 @@ class ShowIdeaTest extends TestCase
             'name' => 'Category 2',
         ]);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-        $statusConsidering = Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
+        $statusConsidering = Status::factory()->create(['name' => 'Considering']); 
 
         $ideaOne = Idea::factory()->create([
             'title' => 'My first Idea',
@@ -79,7 +79,7 @@ class ShowIdeaTest extends TestCase
             'name' => 'Category 1',
         ]);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
 
         $idea = Idea::factory()->create([
             'title' => 'My first Idea',
@@ -89,7 +89,7 @@ class ShowIdeaTest extends TestCase
             'description' => 'Description of my first idea',
         ]);
 
-        $response = $this->get(route('idea.index', $idea));
+        $response = $this->get(route('idea.show', $idea));
 
         $response->assertSuccessful();
 
@@ -104,7 +104,7 @@ class ShowIdeaTest extends TestCase
 
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
 
         $ideaOne = Idea::factory()->create([
             'category_id' => $categoryOne->id,
@@ -118,6 +118,7 @@ class ShowIdeaTest extends TestCase
             'category_id' => $categoryOne->id,
             'title' => 'My first Idea 1',
             'status_id' => $statusOpen->id,
+            'user_id' => $user->id,
             'description' => 'Another Description of my first idea',
         ]);
 
@@ -157,7 +158,7 @@ class ShowIdeaTest extends TestCase
             'name' => 'Category 1',
         ]);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
 
         $ideaOne = Idea::factory()->create([
             'title' => 'My first Idea',
@@ -180,8 +181,8 @@ class ShowIdeaTest extends TestCase
         $categoryOne = Category::factory()->create(['name' => 'Category 1']);
         $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
 
-        $statusOpen = Status::factory()->create(['name' => 'Open', 'classes' => 'bg-gray-200']);
-        $statusConsidering = Status::factory()->create(['name' => 'Considering', 'classes' => 'bg-purple text-white']);
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
+        $statusConsidering = Status::factory()->create(['name' => 'Considering']);
 
         $ideaOne = Idea::factory()->create([
             'user_id' => $user->id,
