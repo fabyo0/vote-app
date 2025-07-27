@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace App\Http\Livewire;
 
 use App\Models\Idea;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 use Symfony\Component\HttpFoundation\Response;
 
 class DeleteIdea extends Component
 {
-    public $idea;
+    public Idea $idea;
 
     public function mount(Idea $idea): void
     {
