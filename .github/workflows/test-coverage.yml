@@ -1,4 +1,4 @@
-name: Code Coverage
+name: Test & Coverage
 
 on:
   push:
@@ -13,22 +13,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set up PHP
+      - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          coverage: xdebug
+          coverage: pcov
 
       - name: Install dependencies
-        run: |
-          composer install --prefer-dist --no-progress
+        run: composer install --prefer-dist --no-progress
 
-      - name: Run tests with coverage
-        run: |
-          php artisan test --coverage --coverage-clover=coverage.xml
+      - name: Run PHPUnit with coverage
+        run: ./vendor/bin/phpunit --coverage-clover=coverage.xml
 
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v3
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
         with:
-          name: coverage-report
-          path: coverage.xml
+          files: coverage.xml
+          fail_ci_if_error: true
