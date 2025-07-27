@@ -1,5 +1,9 @@
 # 🚀 Laravel Livewire Project Setup Guide
 
+[![CI Tests](https://github.com/fabyo0/vote-app/actions/workflows/ci.yml/badge.svg)](https://github.com/fabyo0/vote-app/actions/workflows/ci.yml)
+&nbsp;&nbsp;
+[![Run tests](https://github.com/fabyo0/vote-app/actions/workflows/laravel.yml/badge.svg)](https://github.com/fabyo0/vote-app/actions/workflows/laravel.yml)
+
 ## ✅ Requirements
 
 Make sure the following are installed on your system:
