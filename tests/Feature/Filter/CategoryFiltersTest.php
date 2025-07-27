@@ -29,7 +29,6 @@ class CategoryFiltersTest extends TestCase
 
     public function test_selecting_a_category_filters_correctly()
     {
-
         $user = User::factory()->create();
 
         $categoryOne = Category::factory()->create([
@@ -37,7 +36,7 @@ class CategoryFiltersTest extends TestCase
         ]);
 
         $categoryTwo = Category::factory()->create([
-            'name' => 'Category 1',
+            'name' => 'Category 2', 
         ]);
 
         $categoryThree = Category::factory()->create([
@@ -65,22 +64,21 @@ class CategoryFiltersTest extends TestCase
         $ideaThree = Idea::factory()->create([
             'user_id' => $user->id,
             'category_id' => $categoryTwo->id,
-            'title' => 'My two title',
-            'description' => 'Description for my two idea',
+            'title' => 'My three title',
+            'description' => 'Description for my three idea',
             'status_id' => $statusOpen->id,
         ]);
 
         Livewire::test(IdeasIndex::class)
-            ->set('category', 'Category 1')
+            ->set('category', 'Category 2')
             ->assertViewHas('ideas', function ($ideas) {
                 return $ideas->count() === 2
-                    && $ideas->first()->category->name === 'Category 1';
+                    && $ideas->first()->category->name === 'Category 2';
             });
     }
 
     public function test_the_category_query_string_filters_correctly()
     {
-
         $user = User::factory()->create();
 
         $categoryOne = Category::factory()->create([
@@ -88,7 +86,7 @@ class CategoryFiltersTest extends TestCase
         ]);
 
         $categoryTwo = Category::factory()->create([
-            'name' => 'Category 1',
+            'name' => 'Category 2',
         ]);
 
         $categoryThree = Category::factory()->create([
@@ -116,22 +114,21 @@ class CategoryFiltersTest extends TestCase
         $ideaThree = Idea::factory()->create([
             'user_id' => $user->id,
             'category_id' => $categoryTwo->id,
-            'title' => 'My two title',
-            'description' => 'Description for my two idea',
+            'title' => 'My three title',
+            'description' => 'Description for my three idea',
             'status_id' => $statusOpen->id,
         ]);
 
-        Livewire::withQueryParams(['category' => 'Category 1'])
+        Livewire::withQueryParams(['category' => 'Category 2'])
             ->test(IdeasIndex::class)
             ->assertViewHas('ideas', function ($ideas) {
                 return $ideas->count() === 2
-                    && $ideas->first()->category->name === 'Category 1';
+                    && $ideas->first()->category->name === 'Category 2';
             });
     }
 
     public function test_selecting_a_category_filters_and_status_correctly()
     {
-
         $user = User::factory()->create();
 
         $categoryOne = Category::factory()->create([
@@ -139,7 +136,7 @@ class CategoryFiltersTest extends TestCase
         ]);
 
         $categoryTwo = Category::factory()->create([
-            'name' => 'Category 1',
+            'name' => 'Category 2',
         ]);
 
         $categoryThree = Category::factory()->create([
@@ -167,24 +164,23 @@ class CategoryFiltersTest extends TestCase
         $ideaThree = Idea::factory()->create([
             'user_id' => $user->id,
             'category_id' => $categoryTwo->id,
-            'title' => 'My two title',
-            'description' => 'Description for my two idea',
+            'title' => 'My three title',
+            'description' => 'Description for my three idea',
             'status_id' => $statusOpen->id,
         ]);
 
         Livewire::test(IdeasIndex::class)
-            ->set('category', 'Category 1')
+            ->set('category', 'Category 2')
             ->set('status', 'Open')
             ->assertViewHas('ideas', function ($ideas) {
                 return $ideas->count() === 2
-                    && $ideas->first()->category->name === 'Category 1'
+                    && $ideas->first()->category->name === 'Category 2'
                     && $ideas->first()->status->name === 'Open';
             });
     }
 
     public function test_selecting_a_category_filters_and_status_and_category_correctly()
     {
-
         $user = User::factory()->create();
 
         $categoryOne = Category::factory()->create([
@@ -192,7 +188,7 @@ class CategoryFiltersTest extends TestCase
         ]);
 
         $categoryTwo = Category::factory()->create([
-            'name' => 'Category 1',
+            'name' => 'Category 2',
         ]);
 
         $categoryThree = Category::factory()->create([
@@ -220,23 +216,22 @@ class CategoryFiltersTest extends TestCase
         $ideaThree = Idea::factory()->create([
             'user_id' => $user->id,
             'category_id' => $categoryTwo->id,
-            'title' => 'My two title',
-            'description' => 'Description for my two idea',
+            'title' => 'My three title',
+            'description' => 'Description for my three idea',
             'status_id' => $statusOpen->id,
         ]);
 
-        Livewire::withQueryParams(['status' => 'Open', 'category' => 'Category 1'])
+        Livewire::withQueryParams(['status' => 'Open', 'category' => 'Category 2'])
             ->test(IdeasIndex::class)
             ->assertViewHas('ideas', function ($ideas) {
                 return $ideas->count() === 2
-                    && $ideas->first()->category->name === 'Category 1'
+                    && $ideas->first()->category->name === 'Category 2'
                     && $ideas->first()->status->name === 'Open';
             });
     }
 
     public function test_selecting_all_categories_filters_correctly()
     {
-
         $user = User::factory()->create();
 
         $categoryOne = Category::factory()->create([
@@ -244,7 +239,7 @@ class CategoryFiltersTest extends TestCase
         ]);
 
         $categoryTwo = Category::factory()->create([
-            'name' => 'Category 1',
+            'name' => 'Category 2',
         ]);
 
         $categoryThree = Category::factory()->create([
@@ -271,9 +266,9 @@ class CategoryFiltersTest extends TestCase
 
         $ideaThree = Idea::factory()->create([
             'user_id' => $user->id,
-            'category_id' => $categoryTwo->id,
+            'category_id' => $categoryThree->id,
             'title' => 'My Third title',
-            'description' => 'Description for my two idea',
+            'description' => 'Description for my third idea',
             'status_id' => $statusOpen->id,
         ]);
 
