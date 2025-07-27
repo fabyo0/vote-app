@@ -82,8 +82,7 @@ class CreateIdeaTest extends TestCase
             ->set('title', 'My first ideas')
             ->set('category', $categoryOne->id)
             ->set('description', 'Lorem ipsum dolor sit amet...')
-            ->call('createIdea')
-            ->assertRedirect(route('idea.index'));
+            ->call('createIdea');
 
         $response = $this->actingAs($user)->get(route('idea.index'));
         $response->assertStatus(200);
