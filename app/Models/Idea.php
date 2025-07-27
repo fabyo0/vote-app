@@ -112,7 +112,7 @@ class Idea extends Model
 
     public function isVotedByUser(?User $user): bool
     {
-        if ( ! $user) {
+        if (! $user) {
             return false;
         }
 
@@ -134,13 +134,12 @@ class Idea extends Model
      */
     public function removeVote(User $user): void
     {
-        if ($this->isVotedByUser($user)) {
-            return;
+        if (!$this->isVotedByUser($user)) {
+            throw new VoteNotFoundException;
         }
 
-        $this->votes()->detach($user);
+        $this->votes()->detach($user->id);
     }
-
 
 
     // ============================================
@@ -187,7 +186,7 @@ class Idea extends Model
 
         return $query->where(function ($q) use ($search) {
             $q->where('title', 'like', '%' . $search . '%')
-              ->orWhere('description', 'like', '%' . $search . '%');
+                ->orWhere('description', 'like', '%' . $search . '%');
         });
     }
 
@@ -207,7 +206,7 @@ class Idea extends Model
         $userId = $userId ?? Auth::id();
 
         return $query->where('user_id', $userId)
-                    ->orderByDesc('created_at');
+            ->orderByDesc('created_at');
     }
 
     /**
@@ -216,7 +215,7 @@ class Idea extends Model
     public function scopeSpamIdeas(Builder $query): Builder
     {
         return $query->where('spam_reports', '>', 0)
-                    ->orderByDesc('spam_reports');
+            ->orderByDesc('spam_reports');
     }
 
     /**
@@ -253,7 +252,7 @@ class Idea extends Model
      */
     public function scopeApplyFilter(Builder $query, ?string $filter): Builder
     {
-        return match($filter) {
+        return match ($filter) {
             'Top Voted' => $query->topVoted(),
             'My Ideas' => $query->byUser(),
             'Spam Ideas' => $query->spamIdeas(),
