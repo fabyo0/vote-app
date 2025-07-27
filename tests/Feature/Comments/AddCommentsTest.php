@@ -48,12 +48,11 @@ class AddCommentsTest extends TestCase
     public function test_add_comment_form_validation_works()
     {
         $user = User::factory()->create();
-
         $idea = Idea::factory()->create();
 
         Livewire::actingAs($user)
             ->test(AddComment::class, [
-                'idea' => $idea,
+                'idea' => $idea
             ])
             ->set('comment', '')
             ->call('addComment')
@@ -66,27 +65,33 @@ class AddCommentsTest extends TestCase
     public function test_add_comment_form_works()
     {
         $user = User::factory()->create();
-
         $idea = Idea::factory()->create();
 
         \Notification::fake();
-
         \Notification::assertNothingSent();
 
-        Livewire::actingAs($user)
+        $this->assertEquals(0, Comment::count());
+
+        $component = Livewire::actingAs($user)
             ->test(AddComment::class, [
-                'idea' => $idea,
+                'idea' => $idea
             ])
             ->set('comment', 'This first comment')
-            ->call('addComment')
-            ->assertEmitted('commentWasAdded');
+            ->call('addComment');
+
+        $this->assertEquals(1, Comment::count());
+
+        $createdComment = Comment::first();
+        $this->assertEquals('This first comment', $createdComment->body);
+        $this->assertEquals($user->id, $createdComment->user_id);
+        $this->assertEquals($idea->id, $createdComment->idea_id);
+        $this->assertNull($createdComment->parent_id);
+
+        $this->assertNull($component->get('comment'));
 
         \Notification::assertSentTo(
             [$idea->user], CommentAdded::class
         );
-
-        $this->equalTo(1, Comment::count());
-        $this->equalTo('This first comment', $idea->comments->first()->body);
     }
 
     /** @test */
@@ -95,7 +100,7 @@ class AddCommentsTest extends TestCase
         $idea = Idea::factory()->create();
 
         $commentOne = Comment::factory()->create([
-            'idea_id' => $idea,
+            'idea_id' => $idea->id,
         ]);
 
         Comment::factory($commentOne->getPerPage())->create([
@@ -115,4 +120,5 @@ class AddCommentsTest extends TestCase
         $response->assertDontSee($commentOne->body);
         $response->assertSee(Comment::find(Comment::count())->body);
     }
+
 }
