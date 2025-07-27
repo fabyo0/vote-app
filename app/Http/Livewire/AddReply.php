@@ -13,11 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AddReply extends Component
 {
-    public $idea;
-    public $parentComment;
-    public $reply = '';
+    public Idea $idea;
+    public Comment $parentComment;
+    public string $reply = '';
 
-    protected $rules = [
+    protected array $rules = [
         'reply' => 'required|min:4',
     ];
 
