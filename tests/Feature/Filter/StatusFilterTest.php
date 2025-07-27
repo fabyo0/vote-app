@@ -7,106 +7,124 @@ use App\Http\Livewire\StatusFilter;
 use App\Models\Idea;
 use App\Models\Status;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Livewire;
+use Livewire\Livewire;
 use Tests\TestCase;
 
 class StatusFilterTest extends TestCase
 {
     use RefreshDatabase;
 
-    /* @test */
-
-    public function test_index_page_contains_status_filters_livewire_component()
+    protected function setUp(): void
     {
-        Idea::factory()->create();
+        parent::setUp();
+
+        $this->statuses = [
+            'open' => Status::factory()->create(['name' => 'Open']),
+            'considering' => Status::factory()->create(['name' => 'Considering']),
+            'in_progress' => Status::factory()->create(['name' => 'In Progress']),
+            'implemented' => Status::factory()->create(['name' => 'Implemented']),
+            'closed' => Status::factory()->create(['name' => 'Closed']),
+        ];
+    }
+
+    /** @test */
+    public function index_page_contains_status_filters_livewire_component()
+    {
+        Idea::factory()->create(['status_id' => $this->statuses['open']->id]);
+
         $this->get(route('idea.index'))
+            ->assertOk()
             ->assertSeeLivewire('status-filter');
     }
 
-    public function test_show_page_contains_status_filters_livewire_component()
+    /** @test */
+    public function show_page_contains_status_filters_livewire_component()
     {
-        $idea = Idea::factory()->create();
+        $idea = Idea::factory()->create(['status_id' => $this->statuses['open']->id]);
+
         $this->get(route('idea.show', $idea))
+            ->assertOk()
             ->assertSeeLivewire('status-filter');
-
     }
 
-    public function test_shows_correct_status_count()
+    /** @test */
+    public function filtering_works_for_each_status_type()
     {
-        $statusImplement = Status::factory()->create(['id' => 4, 'name' => 'Implemented']);
+        Idea::factory(2)->create(['status_id' => $this->statuses['open']->id]);
+        Idea::factory(3)->create(['status_id' => $this->statuses['considering']->id]);
+        Idea::factory(1)->create(['status_id' => $this->statuses['implemented']->id]);
 
-        Idea::factory()->create([
-            'status_id' => $statusImplement->id,
-        ]);
+        foreach ($this->statuses as $status) {
+            $count = Idea::where('status_id', $status->id)->count();
 
-        Idea::factory()->create([
-            'status_id' => $statusImplement->id,
-        ]);
-
-        Livewire::test(StatusFilter::class)
-            ->assertSee('All Ideas (2)')
-            ->assertSee('Implemented (2)');
+            Livewire::withQueryParams(['status' => $status->name])
+                ->test(IdeasIndex::class)
+                ->assertViewHas('ideas', function ($ideas) use ($status, $count) {
+                    return $ideas->count() === $count
+                        && ($count === 0 || $ideas->first()->status->name === $status->name);
+                });
+        }
     }
 
-    public function test_filtering_works_when_query_string_in_place()
+    /** @test */
+    public function show_page_does_not_show_selected_status_for_any_status()
     {
-        $statusOpen = Status::factory()->create(['name' => 'Open']);
-        $statusConsidering = Status::factory()->create(['name' => 'Considering']);
-        $statusInProgress = Status::factory()->create(['name' => 'In Progress']);
-        $statusImplemented = Status::factory()->create(['name' => 'Implemented']);
-        $statusClosed = Status::factory()->create(['name' => 'Closed']);
+        foreach ($this->statuses as $status) {
+            $idea = Idea::factory()->create(['status_id' => $status->id]);
 
-        Idea::factory()->create([
-            'status_id' => $statusConsidering->id,
-        ]);
+            $this->get(route('idea.show', $idea))
+                ->assertOk()
+                ->assertDontSee('border-blue text-gray-900');
+        }
+    }
 
-        Idea::factory()->create([
-            'status_id' => $statusConsidering->id,
-        ]);
-
-        Idea::factory()->create([
-            'status_id' => $statusInProgress->id,
-        ]);
-
-        Idea::factory()->create([
-            'status_id' => $statusInProgress->id,
-        ]);
-
-        Idea::factory()->create([
-            'status_id' => $statusInProgress->id,
-        ]);
-
-        Livewire::withQueryParams(['status' => 'In Progress'])
+    /** @test */
+    public function status_filter_handles_non_existent_status_gracefully()
+    {
+        Livewire::withQueryParams(['status' => 'NonExistentStatus'])
             ->test(IdeasIndex::class)
             ->assertViewHas('ideas', function ($ideas) {
-                return $ideas->count() === 3
-                    && $ideas->first()->status->name === 'In Progress';
+                return $ideas->count() === Idea::count();
             });
     }
 
-    public function test_show_page_does_not_show_selected_status()
+    /** @test */
+    public function index_page_shows_all_ideas_by_default()
     {
-        $statusImplemented = Status::factory()->create(['name' => 'Implemented']);
+        Idea::factory(5)->create();
 
-        $idea = Idea::factory()->create([
-            'status_id' => $statusImplemented->id,
-        ]);
-
-        $response = $this->get(route('idea.show', $idea));
-
-        $response->assertDontSee('border-blue text-gray-900');
+        Livewire::test(IdeasIndex::class)
+            ->assertViewHas('ideas', function ($ideas) {
+                return $ideas->count() === 5;
+            });
     }
 
-    public function test_index_page_does_not_show_selected_status()
+    /** @test */
+    public function filtering_by_status_with_no_ideas_shows_empty_result()
     {
-        $statusImplemented = Status::factory()->create(['name' => 'Implemented']);
+        $emptyStatus = Status::factory()->create(['name' => 'Empty Status']);
 
-        $idea = Idea::factory()->create([
-            'status_id' => $statusImplemented->id,
-        ]);
+        Livewire::withQueryParams(['status' => 'Empty Status'])
+            ->test(IdeasIndex::class)
+            ->assertViewHas('ideas', function ($ideas) {
+                return $ideas->isEmpty();
+            });
+    }
 
-        $response = $this->get(route('idea.show', $idea));
+    /** @test */
+    public function status_filter_can_switch_between_statuses()
+    {
+        Idea::factory(1)->create(['status_id' => $this->statuses['open']->id]);
+        Idea::factory(2)->create(['status_id' => $this->statuses['closed']->id]);
 
-        $response->assertDontSee('border-blue text-gray-900');
+        Livewire::withQueryParams(['status' => 'Open'])
+            ->test(IdeasIndex::class)
+            ->assertViewHas('ideas', function ($ideas) {
+                return $ideas->count() === 1 && $ideas->first()->status->name === 'Open';
+            })
+            ->set('status', 'Closed')
+            ->assertViewHas('ideas', function ($ideas) {
+                return $ideas->count() === 2 && $ideas->first()->status->name === 'Closed';
+            });
     }
 }

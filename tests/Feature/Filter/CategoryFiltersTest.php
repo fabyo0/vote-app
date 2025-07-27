@@ -36,7 +36,7 @@ class CategoryFiltersTest extends TestCase
         ]);
 
         $categoryTwo = Category::factory()->create([
-            'name' => 'Category 2', 
+            'name' => 'Category 2',
         ]);
 
         $categoryThree = Category::factory()->create([
@@ -278,4 +278,65 @@ class CategoryFiltersTest extends TestCase
                 return $ideas->count() === 3;
             });
     }
+
+
+    public function test_filtering_by_category_with_no_ideas_returns_empty()
+    {
+        Category::factory()->create(['name' => 'Empty Category']);
+        Livewire::test(IdeasIndex::class)
+            ->set('category', 'Empty Category')
+            ->assertViewHas('ideas', function ($ideas) {
+                return $ideas->isEmpty();
+            });
+    }
+
+    public function test_invalid_category_name_returns_all_ideas()
+    {
+        $user = User::factory()->create();
+        $status = Status::factory()->create(['name' => 'Open']);
+        $category = Category::factory()->create(['name' => 'Valid Category']);
+
+        Idea::factory(2)->create([
+            'user_id' => $user->id,
+            'category_id' => $category->id,
+            'status_id' => $status->id,
+        ]);
+
+        Livewire::withQueryParams(['category' => 'NonExistentCategory'])
+            ->test(IdeasIndex::class)
+            ->assertViewHas('ideas', function ($ideas) {
+                return $ideas->count() === 2;
+            });
+    }
+
+    public function test_category_and_different_status_combination_filters_correctly()
+    {
+        $user = User::factory()->create();
+
+        $categoryOne = Category::factory()->create(['name' => 'Design']);
+        $statusOpen = Status::factory()->create(['name' => 'Open']);
+        $statusClosed = Status::factory()->create(['name' => 'Closed']);
+
+        Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusOpen->id,
+        ]);
+
+        Idea::factory()->create([
+            'user_id' => $user->id,
+            'category_id' => $categoryOne->id,
+            'status_id' => $statusClosed->id,
+        ]);
+
+        Livewire::test(IdeasIndex::class)
+            ->set('category', 'Design')
+            ->set('status', 'Closed')
+            ->assertViewHas('ideas', function ($ideas) {
+                return $ideas->count() === 1
+                    && $ideas->first()->category->name === 'Design'
+                    && $ideas->first()->status->name === 'Closed';
+            });
+    }
+    
 }
