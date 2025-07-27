@@ -338,5 +338,5 @@ class CategoryFiltersTest extends TestCase
                     && $ideas->first()->status->name === 'Closed';
             });
     }
-    
+
 }
