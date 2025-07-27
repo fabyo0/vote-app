@@ -63,22 +63,30 @@ class CommentsSpamManagementTest extends TestCase
     /** @test */
     public function test_marking_a_comment_as_spam_works_when_user_has_authorization()
     {
-        $user = User::factory()->create();
+        $commentOwner = User::factory()->create();
+        $reportingUser = User::factory()->create();
         $idea = Idea::factory()->create();
 
         $comment = Comment::factory()->create([
             'idea_id' => $idea->id,
-            'user_id' => $user->id,
+            'user_id' => $commentOwner->id,
             'body' => 'This is my first comment',
         ]);
 
-        Livewire::actingAs($user)
+        $this->assertEquals(0, $comment->spam_reports);
+
+        Livewire::actingAs($reportingUser)
             ->test(MarkCommentAsSpam::class)
             ->call('setMarkAsSpamComment', $comment->id)
-            ->call('markAsSpam')
-            ->assertEmitted('commentWasMarkedAsSpam');
+            ->call('markAsSpam');
 
-        $this->assertEquals(1, Comment::first()->spam_reports);
+        $this->assertEquals(1, Comment::find($comment->id)->spam_reports);
+        $this->assertContains($comment->id, session()->get('comment_spam_reports', []));
+
+        $component = Livewire::actingAs($reportingUser)
+            ->test(MarkCommentAsSpam::class)
+            ->call('setMarkAsSpamComment', $comment->id);
+        $this->assertEquals($comment->id, $component->get('comment')->id);
     }
 
     /** @test */
@@ -114,7 +122,7 @@ class CommentsSpamManagementTest extends TestCase
                 'comment' => $comment,
                 'ideaUserID' => $idea->user_id,
             ])
-            ->assertSee('Mark As Comment');
+            ->assertSee('Mark as Spam');
     }
 
     /** @test */
@@ -179,15 +187,18 @@ class CommentsSpamManagementTest extends TestCase
             'idea_id' => $idea->id,
             'user_id' => $user->id,
             'body' => 'This is my first comment',
+            'spam_reports' => 3, 
         ]);
+
+
+        $this->assertEquals(3, $comment->spam_reports);
 
         Livewire::actingAs($user)
             ->test(MarkCommentAsNotSpam::class)
             ->call('setMarkAsNotSpamComment', $comment->id)
-            ->call('markAsNotSpam')
-            ->assertEmitted('commentWasMarkedAsNotSpam');
+            ->call('markAsNotSpam');
 
-        $this->assertEquals(0, Comment::first()->spam_reports);
+        $this->assertEquals(0, Comment::find($comment->id)->spam_reports);
     }
 
     /** @test */
