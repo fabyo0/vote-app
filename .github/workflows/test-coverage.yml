@@ -25,8 +25,8 @@ jobs:
       - name: Run PHPUnit with coverage
         run: ./vendor/bin/phpunit --coverage-clover=coverage.xml
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          files: coverage.xml
-          fail_ci_if_error: true
+      - name: Upload coverage to Codecov (Bash Uploader)
+        run: |
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov -f coverage.xml -t ${{ secrets.CODECOV_TOKEN }}
