@@ -1,32 +1,5 @@
-name: Test & Coverage
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          coverage: pcov
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
-
-      - name: Run PHPUnit with coverage
-        run: ./vendor/bin/phpunit --coverage-clover=coverage.xml
-
-      - name: Upload coverage to Codecov (Bash Uploader)
-        run: |
-          curl -Os https://uploader.codecov.io/latest/linux/codecov
-          chmod +x codecov
-          ./codecov -f coverage.xml -t ${{ secrets.CODECOV_TOKEN }}
+- name: Upload coverage reports to Codecov
+    uses: codecov/codecov-action@v5
+    with:
+      token: ${{ secrets.CODECOV_TOKEN }}
+      slug: fabyo0/vote-app
