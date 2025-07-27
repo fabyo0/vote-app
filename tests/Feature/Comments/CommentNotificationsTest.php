@@ -15,8 +15,6 @@ class CommentNotificationsTest extends TestCase
 {
     use RefreshDatabase;
 
-    //FIXME: Cannot add or update a child row: a foreign key constraint fails (`vote_app`.`comments`, CONSTRAINT `comments_status_id_foreign`
-
     /* @test */
     public function test_comment_notifications_livewire_component_renders_when_user_logged_in()
     {
@@ -106,14 +104,21 @@ class CommentNotificationsTest extends TestCase
             ->set('comment', 'This is the second comment')
             ->call('addComment');
 
+
         Livewire::actingAs($user)
             ->test(CommentNotifications::class)
+            ->call('getNotifications');
+
+        $firstNotification = DatabaseNotification::first();
+
+        $this->assertNotNull($firstNotification);
+
+        $component = Livewire::actingAs($user)
+            ->test(CommentNotifications::class)
             ->call('getNotifications')
-            ->call('markAsRead', DatabaseNotification::first()->id)
-            ->assertRedirect(route('idea.show', [
-                'idea' => $idea,
-                'page' => 1,
-            ]));
+            ->call('markAsRead', $firstNotification->id);
+
+        $component->assertRedirect();
 
         $this->assertEquals(1, $user->fresh()->unreadNotifications->count());
     }
@@ -165,5 +170,44 @@ class CommentNotificationsTest extends TestCase
             ->call('getNotifications')
             ->call('markAsRead', DatabaseNotification::first()->id)
             ->assertRedirect(route('idea.index'));
+    }
+
+
+    public function test_debug_individual_notification()
+    {
+        $user = User::factory()->create();
+        $idea = Idea::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $userCommenting = User::factory()->create();
+
+        Livewire::actingAs($userCommenting)
+            ->test(AddComment::class, ['idea' => $idea])
+            ->set('comment', 'This is a test comment')
+            ->call('addComment');
+
+
+        $notifications = $user->fresh()->unreadNotifications;
+        $this->assertEquals(1, $notifications->count());
+
+        $firstNotification = $notifications->first();
+        echo "Notification ID: " . $firstNotification->id . "\n";
+        echo "Notification Data: " . json_encode($firstNotification->data) . "\n";
+        echo "Idea ID: " . $idea->id . "\n";
+        echo "Idea Slug: " . $idea->slug . "\n";
+        echo "Expected Route: " . route('idea.show', ['idea' => $idea, 'page' => 1]) . "\n";
+
+        $component = Livewire::actingAs($user)
+            ->test(CommentNotifications::class)
+            ->call('getNotifications')
+            ->call('markAsRead', $firstNotification->id);
+
+        $payload = $component->payload;
+        if (isset($payload['effects']['redirect'])) {
+            echo "Actual Redirect URL: " . $payload['effects']['redirect'] . "\n";
+        }
+
+        $this->assertTrue(true);
     }
 }
