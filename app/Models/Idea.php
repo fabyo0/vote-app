@@ -14,6 +14,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * App\Models\Idea
@@ -61,9 +64,10 @@ use Illuminate\Support\Facades\Auth;
  * @method static Builder|Idea withUserVote(?int $userId = null)
  * @mixin \Eloquent
  */
-class Idea extends Model
+class Idea extends Model implements HasMedia
 {
     use HasFactory;
+    use InteractsWithMedia;
 
     protected $perPage = 10;
 
@@ -273,6 +277,20 @@ class Idea extends Model
             ->with(['category', 'user', 'status'])
             ->withCount(['votes', 'comments']);
     }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->width(300)
+            ->height(300)
+            ->sharpen(10);
+
+        $this->addMediaConversion('preview')
+            ->width(150)
+            ->height(150)
+            ->sharpen(10);
+    }
+
 
     protected static function booted(): void
     {

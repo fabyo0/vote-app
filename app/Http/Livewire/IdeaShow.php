@@ -12,10 +12,8 @@ use Livewire\Component;
 
 class IdeaShow extends Component
 {
-    public $idea;
-
-    public $votesCount;
-
+    public Idea $idea;
+    public int $votesCount;
     public $hasVoted;
 
     protected $listeners = [
@@ -27,7 +25,6 @@ class IdeaShow extends Component
         'commentWasDeleted' => '$refresh',
         'replyWasAdded' => '$refresh',
         'ideaWasUpdating' => '$refresh',
-        'commentWasDeleted' => '$refresh',
     ];
 
     public function mount(Idea $idea, $votesCount): void
@@ -36,11 +33,6 @@ class IdeaShow extends Component
         $this->votesCount = $votesCount;
         $this->hasVoted = $idea->isVotedByUser(auth()->user());
     }
-
-    /* public function statusWasUpdating(): void
-     {
-         $this->idea->refresh();
-     }*/
 
     public function ideaWasUpdating(): void
     {
@@ -64,7 +56,7 @@ class IdeaShow extends Component
 
     public function vote()
     {
-        if ( ! auth()->check()) {
+        if (!auth()->check()) {
             return Redirect::route('login');
         }
 
@@ -80,6 +72,12 @@ class IdeaShow extends Component
             return $exception->getMessage();
         }
     }
+
+    public function getImagesProperty()
+    {
+        return $this->idea->getMedia('images');
+    }
+
 
     public function render()
     {

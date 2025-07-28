@@ -17,7 +17,29 @@
                         <div class="text-red mb-2">Spam Reports: {{ $idea->spam_reports }}</div>
                     @endif
                     @endadmin
-                    {{ $idea->description }}
+                    <div class="mb-4">{{ $idea->description }}</div>
+
+                    <div class="mt-4">
+                        <div class="grid grid-cols-2 gap-3">
+                            @foreach($this->images as $index => $image)
+                                <div class="relative group bg-gray-100 rounded-lg overflow-hidden">
+                                    <img src="{{ $image->getUrl() }}"
+                                         alt="Idea image {{ $index + 1 }}"
+                                         class="w-full h-48 object-cover cursor-pointer hover:opacity-80 transition-opacity duration-200"
+                                         onclick="openImageModal('{{ $image->getUrl() }}')"
+                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                    <div
+                                        class="hidden w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
+                                        Image not found
+                                    </div>
+                                </div>
+                                @if($index >= 3)
+                                    @break
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">
@@ -29,6 +51,10 @@
                         <div>{{ $idea->category->name }}</div>
                         <div>&bull;</div>
                         <div class="text-gray-900">{{ $idea->comments()->count() }} Comments</div>
+                        {{--@if($this->images->count() > 0)
+                            <div>&bull;</div>
+                            <div class="text-gray-900">{{ $this->images->count() }} {{ Str::plural('Image', $this->images->count()) }}</div>
+                        @endif--}}
                     </div>
                     <div
                         class="flex items-center space-x-2 mt-4 md:mt-0"
@@ -157,7 +183,7 @@
             <livewire:add-comment :idea="$idea"/>
 
             @admin
-                <livewire:set-status :idea="$idea"/>
+            <livewire:set-status :idea="$idea"/>
             @endadmin
 
         </div>
@@ -187,3 +213,33 @@
         </div>
     </div> <!-- end buttons-container -->
 </div>
+
+<!-- Image Modal -->
+<div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 hidden z-50 flex items-center justify-center p-4"
+     onclick="closeImageModal()">
+    <div class="relative max-w-4xl max-h-full">
+        <img id="modalImage" src="" alt="Full size image" class="max-w-full max-h-full object-contain rounded-lg">
+        <button onclick="closeImageModal()" class="absolute top-4 right-4 text-white hover:text-gray-300 text-2xl">
+            &times;
+        </button>
+    </div>
+</div>
+
+<script>
+    function openImageModal(imageUrl) {
+        document.getElementById('modalImage').src = imageUrl;
+        document.getElementById('imageModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeImageModal() {
+        document.getElementById('imageModal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            closeImageModal();
+        }
+    });
+</script>

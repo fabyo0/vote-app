@@ -8,19 +8,65 @@ use App\Models\Category;
 use App\Models\Idea;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Symfony\Component\HttpFoundation\Response;
 
 class CreateIdea extends Component
 {
-    public $title;
-    public $category = 1;
-    public $description;
+    use WithFileUploads;
 
-    protected $rules = [
+    public string $title = '';
+    public $category = 1;
+    public string $description = '';
+    public $images = [];
+    public $temporaryImages = [];
+
+    protected array $rules = [
         'title' => 'required|string|min:4',
         'category' => 'required|integer|exists:categories,id',
         'description' => 'required|min:4|string',
+        'images.*' => 'nullable|image|max:5120', // Max 5MB per image
     ];
+
+    protected $messages = [
+        'images.*.image' => 'You can only upload image files.',
+        'images.*.max' => 'Each image must be no larger than 5MB.',
+    ];
+
+    public function updatedImages()
+    {
+        $this->validateOnly('images.*');
+
+        foreach ($this->images as $image) {
+            if (!in_array($image->getClientOriginalName(), array_column($this->temporaryImages, 'name'))) {
+                $this->temporaryImages[] = [
+                    'name' => $image->getClientOriginalName(),
+                    'size' => $this->formatFileSize($image->getSize()),
+                    'url' => $image->temporaryUrl(),
+                ];
+            }
+        }
+    }
+
+    public function removeImage($index)
+    {
+        unset($this->temporaryImages[$index]);
+        unset($this->images[$index]);
+
+        $this->temporaryImages = array_values($this->temporaryImages);
+        $this->images = array_values($this->images);
+    }
+
+    private function formatFileSize($bytes)
+    {
+        if ($bytes < 1024) {
+            return $bytes . ' B';
+        } elseif ($bytes < 1048576) {
+            return round($bytes / 1024, 2) . ' KB';
+        } else {
+            return round($bytes / 1048576, 2) . ' MB';
+        }
+    }
 
     public function createIdea(): void
     {
@@ -29,7 +75,7 @@ class CreateIdea extends Component
             // validate
             $this->validate();
 
-            Idea::create([
+            $idea = Idea::create([
                 'user_id' => Auth::id(),
                 'category_id' => $this->category,
                 'status_id' => 1,
@@ -37,7 +83,16 @@ class CreateIdea extends Component
                 'description' => $this->description,
             ]);
 
-            $this->reset(['title', 'description']);
+            if (!empty($this->images)) {
+                foreach ($this->images as $image) {
+                    $idea->addMediaFromStream($image->readStream())
+                        ->usingName($image->getClientOriginalName())
+                        ->usingFileName($image->getClientOriginalName())
+                        ->toMediaCollection('images');
+                }
+            }
+
+            $this->reset(['title', 'description', 'images', 'temporaryImages']);
             $this->category = 1;
 
             $this->emit('ideaWasCreated', 'Idea was added successfully!');

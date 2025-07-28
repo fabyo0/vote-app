@@ -18,7 +18,8 @@
         "livewire/livewire": "^2.12",
         "opcodesio/log-viewer": "^3.1",
         "spatie/laravel-honeypot": "^4.6",
-        "spatie/laravel-ignition": "^2.0"
+        "spatie/laravel-ignition": "^2.0",
+        "spatie/laravel-medialibrary": "^11.13"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
