@@ -33,12 +33,10 @@ class IdeaFactory extends Factory
 
     public function existing()
     {
-        return $this->state(function () {
-            return [
-                'user_id' => $this->faker->numberBetween(1, 20),
-                'category_id' => $this->faker->numberBetween(1, 4),
-                'status_id' => $this->faker->numberBetween(1, 5),
-            ];
-        });
+        return $this->state(fn() => [
+            'user_id' => $this->faker->numberBetween(1, 20),
+            'category_id' => $this->faker->numberBetween(1, 4),
+            'status_id' => $this->faker->numberBetween(1, 5),
+        ]);
     }
 }

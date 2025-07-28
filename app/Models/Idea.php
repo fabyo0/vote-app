@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\IdeaStatus;
 use App\Exceptions\VoteNotFoundException;
+use App\Observers\IdeaObserver;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
-use App\Enums\IdeaStatus;
-use Illuminate\Support\Str;
-use App\Observers\IdeaObserver;
-
 
 /**
  * App\Models\Idea
@@ -30,12 +28,12 @@ use App\Observers\IdeaObserver;
  * @property string $description
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Category $category
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Comment> $comments
+ * @property-read Category $category
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Comment> $comments
  * @property-read int|null $comments_count
- * @property-read \App\Models\Status|null $status
- * @property-read \App\Models\User $user
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $votes
+ * @property-read Status|null $status
+ * @property-read User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, User> $votes
  * @property-read int|null $votes_count
  * @method static Builder|Idea applyFilter(?string $filter)
  * @method static Builder|Idea byCategory(?string $category)
@@ -112,7 +110,7 @@ class Idea extends Model
 
     public function isVotedByUser(?User $user): bool
     {
-        if (! $user) {
+        if ( ! $user) {
             return false;
         }
 
@@ -134,8 +132,8 @@ class Idea extends Model
      */
     public function removeVote(User $user): void
     {
-        if (!$this->isVotedByUser($user)) {
-            throw new VoteNotFoundException;
+        if ( ! $this->isVotedByUser($user)) {
+            throw new VoteNotFoundException();
         }
 
         $this->votes()->detach($user->id);
@@ -151,7 +149,7 @@ class Idea extends Model
      */
     public function scopeByStatus(Builder $query, ?string $status): Builder
     {
-        if (!$status || $status === IdeaStatus::All->value) {
+        if ( ! $status || $status === IdeaStatus::All->value) {
             return $query;
         }
 
@@ -166,7 +164,7 @@ class Idea extends Model
      */
     public function scopeByCategory(Builder $query, ?string $category): Builder
     {
-        if (!$category || $category === 'All Categories') {
+        if ( ! $category || 'All Categories' === $category) {
             return $query;
         }
 
@@ -180,11 +178,11 @@ class Idea extends Model
      */
     public function scopeSearch(Builder $query, ?string $search): Builder
     {
-        if (!$search || strlen($search) < 3) {
+        if ( ! $search || mb_strlen($search) < 3) {
             return $query;
         }
 
-        return $query->where(function ($q) use ($search) {
+        return $query->where(function ($q) use ($search): void {
             $q->where('title', 'like', '%' . $search . '%')
                 ->orWhere('description', 'like', '%' . $search . '%');
         });
@@ -203,7 +201,7 @@ class Idea extends Model
      */
     public function scopeByUser(Builder $query, ?int $userId = null): Builder
     {
-        $userId = $userId ?? Auth::id();
+        $userId ??= Auth::id();
 
         return $query->where('user_id', $userId)
             ->orderByDesc('created_at');
@@ -223,7 +221,7 @@ class Idea extends Model
      */
     public function scopeSpamComments(Builder $query): Builder
     {
-        return $query->whereHas('comments', function ($q) {
+        return $query->whereHas('comments', function ($q): void {
             $q->where('spam_reports', '>', 0);
         })->orderByDesc('created_at');
     }
@@ -233,9 +231,9 @@ class Idea extends Model
      */
     public function scopeWithUserVote(Builder $query, ?int $userId = null): Builder
     {
-        $userId = $userId ?? Auth::id();
+        $userId ??= Auth::id();
 
-        if (!$userId) {
+        if ( ! $userId) {
             return $query;
         }
 
@@ -243,7 +241,7 @@ class Idea extends Model
             'voted_by_user' => Vote::select('idea_id')
                 ->where('user_id', $userId)
                 ->whereColumn('idea_id', 'ideas.id')
-                ->limit(1)
+                ->limit(1),
         ]);
     }
 

@@ -22,7 +22,7 @@ class CreateIdea extends Component
         'description' => 'required|min:4|string',
     ];
 
-    public function createIdea()
+    public function createIdea(): void
     {
         // Auth Check
         if (auth()->check()) {
@@ -38,7 +38,7 @@ class CreateIdea extends Component
             ]);
 
             $this->reset(['title', 'description']);
-            $this->category = 1; 
+            $this->category = 1;
 
             $this->emit('ideaWasCreated', 'Idea was added successfully!');
 

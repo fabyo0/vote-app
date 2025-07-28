@@ -55,7 +55,7 @@ class IdeaComments extends Component
         return view('livewire.idea-comments', [
             'comments' => Comment::with(['user', 'status', 'replies.user', 'replies.status'])
                 ->where('idea_id', $this->idea->id)
-                ->whereNull('parent_id') 
+                ->whereNull('parent_id')
                 ->latest()
                 ->paginate(),
         ]);

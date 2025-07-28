@@ -15,13 +15,13 @@ class AddComment extends Component
 {
     public $idea;
     public $comment;
-    public $parentComment = null; 
+    public $parentComment = null;
 
     protected $rules = [
         'comment' => 'required|min:4',
     ];
 
-    public function mount(Idea $idea, Comment $comment = null, Comment $parentComment = null): void
+    public function mount(Idea $idea, ?Comment $comment = null, ?Comment $parentComment = null): void
     {
         $this->idea = $idea;
         $this->comment = $comment;
@@ -57,7 +57,7 @@ class AddComment extends Component
 
     public function isReplyMode(): bool
     {
-        return !is_null($this->parentComment);
+        return null !== $this->parentComment;
     }
 
     public function render()

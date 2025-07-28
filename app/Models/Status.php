@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Idea> $ideas
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, Idea> $ideas
  * @property-read int|null $ideas_count
  * @method static \Database\Factories\StatusFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Status newModelQuery()

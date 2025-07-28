@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Builder;
 
 /**
  * App\Models\Comment
@@ -24,11 +24,11 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $status_id
  * @property int|null $parent_id
  * @property-read int|null $replies_count
- * @property-read \App\Models\Idea $idea
+ * @property-read Idea $idea
  * @property-read Comment|null $parent
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Comment> $replies
- * @property-read \App\Models\Status $status
- * @property-read \App\Models\User $user
+ * @property-read Status $status
+ * @property-read User $user
  * @method static \Database\Factories\CommentFactory factory($count = null, $state = [])
  * @method static Builder|Comment newModelQuery()
  * @method static Builder|Comment newQuery()
@@ -55,7 +55,7 @@ class Comment extends Model
     protected $fillable = [
         'user_id',
         'idea_id',
-        'parent_id',      
+        'parent_id',
         'status_id',
         'body',
         'is_status_update',
@@ -104,8 +104,8 @@ class Comment extends Model
     public function replies(): HasMany
     {
         return $this->hasMany(Comment::class, 'parent_id')
-                    ->with(['user', 'status'])
-                    ->latest();
+            ->with(['user', 'status'])
+            ->latest();
     }
 
     // ============================================
@@ -133,7 +133,7 @@ class Comment extends Model
      */
     public function scopeWithReplies(Builder $query): Builder
     {
-        return $query->with(['replies' => function ($query) {
+        return $query->with(['replies' => function ($query): void {
             $query->with(['user', 'status'])->latest();
         }]);
     }
@@ -147,7 +147,7 @@ class Comment extends Model
      */
     public function isReply(): bool
     {
-        return !is_null($this->parent_id);
+        return null !== $this->parent_id;
     }
 
     /**

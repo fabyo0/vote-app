@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Observers;
 
 use App\Models\Idea;
@@ -26,7 +28,7 @@ final class IdeaObserver
         $counter = 1;
 
         while (Idea::where('slug', $slug)
-            ->when($ignoreId, fn ($q) => $q->where('id', '!=', $ignoreId))
+            ->when($ignoreId, fn($q) => $q->where('id', '!=', $ignoreId))
             ->exists()) {
             $slug = "{$originalSlug}-{$counter}";
             $counter++;

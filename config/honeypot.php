@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Spatie\Honeypot\SpamResponder\BlankPageResponder;
 
 return [
@@ -62,10 +64,10 @@ return [
      * rules for a request. In most cases, you shouldn't change
      * this value.
      */
-    'spam_protection' => \Spatie\Honeypot\SpamProtection::class,
+    'spam_protection' => Spatie\Honeypot\SpamProtection::class,
 
     /*
-     * need to add @csp https://github.com/spatie/laravel-csp in style tag hidden items 
+     * need to add @csp https://github.com/spatie/laravel-csp in style tag hidden items
     */
     'with_csp' => env('HONEYPOT_WITH_CSP', false),
 ];

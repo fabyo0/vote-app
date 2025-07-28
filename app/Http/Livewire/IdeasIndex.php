@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Enums\IdeaStatus;
@@ -43,7 +45,7 @@ class IdeasIndex extends Component
 
     public function updatedFilter()
     {
-        if ($this->filter === 'My Ideas') {
+        if ('My Ideas' === $this->filter) {
             if (auth()->guest()) {
                 return Redirect::route('login');
             }
@@ -88,19 +90,6 @@ class IdeasIndex extends Component
     }
 
     /**
-     * Get current filters as array
-     */
-    private function getFilters(): array
-    {
-        return [
-            'status' => $this->status,
-            'category' => $this->category,
-            'filter' => $this->filter,
-            'search' => $this->search,
-        ];
-    }
-
-    /**
      * Clear all filters
      */
     public function clearFilters(): void
@@ -119,5 +108,18 @@ class IdeasIndex extends Component
     {
         $this->filter = $filter;
         $this->resetPage();
+    }
+
+    /**
+     * Get current filters as array
+     */
+    private function getFilters(): array
+    {
+        return [
+            'status' => $this->status,
+            'category' => $this->category,
+            'filter' => $this->filter,
+            'search' => $this->search,
+        ];
     }
 }

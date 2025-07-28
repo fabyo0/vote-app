@@ -28,11 +28,9 @@ class CommentFactory extends Factory
 
     public function existing()
     {
-        return $this->state(function () {
-            return [
-                'user_id' => $this->faker->numberBetween(1, 20),
-                'status_id' => 1,
-            ];
-        });
+        return $this->state(fn() => [
+            'user_id' => $this->faker->numberBetween(1, 20),
+            'status_id' => 1,
+        ]);
     }
 }

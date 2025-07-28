@@ -42,7 +42,7 @@ class IdeaComment extends Component
             return redirect()->route('login');
         }
 
-        $this->showReplyForm = !$this->showReplyForm;
+        $this->showReplyForm = ! $this->showReplyForm;
     }
 
     public function handleReplyAdded(): void
