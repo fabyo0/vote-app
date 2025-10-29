@@ -1,4 +1,4 @@
-# 🚀 Laravel Livewire Project Setup Guide
+# 🚀 Project Setup Guide
 
 [![CI Tests](https://github.com/fabyo0/vote-app/actions/workflows/ci.yml/badge.svg)](https://github.com/fabyo0/vote-app/actions/workflows/ci.yml)
 &nbsp;&nbsp;
