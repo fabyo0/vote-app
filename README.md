@@ -2,7 +2,7 @@
 
 [![CI Tests](https://github.com/fabyo0/vote-app/actions/workflows/ci.yml/badge.svg)](https://github.com/fabyo0/vote-app/actions/workflows/ci.yml)
 &nbsp;&nbsp;
-[![Run tests](https://github.com/fabyo0/vote-app/actions/workflows/laravel.yml/badge.svg)](https://github.com/fabyo0/vote-app/actions/workflows/laravel.yml)
+[![Run tests]([![Run tests](https://github.com/fabyo0/vote-app/actions/workflows/laravel.yml/badge.svg)](https://github.com/fabyo0/vote-app/actions/workflows/laravel.yml))
 &nbsp;&nbsp;
 [![codecov](https://codecov.io/github/fabyo0/vote-app/graph/badge.svg?token=YXZ7XMNABM)](https://codecov.io/github/fabyo0/vote-app)
 
