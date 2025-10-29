@@ -39,7 +39,7 @@ class ShowIdeaTest extends TestCase
         ]);
 
         $statusOpen = Status::factory()->create(['name' => 'Open']);
-        $statusConsidering = Status::factory()->create(['name' => 'Considering']); 
+        $statusConsidering = Status::factory()->create(['name' => 'Considering']);
 
         $ideaOne = Idea::factory()->create([
             'title' => 'My first Idea',
