@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1761741121">
-  <project timestamp="1761741121">
+<coverage generated="1762369760">
+  <project timestamp="1762369760">
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Console/Kernel.php">
       <class name="App\Console\Kernel" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="2" elements="5" coveredelements="3"/>
       </class>
       <line num="26" type="method" name="schedule" visibility="protected" complexity="1" crap="2" count="0"/>
       <line num="29" type="stmt" count="0"/>
-      <line num="36" type="method" name="commands" visibility="protected" complexity="1" crap="1" count="23"/>
-      <line num="38" type="stmt" count="23"/>
-      <line num="40" type="stmt" count="23"/>
+      <line num="36" type="method" name="commands" visibility="protected" complexity="1" crap="1" count="216"/>
+      <line num="38" type="stmt" count="216"/>
+      <line num="40" type="stmt" count="216"/>
       <metrics loc="43" ncloc="27" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="2" elements="5" coveredelements="3"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Enums/IdeaStatus.php">
@@ -104,8 +104,8 @@
       <class name="App\Exceptions\Handler" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </class>
-      <line num="36" type="method" name="register" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="38" type="stmt" count="23"/>
+      <line num="36" type="method" name="register" visibility="public" complexity="1" crap="1" count="216"/>
+      <line num="38" type="stmt" count="216"/>
       <metrics loc="41" ncloc="26" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Exceptions/VoteNotFoundException.php">
@@ -116,38 +116,38 @@
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Controllers/Auth/AuthenticatedSessionController.php">
       <class name="App\Http\Controllers\Auth\AuthenticatedSessionController" namespace="global">
-        <metrics complexity="3" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="11" coveredelements="0"/>
+        <metrics complexity="3" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="4" elements="11" coveredelements="6"/>
       </class>
-      <line num="20" type="method" name="create" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="22" type="stmt" count="0"/>
-      <line num="30" type="method" name="store" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="32" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
+      <line num="20" type="method" name="create" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="22" type="stmt" count="1"/>
+      <line num="30" type="method" name="store" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="32" type="stmt" count="2"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="1"/>
       <line num="44" type="method" name="destroy" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="46" type="stmt" count="0"/>
       <line num="48" type="stmt" count="0"/>
       <line num="50" type="stmt" count="0"/>
       <line num="52" type="stmt" count="0"/>
-      <metrics loc="55" ncloc="40" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="11" coveredelements="0"/>
+      <metrics loc="55" ncloc="40" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="4" elements="11" coveredelements="6"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Controllers/Auth/ConfirmablePasswordController.php">
       <class name="App\Http\Controllers\Auth\ConfirmablePasswordController" namespace="global">
-        <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="12" coveredelements="0"/>
+        <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
       </class>
-      <line num="20" type="method" name="show" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="22" type="stmt" count="0"/>
-      <line num="30" type="method" name="store" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="32" type="stmt" count="0"/>
-      <line num="33" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="35" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
-      <line num="37" type="stmt" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="43" type="stmt" count="0"/>
-      <metrics loc="46" ncloc="36" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="12" coveredelements="0"/>
+      <line num="20" type="method" name="show" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="22" type="stmt" count="1"/>
+      <line num="30" type="method" name="store" visibility="public" complexity="2" crap="2" count="2"/>
+      <line num="32" type="stmt" count="2"/>
+      <line num="33" type="stmt" count="2"/>
+      <line num="34" type="stmt" count="2"/>
+      <line num="35" type="stmt" count="2"/>
+      <line num="36" type="stmt" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="43" type="stmt" count="1"/>
+      <metrics loc="46" ncloc="36" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Controllers/Auth/EmailVerificationNotificationController.php">
       <class name="App\Http\Controllers\Auth\EmailVerificationNotificationController" namespace="global">
@@ -162,81 +162,81 @@
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Controllers/Auth/EmailVerificationPromptController.php">
       <class name="App\Http\Controllers\Auth\EmailVerificationPromptController" namespace="global">
-        <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+        <metrics complexity="2" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="2" elements="4" coveredelements="2"/>
       </class>
-      <line num="18" type="method" name="__invoke" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="20" type="stmt" count="0"/>
+      <line num="18" type="method" name="__invoke" visibility="public" complexity="2" crap="2.15" count="1"/>
+      <line num="20" type="stmt" count="1"/>
       <line num="21" type="stmt" count="0"/>
-      <line num="22" type="stmt" count="0"/>
-      <metrics loc="25" ncloc="20" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="4" coveredelements="0"/>
+      <line num="22" type="stmt" count="1"/>
+      <metrics loc="25" ncloc="20" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="2" elements="4" coveredelements="2"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Controllers/Auth/NewPasswordController.php">
       <class name="App\Http\Controllers\Auth\NewPasswordController" namespace="global">
-        <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="0" elements="22" coveredelements="0"/>
+        <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="22" coveredelements="22"/>
       </class>
-      <line num="21" type="method" name="create" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="23" type="stmt" count="0"/>
-      <line num="33" type="method" name="store" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="35" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
-      <line num="37" type="stmt" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="45" type="stmt" count="0"/>
-      <line num="46" type="stmt" count="0"/>
-      <line num="47" type="stmt" count="0"/>
-      <line num="48" type="stmt" count="0"/>
-      <line num="49" type="stmt" count="0"/>
-      <line num="50" type="stmt" count="0"/>
-      <line num="52" type="stmt" count="0"/>
-      <line num="53" type="stmt" count="0"/>
-      <line num="54" type="stmt" count="0"/>
-      <line num="59" type="stmt" count="0"/>
-      <line num="60" type="stmt" count="0"/>
-      <line num="61" type="stmt" count="0"/>
-      <line num="62" type="stmt" count="0"/>
-      <metrics loc="65" ncloc="47" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="0" elements="22" coveredelements="0"/>
+      <line num="21" type="method" name="create" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="23" type="stmt" count="1"/>
+      <line num="33" type="method" name="store" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="35" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="44" type="stmt" count="1"/>
+      <line num="45" type="stmt" count="1"/>
+      <line num="46" type="stmt" count="1"/>
+      <line num="47" type="stmt" count="1"/>
+      <line num="48" type="stmt" count="1"/>
+      <line num="49" type="stmt" count="1"/>
+      <line num="50" type="stmt" count="1"/>
+      <line num="52" type="stmt" count="1"/>
+      <line num="53" type="stmt" count="1"/>
+      <line num="54" type="stmt" count="1"/>
+      <line num="59" type="stmt" count="1"/>
+      <line num="60" type="stmt" count="1"/>
+      <line num="61" type="stmt" count="1"/>
+      <line num="62" type="stmt" count="1"/>
+      <metrics loc="65" ncloc="47" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="22" coveredelements="22"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Controllers/Auth/PasswordResetLinkController.php">
       <class name="App\Http\Controllers\Auth\PasswordResetLinkController" namespace="global">
-        <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="13" coveredelements="0"/>
+        <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="11" elements="13" coveredelements="13"/>
       </class>
-      <line num="18" type="method" name="create" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="20" type="stmt" count="0"/>
-      <line num="30" type="method" name="store" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="32" type="stmt" count="0"/>
-      <line num="33" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <line num="40" type="stmt" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="43" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="45" type="stmt" count="0"/>
-      <line num="46" type="stmt" count="0"/>
-      <metrics loc="49" ncloc="34" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="13" coveredelements="0"/>
+      <line num="18" type="method" name="create" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="20" type="stmt" count="1"/>
+      <line num="30" type="method" name="store" visibility="public" complexity="2" crap="2" count="3"/>
+      <line num="32" type="stmt" count="3"/>
+      <line num="33" type="stmt" count="3"/>
+      <line num="34" type="stmt" count="3"/>
+      <line num="39" type="stmt" count="3"/>
+      <line num="40" type="stmt" count="3"/>
+      <line num="41" type="stmt" count="3"/>
+      <line num="43" type="stmt" count="3"/>
+      <line num="44" type="stmt" count="3"/>
+      <line num="45" type="stmt" count="3"/>
+      <line num="46" type="stmt" count="3"/>
+      <metrics loc="49" ncloc="34" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="11" elements="13" coveredelements="13"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Controllers/Auth/RegisteredUserController.php">
       <class name="App\Http\Controllers\Auth\RegisteredUserController" namespace="global">
-        <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="15" coveredelements="0"/>
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="15" coveredelements="15"/>
       </class>
-      <line num="22" type="method" name="create" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="24" type="stmt" count="0"/>
-      <line num="34" type="method" name="store" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="36" type="stmt" count="0"/>
-      <line num="37" type="stmt" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <line num="40" type="stmt" count="0"/>
-      <line num="42" type="stmt" count="0"/>
-      <line num="43" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="45" type="stmt" count="0"/>
-      <line num="46" type="stmt" count="0"/>
-      <line num="48" type="stmt" count="0"/>
-      <line num="50" type="stmt" count="0"/>
-      <metrics loc="53" ncloc="41" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="0" elements="15" coveredelements="0"/>
+      <line num="22" type="method" name="create" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="24" type="stmt" count="1"/>
+      <line num="34" type="method" name="store" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="36" type="stmt" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="40" type="stmt" count="1"/>
+      <line num="42" type="stmt" count="1"/>
+      <line num="43" type="stmt" count="1"/>
+      <line num="44" type="stmt" count="1"/>
+      <line num="45" type="stmt" count="1"/>
+      <line num="46" type="stmt" count="1"/>
+      <line num="48" type="stmt" count="1"/>
+      <line num="50" type="stmt" count="1"/>
+      <metrics loc="53" ncloc="41" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="13" elements="15" coveredelements="15"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Controllers/Auth/SocialiteController.php">
       <class name="App\Http\Controllers\Auth\SocialiteController" namespace="global">
@@ -268,15 +268,15 @@
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Controllers/Auth/VerifyEmailController.php">
       <class name="App\Http\Controllers\Auth\VerifyEmailController" namespace="global">
-        <metrics complexity="3" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="6" coveredelements="0"/>
+        <metrics complexity="3" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="4" elements="6" coveredelements="4"/>
       </class>
-      <line num="19" type="method" name="__invoke" visibility="public" complexity="3" crap="12" count="0"/>
-      <line num="21" type="stmt" count="0"/>
+      <line num="19" type="method" name="__invoke" visibility="public" complexity="3" crap="3.07" count="1"/>
+      <line num="21" type="stmt" count="1"/>
       <line num="22" type="stmt" count="0"/>
-      <line num="25" type="stmt" count="0"/>
-      <line num="26" type="stmt" count="0"/>
-      <line num="29" type="stmt" count="0"/>
-      <metrics loc="32" ncloc="27" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="6" coveredelements="0"/>
+      <line num="25" type="stmt" count="1"/>
+      <line num="26" type="stmt" count="1"/>
+      <line num="29" type="stmt" count="1"/>
+      <metrics loc="32" ncloc="27" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="4" elements="6" coveredelements="4"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Controllers/Controller.php">
       <class name="App\Http\Controllers\Controller" namespace="global">
@@ -288,28 +288,28 @@
       <class name="App\Http\Controllers\IdeaController" namespace="global">
         <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="22" coveredelements="22"/>
       </class>
-      <line num="16" type="method" name="index" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="18" type="stmt" count="3"/>
-      <line num="19" type="stmt" count="3"/>
-      <line num="20" type="stmt" count="3"/>
-      <line num="21" type="stmt" count="3"/>
-      <line num="22" type="stmt" count="3"/>
-      <line num="23" type="stmt" count="3"/>
-      <line num="24" type="stmt" count="3"/>
-      <line num="25" type="stmt" count="3"/>
-      <line num="26" type="stmt" count="3"/>
-      <line num="27" type="stmt" count="3"/>
-      <line num="28" type="stmt" count="3"/>
-      <line num="29" type="stmt" count="3"/>
-      <line num="33" type="method" name="show" visibility="public" complexity="2" crap="2" count="20"/>
-      <line num="35" type="stmt" count="20"/>
-      <line num="36" type="stmt" count="20"/>
-      <line num="37" type="stmt" count="20"/>
-      <line num="38" type="stmt" count="20"/>
-      <line num="39" type="stmt" count="20"/>
-      <line num="40" type="stmt" count="20"/>
-      <line num="41" type="stmt" count="20"/>
-      <line num="42" type="stmt" count="20"/>
+      <line num="16" type="method" name="index" visibility="public" complexity="1" crap="1" count="25"/>
+      <line num="18" type="stmt" count="25"/>
+      <line num="19" type="stmt" count="25"/>
+      <line num="20" type="stmt" count="25"/>
+      <line num="21" type="stmt" count="25"/>
+      <line num="22" type="stmt" count="25"/>
+      <line num="23" type="stmt" count="25"/>
+      <line num="24" type="stmt" count="25"/>
+      <line num="25" type="stmt" count="25"/>
+      <line num="26" type="stmt" count="25"/>
+      <line num="27" type="stmt" count="25"/>
+      <line num="28" type="stmt" count="25"/>
+      <line num="29" type="stmt" count="25"/>
+      <line num="33" type="method" name="show" visibility="public" complexity="2" crap="2" count="44"/>
+      <line num="35" type="stmt" count="44"/>
+      <line num="36" type="stmt" count="44"/>
+      <line num="37" type="stmt" count="44"/>
+      <line num="38" type="stmt" count="44"/>
+      <line num="39" type="stmt" count="44"/>
+      <line num="40" type="stmt" count="44"/>
+      <line num="41" type="stmt" count="44"/>
+      <line num="42" type="stmt" count="44"/>
       <metrics loc="45" ncloc="45" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="22" coveredelements="22"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Kernel.php">
@@ -320,96 +320,96 @@
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/AddComment.php">
       <class name="App\Http\Livewire\AddComment" namespace="global">
-        <metrics complexity="6" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="4" elements="24" coveredelements="6"/>
+        <metrics complexity="6" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="18" elements="24" coveredelements="20"/>
       </class>
-      <line num="24" type="method" name="mount" visibility="public" complexity="1" crap="1" count="20"/>
-      <line num="26" type="stmt" count="20"/>
-      <line num="27" type="stmt" count="20"/>
-      <line num="28" type="stmt" count="20"/>
-      <line num="31" type="method" name="addComment" visibility="public" complexity="3" crap="12" count="0"/>
-      <line num="33" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="37" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <line num="40" type="stmt" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="42" type="stmt" count="0"/>
-      <line num="43" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="45" type="stmt" count="0"/>
-      <line num="47" type="stmt" count="0"/>
-      <line num="49" type="stmt" count="0"/>
-      <line num="51" type="stmt" count="0"/>
-      <line num="52" type="stmt" count="0"/>
+      <line num="24" type="method" name="mount" visibility="public" complexity="1" crap="1" count="76"/>
+      <line num="26" type="stmt" count="76"/>
+      <line num="27" type="stmt" count="76"/>
+      <line num="28" type="stmt" count="76"/>
+      <line num="31" type="method" name="addComment" visibility="public" complexity="3" crap="3.00" count="23"/>
+      <line num="33" type="stmt" count="23"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="37" type="stmt" count="22"/>
+      <line num="39" type="stmt" count="19"/>
+      <line num="40" type="stmt" count="19"/>
+      <line num="41" type="stmt" count="19"/>
+      <line num="42" type="stmt" count="19"/>
+      <line num="43" type="stmt" count="19"/>
+      <line num="44" type="stmt" count="19"/>
+      <line num="45" type="stmt" count="19"/>
+      <line num="47" type="stmt" count="19"/>
+      <line num="49" type="stmt" count="19"/>
+      <line num="51" type="stmt" count="19"/>
+      <line num="52" type="stmt" count="19"/>
       <line num="54" type="stmt" count="0"/>
       <line num="58" type="method" name="isReplyMode" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="60" type="stmt" count="0"/>
-      <line num="63" type="method" name="render" visibility="public" complexity="1" crap="1" count="20"/>
-      <line num="65" type="stmt" count="20"/>
-      <metrics loc="68" ncloc="68" classes="1" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="4" elements="24" coveredelements="6"/>
+      <line num="63" type="method" name="render" visibility="public" complexity="1" crap="1" count="76"/>
+      <line num="65" type="stmt" count="76"/>
+      <metrics loc="68" ncloc="68" classes="1" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="18" elements="24" coveredelements="20"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/AddReply.php">
       <class name="App\Http\Livewire\AddReply" namespace="global">
-        <metrics complexity="4" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="19" coveredelements="0"/>
+        <metrics complexity="4" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="19" coveredelements="19"/>
       </class>
-      <line num="24" type="method" name="mount" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="26" type="stmt" count="0"/>
-      <line num="27" type="stmt" count="0"/>
-      <line num="30" type="method" name="addReply" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="32" type="stmt" count="0"/>
-      <line num="33" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <line num="40" type="stmt" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="42" type="stmt" count="0"/>
-      <line num="43" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="46" type="stmt" count="0"/>
-      <line num="48" type="stmt" count="0"/>
-      <line num="51" type="stmt" count="0"/>
-      <line num="54" type="method" name="render" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="56" type="stmt" count="0"/>
-      <metrics loc="59" ncloc="59" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="19" coveredelements="0"/>
+      <line num="24" type="method" name="mount" visibility="public" complexity="1" crap="1" count="15"/>
+      <line num="26" type="stmt" count="15"/>
+      <line num="27" type="stmt" count="15"/>
+      <line num="30" type="method" name="addReply" visibility="public" complexity="2" crap="2" count="13"/>
+      <line num="32" type="stmt" count="13"/>
+      <line num="33" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="12"/>
+      <line num="38" type="stmt" count="10"/>
+      <line num="39" type="stmt" count="10"/>
+      <line num="40" type="stmt" count="10"/>
+      <line num="41" type="stmt" count="10"/>
+      <line num="42" type="stmt" count="10"/>
+      <line num="43" type="stmt" count="10"/>
+      <line num="44" type="stmt" count="10"/>
+      <line num="46" type="stmt" count="10"/>
+      <line num="48" type="stmt" count="10"/>
+      <line num="51" type="stmt" count="10"/>
+      <line num="54" type="method" name="render" visibility="public" complexity="1" crap="1" count="15"/>
+      <line num="56" type="stmt" count="15"/>
+      <metrics loc="59" ncloc="59" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="19" coveredelements="19"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/CommentNotifications.php">
       <class name="App\Http\Livewire\CommentNotifications" namespace="global">
-        <metrics complexity="15" methods="7" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="6" elements="54" coveredelements="8"/>
+        <metrics complexity="15" methods="7" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="38" elements="54" coveredelements="42"/>
       </class>
-      <line num="24" type="method" name="mount" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="26" type="stmt" count="3"/>
-      <line num="27" type="stmt" count="3"/>
-      <line num="29" type="stmt" count="3"/>
-      <line num="32" type="method" name="getNotificationCount" visibility="public" complexity="2" crap="2.15" count="3"/>
-      <line num="34" type="stmt" count="3"/>
-      <line num="36" type="stmt" count="3"/>
-      <line num="37" type="stmt" count="0"/>
-      <line num="42" type="method" name="markAsRead" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="44" type="stmt" count="0"/>
+      <line num="24" type="method" name="mount" visibility="public" complexity="1" crap="1" count="23"/>
+      <line num="26" type="stmt" count="23"/>
+      <line num="27" type="stmt" count="23"/>
+      <line num="29" type="stmt" count="23"/>
+      <line num="32" type="method" name="getNotificationCount" visibility="public" complexity="2" crap="2" count="23"/>
+      <line num="34" type="stmt" count="23"/>
+      <line num="36" type="stmt" count="23"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="42" type="method" name="markAsRead" visibility="public" complexity="2" crap="2.03" count="4"/>
+      <line num="44" type="stmt" count="4"/>
       <line num="45" type="stmt" count="0"/>
-      <line num="48" type="stmt" count="0"/>
-      <line num="49" type="stmt" count="0"/>
-      <line num="51" type="stmt" count="0"/>
-      <line num="54" type="method" name="scrollToComment" visibility="public" complexity="6" crap="42" count="0"/>
-      <line num="56" type="stmt" count="0"/>
-      <line num="57" type="stmt" count="0"/>
-      <line num="58" type="stmt" count="0"/>
-      <line num="60" type="stmt" count="0"/>
-      <line num="61" type="stmt" count="0"/>
-      <line num="63" type="stmt" count="0"/>
-      <line num="64" type="stmt" count="0"/>
-      <line num="65" type="stmt" count="0"/>
-      <line num="66" type="stmt" count="0"/>
-      <line num="67" type="stmt" count="0"/>
-      <line num="68" type="stmt" count="0"/>
-      <line num="71" type="stmt" count="0"/>
-      <line num="73" type="stmt" count="0"/>
-      <line num="76" type="stmt" count="0"/>
-      <line num="77" type="stmt" count="0"/>
-      <line num="79" type="stmt" count="0"/>
-      <line num="80" type="stmt" count="0"/>
-      <line num="82" type="stmt" count="0"/>
+      <line num="48" type="stmt" count="4"/>
+      <line num="49" type="stmt" count="4"/>
+      <line num="51" type="stmt" count="4"/>
+      <line num="54" type="method" name="scrollToComment" visibility="public" complexity="6" crap="6.79" count="4"/>
+      <line num="56" type="stmt" count="4"/>
+      <line num="57" type="stmt" count="4"/>
+      <line num="58" type="stmt" count="4"/>
+      <line num="60" type="stmt" count="4"/>
+      <line num="61" type="stmt" count="4"/>
+      <line num="63" type="stmt" count="4"/>
+      <line num="64" type="stmt" count="2"/>
+      <line num="65" type="stmt" count="2"/>
+      <line num="66" type="stmt" count="1"/>
+      <line num="67" type="stmt" count="1"/>
+      <line num="68" type="stmt" count="1"/>
+      <line num="71" type="stmt" count="2"/>
+      <line num="73" type="stmt" count="2"/>
+      <line num="76" type="stmt" count="2"/>
+      <line num="77" type="stmt" count="2"/>
+      <line num="79" type="stmt" count="2"/>
+      <line num="80" type="stmt" count="2"/>
+      <line num="82" type="stmt" count="2"/>
       <line num="85" type="stmt" count="0"/>
       <line num="86" type="stmt" count="0"/>
       <line num="88" type="stmt" count="0"/>
@@ -417,25 +417,25 @@
       <line num="91" type="stmt" count="0"/>
       <line num="92" type="stmt" count="0"/>
       <line num="93" type="stmt" count="0"/>
-      <line num="97" type="method" name="markAllAsRead" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="99" type="stmt" count="0"/>
+      <line num="97" type="method" name="markAllAsRead" visibility="public" complexity="2" crap="2.03" count="1"/>
+      <line num="99" type="stmt" count="1"/>
       <line num="100" type="stmt" count="0"/>
-      <line num="103" type="stmt" count="0"/>
-      <line num="104" type="stmt" count="0"/>
-      <line num="105" type="stmt" count="0"/>
-      <line num="108" type="method" name="getNotifications" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="110" type="stmt" count="0"/>
-      <line num="111" type="stmt" count="0"/>
-      <line num="112" type="stmt" count="0"/>
-      <line num="113" type="stmt" count="0"/>
-      <line num="115" type="stmt" count="0"/>
-      <line num="118" type="method" name="render" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="120" type="stmt" count="3"/>
-      <metrics loc="123" ncloc="121" classes="1" methods="7" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="6" elements="54" coveredelements="8"/>
+      <line num="103" type="stmt" count="1"/>
+      <line num="104" type="stmt" count="1"/>
+      <line num="105" type="stmt" count="1"/>
+      <line num="108" type="method" name="getNotifications" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="110" type="stmt" count="6"/>
+      <line num="111" type="stmt" count="6"/>
+      <line num="112" type="stmt" count="6"/>
+      <line num="113" type="stmt" count="6"/>
+      <line num="115" type="stmt" count="6"/>
+      <line num="118" type="method" name="render" visibility="public" complexity="1" crap="1" count="23"/>
+      <line num="120" type="stmt" count="23"/>
+      <metrics loc="123" ncloc="121" classes="1" methods="7" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="38" elements="54" coveredelements="42"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/CreateIdea.php">
       <class name="App\Http\Livewire\CreateIdea" namespace="global">
-        <metrics complexity="12" methods="5" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="40" coveredstatements="3" elements="45" coveredelements="4"/>
+        <metrics complexity="12" methods="5" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="40" coveredstatements="17" elements="45" coveredelements="18"/>
       </class>
       <line num="36" type="method" name="updatedImages" visibility="public" complexity="3" crap="12" count="0"/>
       <line num="38" type="stmt" count="0"/>
@@ -457,109 +457,109 @@
       <line num="64" type="stmt" count="0"/>
       <line num="65" type="stmt" count="0"/>
       <line num="67" type="stmt" count="0"/>
-      <line num="71" type="method" name="createIdea" visibility="public" complexity="4" crap="20" count="0"/>
-      <line num="74" type="stmt" count="0"/>
-      <line num="76" type="stmt" count="0"/>
-      <line num="78" type="stmt" count="0"/>
-      <line num="79" type="stmt" count="0"/>
-      <line num="80" type="stmt" count="0"/>
-      <line num="81" type="stmt" count="0"/>
-      <line num="82" type="stmt" count="0"/>
-      <line num="83" type="stmt" count="0"/>
-      <line num="84" type="stmt" count="0"/>
-      <line num="86" type="stmt" count="0"/>
+      <line num="71" type="method" name="createIdea" visibility="public" complexity="4" crap="4.43" count="2"/>
+      <line num="74" type="stmt" count="2"/>
+      <line num="76" type="stmt" count="2"/>
+      <line num="78" type="stmt" count="1"/>
+      <line num="79" type="stmt" count="1"/>
+      <line num="80" type="stmt" count="1"/>
+      <line num="81" type="stmt" count="1"/>
+      <line num="82" type="stmt" count="1"/>
+      <line num="83" type="stmt" count="1"/>
+      <line num="84" type="stmt" count="1"/>
+      <line num="86" type="stmt" count="1"/>
       <line num="87" type="stmt" count="0"/>
       <line num="88" type="stmt" count="0"/>
       <line num="89" type="stmt" count="0"/>
       <line num="90" type="stmt" count="0"/>
       <line num="91" type="stmt" count="0"/>
-      <line num="95" type="stmt" count="0"/>
-      <line num="96" type="stmt" count="0"/>
-      <line num="98" type="stmt" count="0"/>
-      <line num="100" type="stmt" count="0"/>
+      <line num="95" type="stmt" count="1"/>
+      <line num="96" type="stmt" count="1"/>
+      <line num="98" type="stmt" count="1"/>
+      <line num="100" type="stmt" count="1"/>
       <line num="102" type="stmt" count="0"/>
-      <line num="105" type="method" name="render" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="107" type="stmt" count="3"/>
-      <line num="108" type="stmt" count="3"/>
-      <line num="109" type="stmt" count="3"/>
-      <metrics loc="112" ncloc="110" classes="1" methods="5" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="40" coveredstatements="3" elements="45" coveredelements="4"/>
+      <line num="105" type="method" name="render" visibility="public" complexity="1" crap="1" count="18"/>
+      <line num="107" type="stmt" count="18"/>
+      <line num="108" type="stmt" count="18"/>
+      <line num="109" type="stmt" count="18"/>
+      <metrics loc="112" ncloc="110" classes="1" methods="5" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="40" coveredstatements="17" elements="45" coveredelements="18"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/DeleteComment.php">
       <class name="App\Http\Livewire\DeleteComment" namespace="global">
-        <metrics complexity="5" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="1" elements="11" coveredelements="2"/>
+        <metrics complexity="5" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="11" coveredelements="11"/>
       </class>
-      <line num="21" type="method" name="setDeleteComment" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="23" type="stmt" count="0"/>
-      <line num="25" type="stmt" count="0"/>
-      <line num="28" type="method" name="deleteComment" visibility="public" complexity="3" crap="12" count="0"/>
-      <line num="30" type="stmt" count="0"/>
-      <line num="31" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="37" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <line num="42" type="method" name="render" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="44" type="stmt" count="3"/>
-      <metrics loc="47" ncloc="46" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="1" elements="11" coveredelements="2"/>
+      <line num="21" type="method" name="setDeleteComment" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="23" type="stmt" count="3"/>
+      <line num="25" type="stmt" count="3"/>
+      <line num="28" type="method" name="deleteComment" visibility="public" complexity="3" crap="3" count="2"/>
+      <line num="30" type="stmt" count="2"/>
+      <line num="31" type="stmt" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="42" type="method" name="render" visibility="public" complexity="1" crap="1" count="16"/>
+      <line num="44" type="stmt" count="16"/>
+      <metrics loc="47" ncloc="46" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="11" coveredelements="11"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/DeleteIdea.php">
       <class name="App\Http\Livewire\DeleteIdea" namespace="global">
-        <metrics complexity="5" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="10" coveredelements="0"/>
+        <metrics complexity="5" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="10" coveredelements="10"/>
       </class>
-      <line num="16" type="method" name="mount" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="18" type="stmt" count="0"/>
-      <line num="21" type="method" name="deleteIdea" visibility="public" complexity="3" crap="12" count="0"/>
-      <line num="23" type="stmt" count="0"/>
-      <line num="24" type="stmt" count="0"/>
-      <line num="27" type="stmt" count="0"/>
-      <line num="29" type="stmt" count="0"/>
-      <line num="31" type="stmt" count="0"/>
-      <line num="34" type="method" name="render" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="36" type="stmt" count="0"/>
-      <metrics loc="39" ncloc="39" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="10" coveredelements="0"/>
+      <line num="16" type="method" name="mount" visibility="public" complexity="1" crap="1" count="12"/>
+      <line num="18" type="stmt" count="12"/>
+      <line num="21" type="method" name="deleteIdea" visibility="public" complexity="3" crap="3" count="6"/>
+      <line num="23" type="stmt" count="6"/>
+      <line num="24" type="stmt" count="2"/>
+      <line num="27" type="stmt" count="4"/>
+      <line num="29" type="stmt" count="4"/>
+      <line num="31" type="stmt" count="4"/>
+      <line num="34" type="method" name="render" visibility="public" complexity="1" crap="1" count="12"/>
+      <line num="36" type="stmt" count="12"/>
+      <metrics loc="39" ncloc="39" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="7" elements="10" coveredelements="10"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/EditComment.php">
       <class name="App\Http\Livewire\EditComment" namespace="global">
-        <metrics complexity="5" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="1" elements="13" coveredelements="2"/>
+        <metrics complexity="5" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="13" coveredelements="13"/>
       </class>
-      <line num="25" type="method" name="setEditComment" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="27" type="stmt" count="0"/>
-      <line num="28" type="stmt" count="0"/>
-      <line num="30" type="stmt" count="0"/>
-      <line num="33" type="method" name="updateComment" visibility="public" complexity="3" crap="12" count="0"/>
-      <line num="36" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <line num="40" type="stmt" count="0"/>
-      <line num="43" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="46" type="stmt" count="0"/>
-      <line num="49" type="method" name="render" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="51" type="stmt" count="3"/>
-      <metrics loc="54" ncloc="52" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="1" elements="13" coveredelements="2"/>
+      <line num="25" type="method" name="setEditComment" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="27" type="stmt" count="4"/>
+      <line num="28" type="stmt" count="4"/>
+      <line num="30" type="stmt" count="4"/>
+      <line num="33" type="method" name="updateComment" visibility="public" complexity="3" crap="3" count="3"/>
+      <line num="36" type="stmt" count="3"/>
+      <line num="39" type="stmt" count="2"/>
+      <line num="40" type="stmt" count="1"/>
+      <line num="43" type="stmt" count="1"/>
+      <line num="44" type="stmt" count="1"/>
+      <line num="46" type="stmt" count="1"/>
+      <line num="49" type="method" name="render" visibility="public" complexity="1" crap="1" count="18"/>
+      <line num="51" type="stmt" count="18"/>
+      <metrics loc="54" ncloc="52" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="13" coveredelements="13"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/EditIdea.php">
       <class name="App\Http\Livewire\EditIdea" namespace="global">
-        <metrics complexity="5" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="19" coveredelements="0"/>
+        <metrics complexity="5" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="19" coveredelements="19"/>
       </class>
-      <line num="28" type="method" name="updateIdea" visibility="public" complexity="3" crap="12" count="0"/>
-      <line num="30" type="stmt" count="0"/>
-      <line num="33" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <line num="40" type="stmt" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="42" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="47" type="method" name="mount" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="49" type="stmt" count="0"/>
-      <line num="50" type="stmt" count="0"/>
-      <line num="51" type="stmt" count="0"/>
-      <line num="52" type="stmt" count="0"/>
-      <line num="55" type="method" name="render" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="57" type="stmt" count="0"/>
-      <line num="58" type="stmt" count="0"/>
-      <line num="59" type="stmt" count="0"/>
-      <metrics loc="62" ncloc="60" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="19" coveredelements="0"/>
+      <line num="28" type="method" name="updateIdea" visibility="public" complexity="3" crap="3" count="4"/>
+      <line num="30" type="stmt" count="4"/>
+      <line num="33" type="stmt" count="3"/>
+      <line num="34" type="stmt" count="2"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="40" type="stmt" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="42" type="stmt" count="1"/>
+      <line num="44" type="stmt" count="1"/>
+      <line num="47" type="method" name="mount" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="49" type="stmt" count="6"/>
+      <line num="50" type="stmt" count="6"/>
+      <line num="51" type="stmt" count="6"/>
+      <line num="52" type="stmt" count="6"/>
+      <line num="55" type="method" name="render" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="57" type="stmt" count="6"/>
+      <line num="58" type="stmt" count="6"/>
+      <line num="59" type="stmt" count="6"/>
+      <metrics loc="62" ncloc="60" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="19" coveredelements="19"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/IdeaComment.php">
       <class name="App\Http\Livewire\IdeaComment" namespace="global">
@@ -569,9 +569,9 @@
       <line num="25" type="stmt" count="0"/>
       <line num="28" type="method" name="commentWasMarkedAsNotSpam" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="30" type="stmt" count="0"/>
-      <line num="33" type="method" name="mount" visibility="public" complexity="1" crap="1" count="19"/>
-      <line num="35" type="stmt" count="19"/>
-      <line num="36" type="stmt" count="19"/>
+      <line num="33" type="method" name="mount" visibility="public" complexity="1" crap="1" count="31"/>
+      <line num="35" type="stmt" count="31"/>
+      <line num="36" type="stmt" count="31"/>
       <line num="39" type="method" name="toggleReplyForm" visibility="public" complexity="2" crap="6" count="0"/>
       <line num="41" type="stmt" count="0"/>
       <line num="42" type="stmt" count="0"/>
@@ -580,16 +580,16 @@
       <line num="50" type="stmt" count="0"/>
       <line num="51" type="stmt" count="0"/>
       <line num="52" type="stmt" count="0"/>
-      <line num="55" type="method" name="render" visibility="public" complexity="1" crap="1" count="19"/>
-      <line num="57" type="stmt" count="19"/>
+      <line num="55" type="method" name="render" visibility="public" complexity="1" crap="1" count="31"/>
+      <line num="57" type="stmt" count="31"/>
       <metrics loc="60" ncloc="60" classes="1" methods="6" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="3" elements="17" coveredelements="5"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/IdeaComments.php">
       <class name="App\Http\Livewire\IdeaComments" namespace="global">
         <metrics complexity="6" methods="6" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="8" elements="21" coveredelements="10"/>
       </class>
-      <line num="25" type="method" name="mount" visibility="public" complexity="1" crap="1" count="20"/>
-      <line num="27" type="stmt" count="20"/>
+      <line num="25" type="method" name="mount" visibility="public" complexity="1" crap="1" count="44"/>
+      <line num="27" type="stmt" count="44"/>
       <line num="30" type="method" name="commentWasDeleted" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="32" type="stmt" count="0"/>
       <line num="33" type="stmt" count="0"/>
@@ -601,51 +601,51 @@
       <line num="45" type="stmt" count="0"/>
       <line num="48" type="method" name="replyWasAdded" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="50" type="stmt" count="0"/>
-      <line num="53" type="method" name="render" visibility="public" complexity="1" crap="1" count="20"/>
-      <line num="55" type="stmt" count="20"/>
-      <line num="56" type="stmt" count="20"/>
-      <line num="57" type="stmt" count="20"/>
-      <line num="58" type="stmt" count="20"/>
-      <line num="59" type="stmt" count="20"/>
-      <line num="60" type="stmt" count="20"/>
-      <line num="61" type="stmt" count="20"/>
+      <line num="53" type="method" name="render" visibility="public" complexity="1" crap="1" count="44"/>
+      <line num="55" type="stmt" count="44"/>
+      <line num="56" type="stmt" count="44"/>
+      <line num="57" type="stmt" count="44"/>
+      <line num="58" type="stmt" count="44"/>
+      <line num="59" type="stmt" count="44"/>
+      <line num="60" type="stmt" count="44"/>
+      <line num="61" type="stmt" count="44"/>
       <metrics loc="64" ncloc="64" classes="1" methods="6" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="8" elements="21" coveredelements="10"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/IdeaIndex.php">
       <class name="App\Http\Livewire\IdeaIndex" namespace="global">
-        <metrics complexity="8" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="4" elements="21" coveredelements="6"/>
+        <metrics complexity="8" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="13" elements="21" coveredelements="16"/>
       </class>
-      <line num="21" type="method" name="mount" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="23" type="stmt" count="3"/>
-      <line num="24" type="stmt" count="3"/>
-      <line num="25" type="stmt" count="3"/>
-      <line num="28" type="method" name="vote" visibility="public" complexity="5" crap="30" count="0"/>
-      <line num="30" type="stmt" count="0"/>
-      <line num="31" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
+      <line num="21" type="method" name="mount" visibility="public" complexity="1" crap="1" count="32"/>
+      <line num="23" type="stmt" count="32"/>
+      <line num="24" type="stmt" count="32"/>
+      <line num="25" type="stmt" count="32"/>
+      <line num="28" type="method" name="vote" visibility="public" complexity="5" crap="6.20" count="3"/>
+      <line num="30" type="stmt" count="3"/>
+      <line num="31" type="stmt" count="1"/>
+      <line num="34" type="stmt" count="2"/>
+      <line num="36" type="stmt" count="1"/>
       <line num="37" type="stmt" count="0"/>
       <line num="38" type="stmt" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="44" type="stmt" count="1"/>
       <line num="45" type="stmt" count="0"/>
       <line num="46" type="stmt" count="0"/>
-      <line num="48" type="stmt" count="0"/>
-      <line num="52" type="method" name="render" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="54" type="stmt" count="3"/>
-      <line num="57" type="method" name="updateVoteCountAndType" visibility="private" complexity="1" crap="2" count="0"/>
-      <line num="59" type="stmt" count="0"/>
-      <line num="60" type="stmt" count="0"/>
-      <metrics loc="63" ncloc="63" classes="1" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="4" elements="21" coveredelements="6"/>
+      <line num="48" type="stmt" count="1"/>
+      <line num="52" type="method" name="render" visibility="public" complexity="1" crap="1" count="32"/>
+      <line num="54" type="stmt" count="32"/>
+      <line num="57" type="method" name="updateVoteCountAndType" visibility="private" complexity="1" crap="1" count="2"/>
+      <line num="59" type="stmt" count="2"/>
+      <line num="60" type="stmt" count="2"/>
+      <metrics loc="63" ncloc="63" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="13" elements="21" coveredelements="16"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/IdeaShow.php">
       <class name="App\Http\Livewire\IdeaShow" namespace="global">
-        <metrics complexity="12" methods="9" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="5" elements="29" coveredelements="8"/>
+        <metrics complexity="12" methods="9" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="14" elements="29" coveredelements="18"/>
       </class>
-      <line num="30" type="method" name="mount" visibility="public" complexity="1" crap="1" count="20"/>
-      <line num="32" type="stmt" count="20"/>
-      <line num="33" type="stmt" count="20"/>
-      <line num="34" type="stmt" count="20"/>
+      <line num="30" type="method" name="mount" visibility="public" complexity="1" crap="1" count="51"/>
+      <line num="32" type="stmt" count="51"/>
+      <line num="33" type="stmt" count="51"/>
+      <line num="34" type="stmt" count="51"/>
       <line num="37" type="method" name="ideaWasUpdating" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="39" type="stmt" count="0"/>
       <line num="42" type="method" name="commentWasDeleted" visibility="public" complexity="1" crap="2" count="0"/>
@@ -654,55 +654,55 @@
       <line num="49" type="stmt" count="0"/>
       <line num="52" type="method" name="ideaWasMarkedAsNotSpam" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="54" type="stmt" count="0"/>
-      <line num="57" type="method" name="vote" visibility="public" complexity="4" crap="20" count="0"/>
-      <line num="59" type="stmt" count="0"/>
-      <line num="60" type="stmt" count="0"/>
-      <line num="64" type="stmt" count="0"/>
-      <line num="65" type="stmt" count="0"/>
-      <line num="66" type="stmt" count="0"/>
-      <line num="68" type="stmt" count="0"/>
-      <line num="69" type="stmt" count="0"/>
+      <line num="57" type="method" name="vote" visibility="public" complexity="4" crap="4.18" count="3"/>
+      <line num="59" type="stmt" count="3"/>
+      <line num="60" type="stmt" count="1"/>
+      <line num="64" type="stmt" count="2"/>
+      <line num="65" type="stmt" count="1"/>
+      <line num="66" type="stmt" count="1"/>
+      <line num="68" type="stmt" count="1"/>
+      <line num="69" type="stmt" count="2"/>
       <line num="71" type="stmt" count="0"/>
       <line num="72" type="stmt" count="0"/>
-      <line num="76" type="method" name="getImagesProperty" visibility="public" complexity="1" crap="1" count="20"/>
-      <line num="78" type="stmt" count="20"/>
-      <line num="82" type="method" name="render" visibility="public" complexity="1" crap="1" count="20"/>
-      <line num="84" type="stmt" count="20"/>
-      <line num="87" type="method" name="updateVoteCountAndType" visibility="private" complexity="1" crap="2" count="0"/>
-      <line num="89" type="stmt" count="0"/>
-      <line num="90" type="stmt" count="0"/>
-      <metrics loc="93" ncloc="93" classes="1" methods="9" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="5" elements="29" coveredelements="8"/>
+      <line num="76" type="method" name="getImagesProperty" visibility="public" complexity="1" crap="1" count="51"/>
+      <line num="78" type="stmt" count="51"/>
+      <line num="82" type="method" name="render" visibility="public" complexity="1" crap="1" count="51"/>
+      <line num="84" type="stmt" count="51"/>
+      <line num="87" type="method" name="updateVoteCountAndType" visibility="private" complexity="1" crap="1" count="2"/>
+      <line num="89" type="stmt" count="2"/>
+      <line num="90" type="stmt" count="2"/>
+      <metrics loc="93" ncloc="93" classes="1" methods="9" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="14" elements="29" coveredelements="18"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/IdeasIndex.php">
       <class name="App\Http\Livewire\IdeasIndex" namespace="global">
-        <metrics complexity="12" methods="10" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="16" elements="42" coveredelements="19"/>
+        <metrics complexity="12" methods="10" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="21" elements="42" coveredelements="27"/>
       </class>
-      <line num="36" type="method" name="updatingCategory" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="41" type="method" name="updatingSearch" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="43" type="stmt" count="0"/>
-      <line num="46" type="method" name="updatedFilter" visibility="public" complexity="3" crap="12" count="0"/>
-      <line num="48" type="stmt" count="0"/>
-      <line num="49" type="stmt" count="0"/>
-      <line num="50" type="stmt" count="0"/>
+      <line num="36" type="method" name="updatingCategory" visibility="public" complexity="1" crap="1" count="7"/>
+      <line num="38" type="stmt" count="7"/>
+      <line num="41" type="method" name="updatingSearch" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="43" type="stmt" count="3"/>
+      <line num="46" type="method" name="updatedFilter" visibility="public" complexity="3" crap="3" count="5"/>
+      <line num="48" type="stmt" count="5"/>
+      <line num="49" type="stmt" count="2"/>
+      <line num="50" type="stmt" count="1"/>
       <line num="55" type="method" name="queryStringUpdatedStatus" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="57" type="stmt" count="0"/>
       <line num="58" type="stmt" count="0"/>
       <line num="61" type="method" name="handleIdeaWasCreated" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="63" type="stmt" count="0"/>
       <line num="65" type="stmt" count="0"/>
-      <line num="68" type="method" name="mount" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="70" type="stmt" count="3"/>
-      <line num="73" type="method" name="render" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="76" type="stmt" count="3"/>
-      <line num="79" type="stmt" count="3"/>
-      <line num="82" type="stmt" count="3"/>
-      <line num="83" type="stmt" count="3"/>
-      <line num="84" type="stmt" count="3"/>
-      <line num="86" type="stmt" count="3"/>
-      <line num="87" type="stmt" count="3"/>
-      <line num="88" type="stmt" count="3"/>
-      <line num="89" type="stmt" count="3"/>
+      <line num="68" type="method" name="mount" visibility="public" complexity="1" crap="1" count="47"/>
+      <line num="70" type="stmt" count="47"/>
+      <line num="73" type="method" name="render" visibility="public" complexity="1" crap="1" count="47"/>
+      <line num="76" type="stmt" count="47"/>
+      <line num="79" type="stmt" count="47"/>
+      <line num="82" type="stmt" count="47"/>
+      <line num="83" type="stmt" count="47"/>
+      <line num="84" type="stmt" count="47"/>
+      <line num="86" type="stmt" count="47"/>
+      <line num="87" type="stmt" count="47"/>
+      <line num="88" type="stmt" count="47"/>
+      <line num="89" type="stmt" count="47"/>
       <line num="95" type="method" name="clearFilters" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="97" type="stmt" count="0"/>
       <line num="98" type="stmt" count="0"/>
@@ -712,121 +712,121 @@
       <line num="107" type="method" name="setFilter" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="109" type="stmt" count="0"/>
       <line num="110" type="stmt" count="0"/>
-      <line num="116" type="method" name="getFilters" visibility="private" complexity="1" crap="1" count="3"/>
-      <line num="118" type="stmt" count="3"/>
-      <line num="119" type="stmt" count="3"/>
-      <line num="120" type="stmt" count="3"/>
-      <line num="121" type="stmt" count="3"/>
-      <line num="122" type="stmt" count="3"/>
-      <line num="123" type="stmt" count="3"/>
-      <metrics loc="126" ncloc="114" classes="1" methods="10" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="16" elements="42" coveredelements="19"/>
+      <line num="116" type="method" name="getFilters" visibility="private" complexity="1" crap="1" count="47"/>
+      <line num="118" type="stmt" count="47"/>
+      <line num="119" type="stmt" count="47"/>
+      <line num="120" type="stmt" count="47"/>
+      <line num="121" type="stmt" count="47"/>
+      <line num="122" type="stmt" count="47"/>
+      <line num="123" type="stmt" count="47"/>
+      <metrics loc="126" ncloc="114" classes="1" methods="10" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="32" coveredstatements="21" elements="42" coveredelements="27"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/MarkCommentAsNotSpam.php">
       <class name="App\Http\Livewire\MarkCommentAsNotSpam" namespace="global">
-        <metrics complexity="5" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="11" coveredelements="0"/>
+        <metrics complexity="5" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="11" coveredelements="11"/>
       </class>
-      <line num="17" type="method" name="setMarkAsNotSpamComment" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="19" type="stmt" count="0"/>
-      <line num="21" type="stmt" count="0"/>
-      <line num="24" type="method" name="markAsNotSpam" visibility="public" complexity="3" crap="12" count="0"/>
-      <line num="26" type="stmt" count="0"/>
-      <line num="27" type="stmt" count="0"/>
-      <line num="30" type="stmt" count="0"/>
-      <line num="31" type="stmt" count="0"/>
-      <line num="33" type="stmt" count="0"/>
-      <line num="36" type="method" name="render" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <metrics loc="41" ncloc="41" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="11" coveredelements="0"/>
+      <line num="17" type="method" name="setMarkAsNotSpamComment" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="19" type="stmt" count="2"/>
+      <line num="21" type="stmt" count="2"/>
+      <line num="24" type="method" name="markAsNotSpam" visibility="public" complexity="3" crap="3" count="2"/>
+      <line num="26" type="stmt" count="2"/>
+      <line num="27" type="stmt" count="1"/>
+      <line num="30" type="stmt" count="1"/>
+      <line num="31" type="stmt" count="1"/>
+      <line num="33" type="stmt" count="1"/>
+      <line num="36" type="method" name="render" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="38" type="stmt" count="4"/>
+      <metrics loc="41" ncloc="41" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="11" coveredelements="11"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/MarkCommentAsSpam.php">
       <class name="App\Http\Livewire\MarkCommentAsSpam" namespace="global">
-        <metrics complexity="6" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="1" elements="19" coveredelements="2"/>
+        <metrics complexity="6" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="12" elements="19" coveredelements="14"/>
       </class>
-      <line num="21" type="method" name="setMarkAsSpamComment" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="23" type="stmt" count="0"/>
-      <line num="25" type="stmt" count="0"/>
-      <line num="28" type="method" name="markAsSpam" visibility="public" complexity="4" crap="20" count="0"/>
-      <line num="30" type="stmt" count="0"/>
-      <line num="32" type="stmt" count="0"/>
-      <line num="33" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
+      <line num="21" type="method" name="setMarkAsSpamComment" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="23" type="stmt" count="2"/>
+      <line num="25" type="stmt" count="2"/>
+      <line num="28" type="method" name="markAsSpam" visibility="public" complexity="4" crap="4.47" count="2"/>
+      <line num="30" type="stmt" count="2"/>
+      <line num="32" type="stmt" count="2"/>
+      <line num="33" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="1"/>
       <line num="37" type="stmt" count="0"/>
       <line num="38" type="stmt" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="43" type="stmt" count="0"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="43" type="stmt" count="1"/>
       <line num="44" type="stmt" count="0"/>
       <line num="45" type="stmt" count="0"/>
-      <line num="48" type="stmt" count="0"/>
-      <line num="50" type="stmt" count="0"/>
-      <line num="52" type="stmt" count="0"/>
-      <line num="56" type="method" name="render" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="58" type="stmt" count="3"/>
-      <metrics loc="61" ncloc="61" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="1" elements="19" coveredelements="2"/>
+      <line num="48" type="stmt" count="1"/>
+      <line num="50" type="stmt" count="1"/>
+      <line num="52" type="stmt" count="1"/>
+      <line num="56" type="method" name="render" visibility="public" complexity="1" crap="1" count="15"/>
+      <line num="58" type="stmt" count="15"/>
+      <metrics loc="61" ncloc="61" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="12" elements="19" coveredelements="14"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/MarkIdeaNotSpam.php">
       <class name="App\Http\Livewire\MarkIdeaNotSpam" namespace="global">
-        <metrics complexity="4" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="9" coveredelements="0"/>
+        <metrics complexity="4" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="3" elements="9" coveredelements="5"/>
       </class>
-      <line num="15" type="method" name="markAsNotSpam" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="17" type="stmt" count="0"/>
+      <line num="15" type="method" name="markAsNotSpam" visibility="public" complexity="2" crap="3.69" count="2"/>
+      <line num="17" type="stmt" count="2"/>
       <line num="19" type="stmt" count="0"/>
       <line num="20" type="stmt" count="0"/>
       <line num="22" type="stmt" count="0"/>
-      <line num="25" type="method" name="mount" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="27" type="stmt" count="0"/>
-      <line num="30" type="method" name="render" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="32" type="stmt" count="0"/>
-      <metrics loc="35" ncloc="35" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="0" elements="9" coveredelements="0"/>
+      <line num="25" type="method" name="mount" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="27" type="stmt" count="6"/>
+      <line num="30" type="method" name="render" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="32" type="stmt" count="6"/>
+      <metrics loc="35" ncloc="35" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="3" elements="9" coveredelements="5"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/MarkIdeaSpam.php">
       <class name="App\Http\Livewire\MarkIdeaSpam" namespace="global">
-        <metrics complexity="5" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="1" elements="16" coveredelements="2"/>
+        <metrics complexity="5" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="16" coveredelements="16"/>
       </class>
-      <line num="15" type="method" name="markAsSpam" visibility="public" complexity="4" crap="20" count="0"/>
-      <line num="17" type="stmt" count="0"/>
-      <line num="19" type="stmt" count="0"/>
-      <line num="20" type="stmt" count="0"/>
-      <line num="23" type="stmt" count="0"/>
-      <line num="24" type="stmt" count="0"/>
-      <line num="25" type="stmt" count="0"/>
-      <line num="28" type="stmt" count="0"/>
-      <line num="30" type="stmt" count="0"/>
-      <line num="31" type="stmt" count="0"/>
-      <line num="32" type="stmt" count="0"/>
-      <line num="35" type="stmt" count="0"/>
-      <line num="37" type="stmt" count="0"/>
-      <line num="40" type="stmt" count="0"/>
-      <line num="43" type="method" name="render" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="45" type="stmt" count="3"/>
-      <metrics loc="48" ncloc="48" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="1" elements="16" coveredelements="2"/>
+      <line num="15" type="method" name="markAsSpam" visibility="public" complexity="4" crap="4" count="9"/>
+      <line num="17" type="stmt" count="9"/>
+      <line num="19" type="stmt" count="9"/>
+      <line num="20" type="stmt" count="1"/>
+      <line num="23" type="stmt" count="8"/>
+      <line num="24" type="stmt" count="1"/>
+      <line num="25" type="stmt" count="1"/>
+      <line num="28" type="stmt" count="7"/>
+      <line num="30" type="stmt" count="7"/>
+      <line num="31" type="stmt" count="1"/>
+      <line num="32" type="stmt" count="1"/>
+      <line num="35" type="stmt" count="7"/>
+      <line num="37" type="stmt" count="7"/>
+      <line num="40" type="stmt" count="7"/>
+      <line num="43" type="method" name="render" visibility="public" complexity="1" crap="1" count="23"/>
+      <line num="45" type="stmt" count="23"/>
+      <metrics loc="48" ncloc="48" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="16" coveredelements="16"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/SetStatus.php">
       <class name="App\Http\Livewire\SetStatus" namespace="global">
-        <metrics complexity="7" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="0" elements="22" coveredelements="0"/>
+        <metrics complexity="7" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="17" elements="22" coveredelements="20"/>
       </class>
-      <line num="23" type="method" name="mount" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="25" type="stmt" count="0"/>
-      <line num="26" type="stmt" count="0"/>
-      <line num="29" type="method" name="setStatus" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="32" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="42" type="stmt" count="0"/>
-      <line num="43" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="45" type="stmt" count="0"/>
-      <line num="46" type="stmt" count="0"/>
-      <line num="47" type="stmt" count="0"/>
-      <line num="49" type="stmt" count="0"/>
-      <line num="52" type="stmt" count="0"/>
-      <line num="55" type="method" name="render" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="57" type="stmt" count="0"/>
-      <line num="60" type="method" name="authorizeAdmin" visibility="protected" complexity="3" crap="12" count="0"/>
-      <line num="62" type="stmt" count="0"/>
+      <line num="23" type="method" name="mount" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="25" type="stmt" count="6"/>
+      <line num="26" type="stmt" count="6"/>
+      <line num="29" type="method" name="setStatus" visibility="public" complexity="2" crap="2" count="3"/>
+      <line num="32" type="stmt" count="3"/>
+      <line num="34" type="stmt" count="3"/>
+      <line num="36" type="stmt" count="3"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="41" type="stmt" count="3"/>
+      <line num="42" type="stmt" count="3"/>
+      <line num="43" type="stmt" count="3"/>
+      <line num="44" type="stmt" count="3"/>
+      <line num="45" type="stmt" count="3"/>
+      <line num="46" type="stmt" count="3"/>
+      <line num="47" type="stmt" count="3"/>
+      <line num="49" type="stmt" count="3"/>
+      <line num="52" type="stmt" count="3"/>
+      <line num="55" type="method" name="render" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="57" type="stmt" count="6"/>
+      <line num="60" type="method" name="authorizeAdmin" visibility="protected" complexity="3" crap="4.12" count="3"/>
+      <line num="62" type="stmt" count="3"/>
       <line num="63" type="stmt" count="0"/>
-      <metrics loc="67" ncloc="64" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="0" elements="22" coveredelements="0"/>
+      <metrics loc="67" ncloc="64" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="17" elements="22" coveredelements="20"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Livewire/StatusFilter.php">
       <class name="App\Http\Livewire\StatusFilter" namespace="global">
@@ -839,13 +839,13 @@
       <line num="26" type="stmt" count="0"/>
       <line num="27" type="stmt" count="0"/>
       <line num="28" type="stmt" count="0"/>
-      <line num="32" type="method" name="mount" visibility="public" complexity="2" crap="2" count="23"/>
-      <line num="35" type="stmt" count="23"/>
-      <line num="36" type="stmt" count="23"/>
-      <line num="39" type="stmt" count="23"/>
-      <line num="40" type="stmt" count="20"/>
-      <line num="44" type="method" name="render" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="46" type="stmt" count="23"/>
+      <line num="32" type="method" name="mount" visibility="public" complexity="2" crap="2" count="68"/>
+      <line num="35" type="stmt" count="68"/>
+      <line num="36" type="stmt" count="68"/>
+      <line num="39" type="stmt" count="68"/>
+      <line num="40" type="stmt" count="44"/>
+      <line num="44" type="method" name="render" visibility="public" complexity="1" crap="1" count="68"/>
+      <line num="46" type="stmt" count="68"/>
       <line num="49" type="method" name="getPreviousRouteName" visibility="private" complexity="1" crap="2" count="0"/>
       <line num="51" type="stmt" count="0"/>
       <metrics loc="54" ncloc="51" classes="1" methods="4" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="5" elements="16" coveredelements="7"/>
@@ -873,15 +873,15 @@
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Middleware/RedirectIfAuthenticated.php">
       <class name="App\Http\Middleware\RedirectIfAuthenticated" namespace="global">
-        <metrics complexity="4" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="6" coveredelements="0"/>
+        <metrics complexity="4" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="4" elements="6" coveredelements="4"/>
       </class>
-      <line num="20" type="method" name="handle" visibility="public" complexity="4" crap="20" count="0"/>
-      <line num="22" type="stmt" count="0"/>
-      <line num="24" type="stmt" count="0"/>
-      <line num="25" type="stmt" count="0"/>
+      <line num="20" type="method" name="handle" visibility="public" complexity="4" crap="4.13" count="9"/>
+      <line num="22" type="stmt" count="9"/>
+      <line num="24" type="stmt" count="9"/>
+      <line num="25" type="stmt" count="9"/>
       <line num="26" type="stmt" count="0"/>
-      <line num="30" type="stmt" count="0"/>
-      <metrics loc="33" ncloc="27" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="6" coveredelements="0"/>
+      <line num="30" type="stmt" count="9"/>
+      <metrics loc="33" ncloc="27" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="4" elements="6" coveredelements="4"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Middleware/TrimStrings.php">
       <class name="App\Http\Middleware\TrimStrings" namespace="global">
@@ -913,26 +913,26 @@
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Http/Requests/Auth/LoginRequest.php">
       <class name="App\Http\Requests\Auth\LoginRequest" namespace="global">
-        <metrics complexity="7" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="0" elements="28" coveredelements="0"/>
+        <metrics complexity="7" methods="5" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="15" elements="28" coveredelements="19"/>
       </class>
-      <line num="21" type="method" name="authorize" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="23" type="stmt" count="0"/>
-      <line num="31" type="method" name="rules" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="33" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="35" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
-      <line num="46" type="method" name="authenticate" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="48" type="stmt" count="0"/>
-      <line num="50" type="stmt" count="0"/>
-      <line num="51" type="stmt" count="0"/>
-      <line num="53" type="stmt" count="0"/>
-      <line num="54" type="stmt" count="0"/>
-      <line num="55" type="stmt" count="0"/>
-      <line num="58" type="stmt" count="0"/>
-      <line num="68" type="method" name="ensureIsNotRateLimited" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="70" type="stmt" count="0"/>
-      <line num="71" type="stmt" count="0"/>
+      <line num="21" type="method" name="authorize" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="23" type="stmt" count="2"/>
+      <line num="31" type="method" name="rules" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="33" type="stmt" count="2"/>
+      <line num="34" type="stmt" count="2"/>
+      <line num="35" type="stmt" count="2"/>
+      <line num="36" type="stmt" count="2"/>
+      <line num="46" type="method" name="authenticate" visibility="public" complexity="2" crap="2" count="2"/>
+      <line num="48" type="stmt" count="2"/>
+      <line num="50" type="stmt" count="2"/>
+      <line num="51" type="stmt" count="1"/>
+      <line num="53" type="stmt" count="1"/>
+      <line num="54" type="stmt" count="1"/>
+      <line num="55" type="stmt" count="1"/>
+      <line num="58" type="stmt" count="1"/>
+      <line num="68" type="method" name="ensureIsNotRateLimited" visibility="public" complexity="2" crap="4.05" count="2"/>
+      <line num="70" type="stmt" count="2"/>
+      <line num="71" type="stmt" count="2"/>
       <line num="74" type="stmt" count="0"/>
       <line num="76" type="stmt" count="0"/>
       <line num="78" type="stmt" count="0"/>
@@ -941,37 +941,37 @@
       <line num="81" type="stmt" count="0"/>
       <line num="82" type="stmt" count="0"/>
       <line num="83" type="stmt" count="0"/>
-      <line num="91" type="method" name="throttleKey" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="93" type="stmt" count="0"/>
-      <metrics loc="96" ncloc="67" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="0" elements="28" coveredelements="0"/>
+      <line num="91" type="method" name="throttleKey" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="93" type="stmt" count="2"/>
+      <metrics loc="96" ncloc="67" classes="1" methods="5" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="15" elements="28" coveredelements="19"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Jobs/NotifyAllVotes.php">
       <class name="App\Jobs\NotifyAllVotes" namespace="global">
-        <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+        <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
       </class>
-      <line num="30" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="32" type="stmt" count="0"/>
-      <line num="35" type="method" name="handle" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="37" type="stmt" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <line num="40" type="stmt" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="42" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <metrics loc="47" ncloc="42" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="10" coveredelements="0"/>
+      <line num="30" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="32" type="stmt" count="2"/>
+      <line num="35" type="method" name="handle" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="40" type="stmt" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="42" type="stmt" count="1"/>
+      <line num="44" type="stmt" count="1"/>
+      <metrics loc="47" ncloc="42" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="10" coveredelements="10"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Mail/IdeaStatusUpdatedMailable.php">
       <class name="App\Mail\IdeaStatusUpdatedMailable" namespace="global">
-        <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="6" coveredelements="0"/>
+        <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
       </class>
-      <line num="25" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="27" type="stmt" count="0"/>
-      <line num="35" type="method" name="build" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="37" type="stmt" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <metrics loc="42" ncloc="32" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="0" elements="6" coveredelements="0"/>
+      <line num="25" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="27" type="stmt" count="1"/>
+      <line num="35" type="method" name="build" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <metrics loc="42" ncloc="32" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Models/Category.php">
       <class name="App\Models\Category" namespace="global">
@@ -983,150 +983,61 @@
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Models/Comment.php">
       <class name="App\Models\Comment" namespace="global">
-        <metrics complexity="11" methods="11" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="8" elements="26" coveredelements="14"/>
+        <metrics complexity="4" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="3" elements="8" coveredelements="6"/>
       </class>
-      <line num="74" type="method" name="user" visibility="public" complexity="1" crap="1" count="19"/>
-      <line num="76" type="stmt" count="19"/>
-      <line num="79" type="method" name="idea" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="81" type="stmt" count="0"/>
-      <line num="84" type="method" name="status" visibility="public" complexity="1" crap="1" count="19"/>
-      <line num="86" type="stmt" count="19"/>
-      <line num="96" type="method" name="parent" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="98" type="stmt" count="0"/>
-      <line num="104" type="method" name="replies" visibility="public" complexity="1" crap="1" count="19"/>
-      <line num="106" type="stmt" count="19"/>
-      <line num="107" type="stmt" count="19"/>
-      <line num="108" type="stmt" count="19"/>
-      <line num="118" type="method" name="scopeParentOnly" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="120" type="stmt" count="0"/>
-      <line num="126" type="method" name="scopeRepliesOnly" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="128" type="stmt" count="0"/>
-      <line num="134" type="method" name="scopeWithReplies" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="136" type="stmt" count="0"/>
-      <line num="137" type="stmt" count="0"/>
-      <line num="138" type="stmt" count="0"/>
-      <line num="148" type="method" name="isReply" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="150" type="stmt" count="3"/>
-      <line num="156" type="method" name="hasReplies" visibility="public" complexity="1" crap="1" count="19"/>
-      <line num="158" type="stmt" count="19"/>
-      <line num="164" type="method" name="getRepliesCountAttribute" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="166" type="stmt" count="1"/>
-      <metrics loc="169" ncloc="95" classes="1" methods="11" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="8" elements="26" coveredelements="14"/>
+      <line num="74" type="method" name="user" visibility="public" complexity="1" crap="1" count="55"/>
+      <line num="76" type="stmt" count="55"/>
+      <line num="79" type="method" name="idea" visibility="public" complexity="1" crap="1" count="24"/>
+      <line num="81" type="stmt" count="24"/>
+      <line num="84" type="method" name="status" visibility="public" complexity="1" crap="1" count="24"/>
+      <line num="86" type="stmt" count="24"/>
+      <line num="92" type="method" name="parent" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="94" type="stmt" count="0"/>
+      <metrics loc="98" ncloc="57" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="3" elements="8" coveredelements="6"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Models/Idea.php">
       <class name="App\Models\Idea" namespace="global">
-        <metrics complexity="31" methods="21" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="73" coveredstatements="33" elements="94" coveredelements="42"/>
+        <metrics complexity="8" methods="8" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="6" elements="23" coveredelements="12"/>
       </class>
-      <line num="85" type="method" name="getRouteKeyName" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="87" type="stmt" count="23"/>
-      <line num="90" type="method" name="user" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="92" type="stmt" count="23"/>
-      <line num="95" type="method" name="category" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="97" type="stmt" count="23"/>
-      <line num="100" type="method" name="status" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="102" type="stmt" count="23"/>
-      <line num="105" type="method" name="votes" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="107" type="stmt" count="23"/>
-      <line num="110" type="method" name="comments" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="112" type="stmt" count="23"/>
-      <line num="115" type="method" name="isVotedByUser" visibility="public" complexity="2" crap="2" count="20"/>
-      <line num="117" type="stmt" count="20"/>
-      <line num="118" type="stmt" count="17"/>
-      <line num="121" type="stmt" count="3"/>
-      <line num="122" type="stmt" count="3"/>
-      <line num="123" type="stmt" count="3"/>
-      <line num="126" type="method" name="vote" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="128" type="stmt" count="0"/>
-      <line num="129" type="stmt" count="0"/>
-      <line num="131" type="stmt" count="0"/>
-      <line num="137" type="method" name="removeVote" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="139" type="stmt" count="0"/>
-      <line num="140" type="stmt" count="0"/>
-      <line num="143" type="stmt" count="0"/>
-      <line num="154" type="method" name="scopeByStatus" visibility="public" complexity="3" crap="3.14" count="3"/>
-      <line num="156" type="stmt" count="3"/>
-      <line num="157" type="stmt" count="0"/>
-      <line num="161" type="stmt" count="3"/>
-      <line num="163" type="stmt" count="3"/>
-      <line num="169" type="method" name="scopeByCategory" visibility="public" complexity="3" crap="4.12" count="3"/>
-      <line num="171" type="stmt" count="3"/>
-      <line num="172" type="stmt" count="3"/>
-      <line num="175" type="stmt" count="0"/>
-      <line num="177" type="stmt" count="0"/>
-      <line num="183" type="method" name="scopeSearch" visibility="public" complexity="3" crap="5.67" count="3"/>
-      <line num="185" type="stmt" count="3"/>
-      <line num="186" type="stmt" count="3"/>
-      <line num="189" type="stmt" count="0"/>
-      <line num="190" type="stmt" count="0"/>
-      <line num="191" type="stmt" count="0"/>
-      <line num="192" type="stmt" count="0"/>
-      <line num="198" type="method" name="scopeTopVoted" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="200" type="stmt" count="0"/>
-      <line num="206" type="method" name="scopeByUser" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="208" type="stmt" count="0"/>
-      <line num="210" type="stmt" count="0"/>
-      <line num="211" type="stmt" count="0"/>
-      <line num="217" type="method" name="scopeSpamIdeas" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="219" type="stmt" count="0"/>
-      <line num="220" type="stmt" count="0"/>
-      <line num="226" type="method" name="scopeSpamComments" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="228" type="stmt" count="0"/>
-      <line num="229" type="stmt" count="0"/>
-      <line num="230" type="stmt" count="0"/>
-      <line num="236" type="method" name="scopeWithUserVote" visibility="public" complexity="2" crap="3.19" count="3"/>
-      <line num="238" type="stmt" count="3"/>
-      <line num="240" type="stmt" count="3"/>
-      <line num="241" type="stmt" count="3"/>
-      <line num="244" type="stmt" count="0"/>
-      <line num="245" type="stmt" count="0"/>
-      <line num="246" type="stmt" count="0"/>
-      <line num="247" type="stmt" count="0"/>
-      <line num="248" type="stmt" count="0"/>
-      <line num="249" type="stmt" count="0"/>
-      <line num="255" type="method" name="scopeApplyFilter" visibility="public" complexity="1" crap="1.19" count="3"/>
-      <line num="257" type="stmt" count="3"/>
-      <line num="258" type="stmt" count="0"/>
-      <line num="259" type="stmt" count="0"/>
-      <line num="260" type="stmt" count="0"/>
-      <line num="261" type="stmt" count="0"/>
-      <line num="262" type="stmt" count="3"/>
-      <line num="263" type="stmt" count="3"/>
-      <line num="269" type="method" name="scopeForIndex" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="271" type="stmt" count="3"/>
-      <line num="272" type="stmt" count="3"/>
-      <line num="273" type="stmt" count="3"/>
-      <line num="274" type="stmt" count="3"/>
-      <line num="275" type="stmt" count="3"/>
-      <line num="276" type="stmt" count="3"/>
-      <line num="277" type="stmt" count="3"/>
-      <line num="278" type="stmt" count="3"/>
-      <line num="281" type="method" name="registerMediaConversions" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="283" type="stmt" count="0"/>
-      <line num="284" type="stmt" count="0"/>
-      <line num="285" type="stmt" count="0"/>
-      <line num="286" type="stmt" count="0"/>
-      <line num="288" type="stmt" count="0"/>
-      <line num="289" type="stmt" count="0"/>
-      <line num="290" type="stmt" count="0"/>
-      <line num="291" type="stmt" count="0"/>
-      <line num="295" type="method" name="booted" visibility="protected" complexity="1" crap="1" count="23"/>
-      <line num="297" type="stmt" count="23"/>
-      <metrics loc="300" ncloc="217" classes="1" methods="21" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="73" coveredstatements="33" elements="94" coveredelements="42"/>
+      <line num="60" type="method" name="getRouteKeyName" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="62" type="stmt" count="0"/>
+      <line num="65" type="method" name="user" visibility="public" complexity="1" crap="1" count="111"/>
+      <line num="67" type="stmt" count="111"/>
+      <line num="70" type="method" name="category" visibility="public" complexity="1" crap="1" count="82"/>
+      <line num="72" type="stmt" count="82"/>
+      <line num="75" type="method" name="status" visibility="public" complexity="1" crap="1" count="82"/>
+      <line num="77" type="stmt" count="82"/>
+      <line num="80" type="method" name="votes" visibility="public" complexity="1" crap="1" count="98"/>
+      <line num="82" type="stmt" count="98"/>
+      <line num="85" type="method" name="comments" visibility="public" complexity="1" crap="1" count="106"/>
+      <line num="87" type="stmt" count="106"/>
+      <line num="90" type="method" name="registerMediaConversions" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="92" type="stmt" count="0"/>
+      <line num="93" type="stmt" count="0"/>
+      <line num="94" type="stmt" count="0"/>
+      <line num="95" type="stmt" count="0"/>
+      <line num="97" type="stmt" count="0"/>
+      <line num="98" type="stmt" count="0"/>
+      <line num="99" type="stmt" count="0"/>
+      <line num="100" type="stmt" count="0"/>
+      <line num="103" type="method" name="booted" visibility="protected" complexity="1" crap="1" count="198"/>
+      <line num="105" type="stmt" count="198"/>
+      <metrics loc="108" ncloc="86" classes="1" methods="8" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="6" elements="23" coveredelements="12"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Models/Status.php">
       <class name="App\Models\Status" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="9" elements="12" coveredelements="10"/>
       </class>
-      <line num="36" type="method" name="getCount" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="38" type="stmt" count="23"/>
-      <line num="39" type="stmt" count="23"/>
-      <line num="40" type="stmt" count="23"/>
-      <line num="41" type="stmt" count="23"/>
-      <line num="42" type="stmt" count="23"/>
-      <line num="43" type="stmt" count="23"/>
-      <line num="44" type="stmt" count="23"/>
-      <line num="45" type="stmt" count="23"/>
-      <line num="46" type="stmt" count="23"/>
+      <line num="36" type="method" name="getCount" visibility="public" complexity="1" crap="1" count="69"/>
+      <line num="38" type="stmt" count="69"/>
+      <line num="39" type="stmt" count="69"/>
+      <line num="40" type="stmt" count="69"/>
+      <line num="41" type="stmt" count="69"/>
+      <line num="42" type="stmt" count="69"/>
+      <line num="43" type="stmt" count="69"/>
+      <line num="44" type="stmt" count="69"/>
+      <line num="45" type="stmt" count="69"/>
+      <line num="46" type="stmt" count="69"/>
       <line num="49" type="method" name="ideas" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="51" type="stmt" count="0"/>
       <metrics loc="54" ncloc="35" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="9" elements="12" coveredelements="10"/>
@@ -1141,10 +1052,10 @@
       <line num="90" type="stmt" count="0"/>
       <line num="93" type="method" name="votes" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="95" type="stmt" count="0"/>
-      <line num="98" type="method" name="getAvatar" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="100" type="stmt" count="23"/>
-      <line num="109" type="method" name="isAdmin" visibility="public" complexity="1" crap="1" count="19"/>
-      <line num="111" type="stmt" count="19"/>
+      <line num="98" type="method" name="getAvatar" visibility="public" complexity="1" crap="1" count="113"/>
+      <line num="100" type="stmt" count="113"/>
+      <line num="109" type="method" name="isAdmin" visibility="public" complexity="1" crap="1" count="61"/>
+      <line num="111" type="stmt" count="61"/>
       <metrics loc="114" ncloc="61" classes="1" methods="5" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="2" elements="10" coveredelements="4"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Models/Vote.php">
@@ -1155,135 +1066,135 @@
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Notifications/CommentAdded.php">
       <class name="App\Notifications\CommentAdded" namespace="global">
-        <metrics complexity="4" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="20" coveredelements="0"/>
+        <metrics complexity="4" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="11" elements="20" coveredelements="14"/>
       </class>
-      <line num="23" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="25" type="stmt" count="0"/>
-      <line num="34" type="method" name="via" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="36" type="stmt" count="0"/>
+      <line num="23" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="29"/>
+      <line num="25" type="stmt" count="29"/>
+      <line num="34" type="method" name="via" visibility="public" complexity="1" crap="1" count="29"/>
+      <line num="36" type="stmt" count="29"/>
       <line num="45" type="method" name="toMail" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="47" type="stmt" count="0"/>
       <line num="48" type="stmt" count="0"/>
       <line num="49" type="stmt" count="0"/>
       <line num="50" type="stmt" count="0"/>
       <line num="51" type="stmt" count="0"/>
-      <line num="59" type="method" name="toArray" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="61" type="stmt" count="0"/>
-      <line num="62" type="stmt" count="0"/>
-      <line num="63" type="stmt" count="0"/>
-      <line num="64" type="stmt" count="0"/>
-      <line num="65" type="stmt" count="0"/>
-      <line num="66" type="stmt" count="0"/>
-      <line num="67" type="stmt" count="0"/>
-      <line num="68" type="stmt" count="0"/>
-      <line num="69" type="stmt" count="0"/>
-      <metrics loc="72" ncloc="50" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="0" elements="20" coveredelements="0"/>
+      <line num="59" type="method" name="toArray" visibility="public" complexity="1" crap="1" count="24"/>
+      <line num="61" type="stmt" count="24"/>
+      <line num="62" type="stmt" count="24"/>
+      <line num="63" type="stmt" count="24"/>
+      <line num="64" type="stmt" count="24"/>
+      <line num="65" type="stmt" count="24"/>
+      <line num="66" type="stmt" count="24"/>
+      <line num="67" type="stmt" count="24"/>
+      <line num="68" type="stmt" count="24"/>
+      <line num="69" type="stmt" count="24"/>
+      <metrics loc="72" ncloc="50" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="11" elements="20" coveredelements="14"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Observers/IdeaObserver.php">
       <class name="App\Observers\IdeaObserver" namespace="global">
-        <metrics complexity="5" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="8" elements="15" coveredelements="9"/>
+        <metrics complexity="5" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="15" coveredelements="15"/>
       </class>
-      <line num="12" type="method" name="creating" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="14" type="stmt" count="23"/>
-      <line num="17" type="method" name="updating" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="19" type="stmt" count="0"/>
-      <line num="20" type="stmt" count="0"/>
-      <line num="24" type="method" name="generateUniqueSlug" visibility="private" complexity="2" crap="2.04" count="23"/>
-      <line num="26" type="stmt" count="23"/>
-      <line num="27" type="stmt" count="23"/>
-      <line num="28" type="stmt" count="23"/>
-      <line num="30" type="stmt" count="23"/>
-      <line num="31" type="stmt" count="23"/>
-      <line num="32" type="stmt" count="23"/>
-      <line num="33" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="37" type="stmt" count="23"/>
-      <metrics loc="40" ncloc="40" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="8" elements="15" coveredelements="9"/>
+      <line num="12" type="method" name="creating" visibility="public" complexity="1" crap="1" count="178"/>
+      <line num="14" type="stmt" count="178"/>
+      <line num="17" type="method" name="updating" visibility="public" complexity="2" crap="2" count="14"/>
+      <line num="19" type="stmt" count="14"/>
+      <line num="20" type="stmt" count="1"/>
+      <line num="24" type="method" name="generateUniqueSlug" visibility="private" complexity="2" crap="2" count="178"/>
+      <line num="26" type="stmt" count="178"/>
+      <line num="27" type="stmt" count="178"/>
+      <line num="28" type="stmt" count="178"/>
+      <line num="30" type="stmt" count="178"/>
+      <line num="31" type="stmt" count="178"/>
+      <line num="32" type="stmt" count="178"/>
+      <line num="33" type="stmt" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="37" type="stmt" count="178"/>
+      <metrics loc="40" ncloc="40" classes="1" methods="3" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="15" coveredelements="15"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Policies/CommentPolicy.php">
       <class name="App\Policies\CommentPolicy" namespace="global">
         <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
       </class>
-      <line num="20" type="method" name="update" visibility="public" complexity="1" crap="1" count="3"/>
-      <line num="22" type="stmt" count="3"/>
-      <line num="30" type="method" name="delete" visibility="public" complexity="2" crap="2" count="3"/>
-      <line num="32" type="stmt" count="3"/>
-      <line num="33" type="stmt" count="3"/>
+      <line num="20" type="method" name="update" visibility="public" complexity="1" crap="1" count="14"/>
+      <line num="22" type="stmt" count="14"/>
+      <line num="30" type="method" name="delete" visibility="public" complexity="2" crap="2" count="14"/>
+      <line num="32" type="stmt" count="14"/>
+      <line num="33" type="stmt" count="14"/>
       <metrics loc="36" ncloc="26" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="5" coveredelements="5"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Policies/IdeaPolicy.php">
       <class name="App\Policies\IdeaPolicy" namespace="global">
-        <metrics complexity="4" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="3" elements="7" coveredelements="4"/>
+        <metrics complexity="4" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="7" coveredelements="7"/>
       </class>
-      <line num="20" type="method" name="update" visibility="public" complexity="2" crap="2.50" count="3"/>
-      <line num="22" type="stmt" count="3"/>
-      <line num="23" type="stmt" count="3"/>
-      <line num="26" type="stmt" count="0"/>
-      <line num="28" type="stmt" count="0"/>
-      <line num="36" type="method" name="delete" visibility="public" complexity="2" crap="2" count="3"/>
-      <line num="38" type="stmt" count="3"/>
-      <metrics loc="41" ncloc="31" classes="1" methods="2" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="3" elements="7" coveredelements="4"/>
+      <line num="20" type="method" name="update" visibility="public" complexity="2" crap="2" count="21"/>
+      <line num="22" type="stmt" count="21"/>
+      <line num="23" type="stmt" count="13"/>
+      <line num="26" type="stmt" count="8"/>
+      <line num="28" type="stmt" count="8"/>
+      <line num="36" type="method" name="delete" visibility="public" complexity="2" crap="2" count="23"/>
+      <line num="38" type="stmt" count="23"/>
+      <metrics loc="41" ncloc="31" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="5" elements="7" coveredelements="7"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Providers/AppServiceProvider.php">
       <class name="App\Providers\AppServiceProvider" namespace="global">
         <metrics complexity="15" methods="6" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="42" coveredstatements="36" elements="48" coveredelements="40"/>
       </class>
-      <line num="22" type="method" name="register" visibility="public" complexity="2" crap="2.50" count="23"/>
-      <line num="24" type="stmt" count="23"/>
+      <line num="22" type="method" name="register" visibility="public" complexity="2" crap="2.50" count="216"/>
+      <line num="24" type="stmt" count="216"/>
       <line num="25" type="stmt" count="0"/>
-      <line num="36" type="method" name="boot" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="38" type="stmt" count="23"/>
-      <line num="39" type="stmt" count="23"/>
-      <line num="40" type="stmt" count="23"/>
-      <line num="41" type="stmt" count="23"/>
-      <line num="45" type="method" name="adminBladeDirective" visibility="private" complexity="2" crap="2" count="23"/>
-      <line num="47" type="stmt" count="23"/>
-      <line num="51" type="method" name="configurePasswordValidation" visibility="private" complexity="2" crap="3.46" count="23"/>
-      <line num="53" type="stmt" count="23"/>
+      <line num="36" type="method" name="boot" visibility="public" complexity="1" crap="1" count="216"/>
+      <line num="38" type="stmt" count="216"/>
+      <line num="39" type="stmt" count="216"/>
+      <line num="40" type="stmt" count="216"/>
+      <line num="41" type="stmt" count="216"/>
+      <line num="45" type="method" name="adminBladeDirective" visibility="private" complexity="2" crap="2" count="216"/>
+      <line num="47" type="stmt" count="216"/>
+      <line num="51" type="method" name="configurePasswordValidation" visibility="private" complexity="2" crap="3.46" count="216"/>
+      <line num="53" type="stmt" count="216"/>
       <line num="54" type="stmt" count="0"/>
       <line num="55" type="stmt" count="0"/>
       <line num="56" type="stmt" count="0"/>
       <line num="57" type="stmt" count="0"/>
       <line num="58" type="stmt" count="0"/>
-      <line num="59" type="stmt" count="23"/>
-      <line num="62" type="method" name="configureModels" visibility="private" complexity="6" crap="6" count="23"/>
-      <line num="64" type="stmt" count="23"/>
-      <line num="65" type="stmt" count="23"/>
-      <line num="66" type="stmt" count="23"/>
-      <line num="67" type="stmt" count="23"/>
-      <line num="68" type="stmt" count="23"/>
-      <line num="69" type="stmt" count="23"/>
-      <line num="70" type="stmt" count="23"/>
-      <line num="71" type="stmt" count="23"/>
-      <line num="73" type="stmt" count="23"/>
-      <line num="74" type="stmt" count="23"/>
-      <line num="75" type="stmt" count="23"/>
-      <line num="77" type="stmt" count="23"/>
-      <line num="78" type="stmt" count="23"/>
-      <line num="79" type="stmt" count="23"/>
-      <line num="80" type="stmt" count="23"/>
-      <line num="82" type="stmt" count="23"/>
-      <line num="86" type="method" name="configureRateLimiting" visibility="private" complexity="2" crap="2" count="23"/>
-      <line num="88" type="stmt" count="23"/>
-      <line num="89" type="stmt" count="23"/>
-      <line num="90" type="stmt" count="23"/>
-      <line num="91" type="stmt" count="23"/>
-      <line num="93" type="stmt" count="23"/>
-      <line num="94" type="stmt" count="23"/>
-      <line num="95" type="stmt" count="23"/>
-      <line num="96" type="stmt" count="23"/>
-      <line num="98" type="stmt" count="23"/>
-      <line num="99" type="stmt" count="23"/>
-      <line num="100" type="stmt" count="23"/>
-      <line num="101" type="stmt" count="23"/>
+      <line num="59" type="stmt" count="216"/>
+      <line num="62" type="method" name="configureModels" visibility="private" complexity="6" crap="6" count="216"/>
+      <line num="64" type="stmt" count="216"/>
+      <line num="65" type="stmt" count="216"/>
+      <line num="66" type="stmt" count="216"/>
+      <line num="67" type="stmt" count="187"/>
+      <line num="68" type="stmt" count="187"/>
+      <line num="69" type="stmt" count="187"/>
+      <line num="70" type="stmt" count="187"/>
+      <line num="71" type="stmt" count="187"/>
+      <line num="73" type="stmt" count="187"/>
+      <line num="74" type="stmt" count="178"/>
+      <line num="75" type="stmt" count="172"/>
+      <line num="77" type="stmt" count="187"/>
+      <line num="78" type="stmt" count="187"/>
+      <line num="79" type="stmt" count="187"/>
+      <line num="80" type="stmt" count="187"/>
+      <line num="82" type="stmt" count="216"/>
+      <line num="86" type="method" name="configureRateLimiting" visibility="private" complexity="2" crap="2" count="216"/>
+      <line num="88" type="stmt" count="216"/>
+      <line num="89" type="stmt" count="216"/>
+      <line num="90" type="stmt" count="216"/>
+      <line num="91" type="stmt" count="216"/>
+      <line num="93" type="stmt" count="216"/>
+      <line num="94" type="stmt" count="216"/>
+      <line num="95" type="stmt" count="216"/>
+      <line num="96" type="stmt" count="216"/>
+      <line num="98" type="stmt" count="216"/>
+      <line num="99" type="stmt" count="216"/>
+      <line num="100" type="stmt" count="216"/>
+      <line num="101" type="stmt" count="216"/>
       <metrics loc="104" ncloc="93" classes="1" methods="6" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="42" coveredstatements="36" elements="48" coveredelements="40"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Providers/AuthServiceProvider.php">
       <class name="App\Providers\AuthServiceProvider" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </class>
-      <line num="25" type="method" name="boot" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="27" type="stmt" count="23"/>
+      <line num="25" type="method" name="boot" visibility="public" complexity="1" crap="1" count="216"/>
+      <line num="27" type="stmt" count="216"/>
       <metrics loc="32" ncloc="22" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Providers/BroadcastServiceProvider.php">
@@ -1299,44 +1210,166 @@
       <class name="App\Providers\EventServiceProvider" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </class>
-      <line num="30" type="method" name="boot" visibility="public" complexity="1" crap="1" count="23"/>
+      <line num="30" type="method" name="boot" visibility="public" complexity="1" crap="1" count="216"/>
       <metrics loc="32" ncloc="22" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/Providers/RouteServiceProvider.php">
       <class name="App\Providers\RouteServiceProvider" namespace="global">
         <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="11" elements="13" coveredelements="13"/>
       </class>
-      <line num="38" type="method" name="boot" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="40" type="stmt" count="23"/>
-      <line num="42" type="stmt" count="23"/>
-      <line num="43" type="stmt" count="23"/>
-      <line num="44" type="stmt" count="23"/>
-      <line num="45" type="stmt" count="23"/>
-      <line num="46" type="stmt" count="23"/>
-      <line num="48" type="stmt" count="23"/>
-      <line num="49" type="stmt" count="23"/>
-      <line num="50" type="stmt" count="23"/>
-      <line num="51" type="stmt" count="23"/>
-      <line num="59" type="method" name="configureRateLimiting" visibility="protected" complexity="2" crap="2" count="23"/>
-      <line num="61" type="stmt" count="23"/>
+      <line num="38" type="method" name="boot" visibility="public" complexity="1" crap="1" count="216"/>
+      <line num="40" type="stmt" count="216"/>
+      <line num="42" type="stmt" count="216"/>
+      <line num="43" type="stmt" count="216"/>
+      <line num="44" type="stmt" count="216"/>
+      <line num="45" type="stmt" count="216"/>
+      <line num="46" type="stmt" count="216"/>
+      <line num="48" type="stmt" count="216"/>
+      <line num="49" type="stmt" count="216"/>
+      <line num="50" type="stmt" count="216"/>
+      <line num="51" type="stmt" count="216"/>
+      <line num="59" type="method" name="configureRateLimiting" visibility="protected" complexity="2" crap="2" count="216"/>
+      <line num="61" type="stmt" count="216"/>
       <metrics loc="64" ncloc="39" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="11" elements="13" coveredelements="13"/>
+    </file>
+    <file name="/Users/emredikmen/Desktop/work/vote-app/app/Traits/CommentScopes.php">
+      <class name="App\Traits\CommentScopes" namespace="global">
+        <metrics complexity="5" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="17" coveredelements="0"/>
+      </class>
+      <line num="14" type="method" name="scopeParentOnly" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="16" type="stmt" count="0"/>
+      <line num="22" type="method" name="scopeRepliesOnly" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="30" type="method" name="scopeWithReplies" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="40" type="method" name="scopeSpamReported" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="49" type="method" name="scopeForIdea" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="51" type="stmt" count="0"/>
+      <line num="52" type="stmt" count="0"/>
+      <line num="53" type="stmt" count="0"/>
+      <line num="54" type="stmt" count="0"/>
+      <line num="55" type="stmt" count="0"/>
+      <metrics loc="58" ncloc="43" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="0" elements="17" coveredelements="0"/>
+    </file>
+    <file name="/Users/emredikmen/Desktop/work/vote-app/app/Traits/HasReplies.php">
+      <class name="App\Traits\HasReplies" namespace="global">
+        <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="10" coveredelements="10"/>
+      </class>
+      <line num="15" type="method" name="replies" visibility="public" complexity="1" crap="1" count="31"/>
+      <line num="17" type="stmt" count="31"/>
+      <line num="18" type="stmt" count="31"/>
+      <line num="19" type="stmt" count="31"/>
+      <line num="25" type="method" name="isReply" visibility="public" complexity="1" crap="1" count="12"/>
+      <line num="27" type="stmt" count="12"/>
+      <line num="33" type="method" name="hasReplies" visibility="public" complexity="1" crap="1" count="31"/>
+      <line num="35" type="stmt" count="31"/>
+      <line num="41" type="method" name="getRepliesCountAttribute" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="43" type="stmt" count="1"/>
+      <metrics loc="46" ncloc="34" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="10" coveredelements="10"/>
+    </file>
+    <file name="/Users/emredikmen/Desktop/work/vote-app/app/Traits/IdeaScopes.php">
+      <class name="App\Traits\IdeaScopes" namespace="global">
+        <metrics complexity="17" methods="10" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="43" elements="57" coveredelements="50"/>
+      </class>
+      <line num="19" type="method" name="scopeByStatus" visibility="public" complexity="3" crap="3.14" count="47"/>
+      <line num="21" type="stmt" count="47"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="25" type="stmt" count="47"/>
+      <line num="27" type="stmt" count="47"/>
+      <line num="33" type="method" name="scopeByCategory" visibility="public" complexity="3" crap="3" count="47"/>
+      <line num="35" type="stmt" count="47"/>
+      <line num="36" type="stmt" count="43"/>
+      <line num="39" type="stmt" count="10"/>
+      <line num="41" type="stmt" count="10"/>
+      <line num="47" type="method" name="scopeSearch" visibility="public" complexity="3" crap="3" count="47"/>
+      <line num="49" type="stmt" count="47"/>
+      <line num="50" type="stmt" count="47"/>
+      <line num="53" type="stmt" count="2"/>
+      <line num="54" type="stmt" count="2"/>
+      <line num="55" type="stmt" count="2"/>
+      <line num="56" type="stmt" count="2"/>
+      <line num="62" type="method" name="scopeTopVoted" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="64" type="stmt" count="1"/>
+      <line num="70" type="method" name="scopeByUser" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="72" type="stmt" count="1"/>
+      <line num="74" type="stmt" count="1"/>
+      <line num="75" type="stmt" count="1"/>
+      <line num="81" type="method" name="scopeSpamIdeas" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="83" type="stmt" count="0"/>
+      <line num="84" type="stmt" count="0"/>
+      <line num="90" type="method" name="scopeSpamComments" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="92" type="stmt" count="1"/>
+      <line num="93" type="stmt" count="1"/>
+      <line num="94" type="stmt" count="1"/>
+      <line num="100" type="method" name="scopeWithUserVote" visibility="public" complexity="2" crap="2" count="47"/>
+      <line num="102" type="stmt" count="47"/>
+      <line num="104" type="stmt" count="47"/>
+      <line num="105" type="stmt" count="41"/>
+      <line num="108" type="stmt" count="6"/>
+      <line num="109" type="stmt" count="6"/>
+      <line num="110" type="stmt" count="6"/>
+      <line num="111" type="stmt" count="6"/>
+      <line num="112" type="stmt" count="6"/>
+      <line num="113" type="stmt" count="6"/>
+      <line num="119" type="method" name="scopeApplyFilter" visibility="public" complexity="1" crap="1.00" count="47"/>
+      <line num="121" type="stmt" count="47"/>
+      <line num="122" type="stmt" count="1"/>
+      <line num="123" type="stmt" count="1"/>
+      <line num="124" type="stmt" count="0"/>
+      <line num="125" type="stmt" count="1"/>
+      <line num="126" type="stmt" count="47"/>
+      <line num="127" type="stmt" count="47"/>
+      <line num="133" type="method" name="scopeForIndex" visibility="public" complexity="1" crap="1" count="47"/>
+      <line num="135" type="stmt" count="47"/>
+      <line num="136" type="stmt" count="47"/>
+      <line num="137" type="stmt" count="47"/>
+      <line num="138" type="stmt" count="47"/>
+      <line num="139" type="stmt" count="47"/>
+      <line num="140" type="stmt" count="47"/>
+      <line num="141" type="stmt" count="47"/>
+      <line num="142" type="stmt" count="47"/>
+      <metrics loc="145" ncloc="115" classes="1" methods="10" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="47" coveredstatements="43" elements="57" coveredelements="50"/>
+    </file>
+    <file name="/Users/emredikmen/Desktop/work/vote-app/app/Traits/Votable.php">
+      <class name="App\Traits\Votable" namespace="global">
+        <metrics complexity="6" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="9" elements="14" coveredelements="10"/>
+      </class>
+      <line num="16" type="method" name="isVotedByUser" visibility="public" complexity="2" crap="2" count="57"/>
+      <line num="18" type="stmt" count="57"/>
+      <line num="19" type="stmt" count="33"/>
+      <line num="22" type="stmt" count="24"/>
+      <line num="23" type="stmt" count="24"/>
+      <line num="24" type="stmt" count="24"/>
+      <line num="30" type="method" name="vote" visibility="public" complexity="2" crap="2.15" count="5"/>
+      <line num="32" type="stmt" count="5"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="36" type="stmt" count="5"/>
+      <line num="44" type="method" name="removeVote" visibility="public" complexity="2" crap="2.15" count="4"/>
+      <line num="46" type="stmt" count="4"/>
+      <line num="47" type="stmt" count="0"/>
+      <line num="50" type="stmt" count="4"/>
+      <metrics loc="53" ncloc="42" classes="1" methods="3" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="9" elements="14" coveredelements="10"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/View/Components/AppLayout.php">
       <class name="App\View\Components\AppLayout" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </class>
-      <line num="16" type="method" name="render" visibility="public" complexity="1" crap="1" count="23"/>
-      <line num="18" type="stmt" count="23"/>
+      <line num="16" type="method" name="render" visibility="public" complexity="1" crap="1" count="68"/>
+      <line num="18" type="stmt" count="68"/>
       <metrics loc="21" ncloc="16" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
     </file>
     <file name="/Users/emredikmen/Desktop/work/vote-app/app/View/Components/GuestLayout.php">
       <class name="App\View\Components\GuestLayout" namespace="global">
-        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </class>
-      <line num="16" type="method" name="render" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="18" type="stmt" count="0"/>
-      <metrics loc="21" ncloc="16" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+      <line num="16" type="method" name="render" visibility="public" complexity="1" crap="1" count="6"/>
+      <line num="18" type="stmt" count="6"/>
+      <metrics loc="21" ncloc="16" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
     </file>
-    <metrics files="65" loc="3676" ncloc="3010" classes="55" methods="194" coveredmethods="58" conditionals="0" coveredconditionals="0" statements="753" coveredstatements="197" elements="947" coveredelements="255"/>
+    <metrics files="69" loc="3715" ncloc="3075" classes="59" methods="196" coveredmethods="119" conditionals="0" coveredconditionals="0" statements="760" coveredstatements="526" elements="956" coveredelements="645"/>
   </project>
 </coverage>
