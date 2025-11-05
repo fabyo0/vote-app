@@ -33,12 +33,12 @@ class CreateIdea extends Component
         'images.*.max' => 'Each image must be no larger than 5MB.',
     ];
 
-    public function updatedImages()
+    public function updatedImages(): void
     {
         $this->validateOnly('images.*');
 
         foreach ($this->images as $image) {
-            if (!in_array($image->getClientOriginalName(), array_column($this->temporaryImages, 'name'))) {
+            if ( ! in_array($image->getClientOriginalName(), array_column($this->temporaryImages, 'name'))) {
                 $this->temporaryImages[] = [
                     'name' => $image->getClientOriginalName(),
                     'size' => $this->formatFileSize($image->getSize()),
@@ -48,24 +48,13 @@ class CreateIdea extends Component
         }
     }
 
-    public function removeImage($index)
+    public function removeImage($index): void
     {
-        unset($this->temporaryImages[$index]);
-        unset($this->images[$index]);
+        unset($this->temporaryImages[$index], $this->images[$index]);
+
 
         $this->temporaryImages = array_values($this->temporaryImages);
         $this->images = array_values($this->images);
-    }
-
-    private function formatFileSize($bytes)
-    {
-        if ($bytes < 1024) {
-            return $bytes . ' B';
-        } elseif ($bytes < 1048576) {
-            return round($bytes / 1024, 2) . ' KB';
-        } else {
-            return round($bytes / 1048576, 2) . ' MB';
-        }
     }
 
     public function createIdea(): void
@@ -83,7 +72,7 @@ class CreateIdea extends Component
                 'description' => $this->description,
             ]);
 
-            if (!empty($this->images)) {
+            if ( ! empty($this->images)) {
                 foreach ($this->images as $image) {
                     $idea->addMediaFromStream($image->readStream())
                         ->usingName($image->getClientOriginalName())
@@ -107,5 +96,17 @@ class CreateIdea extends Component
         return view('livewire.create-idea', [
             'categories' => Category::query()->select('id', 'name')->get(),
         ]);
+    }
+
+    private function formatFileSize($bytes)
+    {
+        if ($bytes < 1024) {
+            return $bytes . ' B';
+        }
+        if ($bytes < 1048576) {
+            return round($bytes / 1024, 2) . ' KB';
+        }
+        return round($bytes / 1048576, 2) . ' MB';
+
     }
 }

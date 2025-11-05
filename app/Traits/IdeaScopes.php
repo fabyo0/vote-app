@@ -18,7 +18,7 @@ trait IdeaScopes
      */
     public function scopeByStatus(Builder $query, ?string $status): Builder
     {
-        if (!$status || $status === IdeaStatus::All->value) {
+        if ( ! $status || $status === IdeaStatus::All->value) {
             return $query;
         }
 
@@ -32,7 +32,7 @@ trait IdeaScopes
      */
     public function scopeByCategory(Builder $query, ?string $category): Builder
     {
-        if (!$category || 'All Categories' === $category) {
+        if ( ! $category || 'All Categories' === $category) {
             return $query;
         }
 
@@ -46,7 +46,7 @@ trait IdeaScopes
      */
     public function scopeSearch(Builder $query, ?string $search): Builder
     {
-        if (!$search || mb_strlen($search) < 3) {
+        if ( ! $search || mb_strlen($search) < 3) {
             return $query;
         }
 
@@ -101,7 +101,7 @@ trait IdeaScopes
     {
         $userId ??= Auth::id();
 
-        if (!$userId) {
+        if ( ! $userId) {
             return $query;
         }
 

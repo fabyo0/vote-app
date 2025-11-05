@@ -56,7 +56,7 @@ class IdeaShow extends Component
 
     public function vote()
     {
-        if (!auth()->check()) {
+        if ( ! auth()->check()) {
             return Redirect::route('login');
         }
 

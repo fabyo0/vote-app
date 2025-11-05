@@ -41,8 +41,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class Idea extends Model implements HasMedia
 {
     use HasFactory;
-    use InteractsWithMedia;
     use IdeaScopes;
+    use InteractsWithMedia;
     use Votable;
 
     protected $perPage = 10;
@@ -87,7 +87,7 @@ class Idea extends Model implements HasMedia
         return $this->hasMany(Comment::class);
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion('thumb')
             ->width(300)
