@@ -34,6 +34,11 @@
     left: -40px;
 }
 
+/* nested comments should not have the horizontal line */
+.nested-comment.comment-container::before {
+    display: none;
+}
+
 /* remove last vertical line */
 .comment-container:last-child::after {
     position: absolute;
@@ -44,6 +49,11 @@
     width: 3px;
     height: calc(100% - 60px);
     background: theme('colors.gray-background');
+}
+
+/* nested comments should not have the vertical line */
+.nested-comment.comment-container::after {
+    display: none;
 }
 
 .is-status-update::before {

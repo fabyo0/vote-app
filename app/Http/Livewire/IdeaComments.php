@@ -53,7 +53,8 @@ class IdeaComments extends Component
     public function render()
     {
         return view('livewire.idea-comments', [
-            'comments' => Comment::with(['user', 'status', 'replies.user', 'replies.status'])
+            'comments' => Comment::with(['user', 'status'])
+                ->withNestedReplies()
                 ->where('idea_id', $this->idea->id)
                 ->whereNull('parent_id')
                 ->latest()

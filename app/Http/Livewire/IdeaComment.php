@@ -49,7 +49,7 @@ class IdeaComment extends Component
     {
         $this->showReplyForm = false;
         $this->comment->refresh();
-        $this->comment->load('replies.user', 'replies.status');
+        $this->comment->load('nestedReplies.user', 'nestedReplies.status');
     }
 
     public function render()

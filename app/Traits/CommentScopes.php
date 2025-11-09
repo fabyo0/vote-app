@@ -35,6 +35,20 @@ trait CommentScopes
     }
 
     /**
+     * Get comments with nested replies recursively (unlimited depth)
+     */
+    public function scopeWithNestedReplies(Builder $query): Builder
+    {
+        $loadNested = function ($query) use (&$loadNested): void {
+            $query->with(['user', 'status'])
+                ->with(['nestedReplies' => $loadNested])
+                ->latest();
+        };
+
+        return $query->with(['nestedReplies' => $loadNested]);
+    }
+
+    /**
      * Get comments with spam reports
      */
     public function scopeSpamReported(Builder $query): Builder

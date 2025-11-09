@@ -42,4 +42,13 @@ trait HasReplies
     {
         return $this->replies_count ?? $this->replies()->count();
     }
+
+    /**
+     * Get all nested replies recursively
+     */
+    public function nestedReplies(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'parent_id')
+            ->latest();
+    }
 }
