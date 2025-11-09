@@ -4,7 +4,7 @@
 >
     <div class="flex flex-col md:flex-row flex-1 @if ($comment->isReply()) px-3 py-3 @else px-4 py-6 @endif">
         <div class="flex-none">
-            <a href="#">
+            <a href="{{ route('user.show', $comment->user) }}">
                 <img src="{{ $comment->user->getAvatar() }}" alt="avatar" class="@if ($comment->isReply()) w-10 h-10 rounded-lg @else w-14 h-14 rounded-xl @endif">
             </a>
             @if ($comment->user->isAdmin())
@@ -32,7 +32,7 @@
 
             <div class="flex items-center justify-between @if ($comment->isReply()) mt-3 @else mt-6 @endif">
                 <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
-                    <div class="@if ($comment->is_status_update) text-blue @endif font-bold text-gray-900">{{ $comment->user->name }}</div>
+                    <a href="{{ route('user.show', $comment->user) }}" class="@if ($comment->is_status_update) text-blue @endif font-bold text-gray-900 hover:text-blue">{{ $comment->user->name }}</a>
                     <div>&bull;</div>
                     @if ($comment->user->id === $ideaUserID)
                         <div class="rounded-full border bg-gray-100 px-3 py-1">OP</div>

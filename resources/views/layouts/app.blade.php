@@ -25,6 +25,9 @@
             <div class="px-6 py-4">
                 @auth
                     <div class="flex items-center space-x-4">
+                        <a href="{{ route('profile') }}" class="text-sm text-gray-700 hover:text-gray-900 font-semibold">
+                            Profile
+                        </a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
@@ -46,10 +49,17 @@
                 @endauth
             </div>
         @endif
-        <a href="#">
-            <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp" alt="avatar"
-                 class="w-10 h-10 rounded-full">
-        </a>
+        @auth
+            <a href="{{ route('profile') }}">
+                <img src="{{ auth()->user()->getAvatar() }}" alt="avatar"
+                     class="w-10 h-10 rounded-full">
+            </a>
+        @else
+            <a href="#">
+                <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp" alt="avatar"
+                     class="w-10 h-10 rounded-full">
+            </a>
+        @endauth
     </div>
 </header>
 

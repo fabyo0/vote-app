@@ -3,7 +3,7 @@
     <div class="idea-container bg-white rounded-xl flex mt-4">
         <div class="flex flex-col md:flex-row flex-1 px-4 py-6">
             <div class="flex-none mx-2">
-                <a href="#">
+                <a href="{{ route('user.show', $idea->user) }}">
                     <img src="{{ $idea->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
                 </a>
             </div>
@@ -44,7 +44,7 @@
 
                 <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">
                     <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
-                        <div class="hidden md:block font-bold text-gray-900">{{ $idea->user->name }}</div>
+                        <a href="{{ route('user.show', $idea->user) }}" class="hidden md:block font-bold text-gray-900 hover:text-blue">{{ $idea->user->name }}</a>
                         <div class="hidden md:block">&bull;</div>
                         <div>{{ $idea->created_at->diffForHumans() }}</div>
                         <div>&bull;</div>

@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
  * App\Models\User
@@ -43,9 +46,10 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     use HasFactory;
+    use InteractsWithMedia;
     use Notifiable;
 
     /**
@@ -95,16 +99,93 @@ class User extends Authenticatable
         return $this->belongsToMany(Vote::class, 'votes');
     }
 
+    /**
+     * Users that this user is following
+     */
+    public function following(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'following_id')
+            ->withTimestamps();
+    }
+
+    /**
+     * Users that are following this user
+     */
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'followers', 'following_id', 'follower_id')
+            ->withTimestamps();
+    }
+
+    /**
+     * Check if the current user is following this user
+     */
+    public function isFollowedBy(?User $user): bool
+    {
+        if (! $user) {
+            return false;
+        }
+
+        return $this->followers()->where('follower_id', $user->id)->exists();
+    }
+
+    /**
+     * Follow a user
+     */
+    public function follow(User $user): void
+    {
+        if ($this->id === $user->id) {
+            return; // Can't follow yourself
+        }
+
+        if (! $this->isFollowing($user)) {
+            $this->following()->attach($user->id);
+        }
+    }
+
+    /**
+     * Unfollow a user
+     */
+    public function unfollow(User $user): void
+    {
+        $this->following()->detach($user->id);
+    }
+
+    /**
+     * Check if this user is following another user
+     */
+    public function isFollowing(User $user): bool
+    {
+        return $this->following()->where('following_id', $user->id)->exists();
+    }
+
     public function getAvatar(): string
     {
+        // Check if user has uploaded an avatar
+        $avatar = $this->getFirstMediaUrl('avatar');
+
+        if ($avatar) {
+            return $avatar;
+        }
+
+        // Fallback to robohash
         return 'https://robohash.org/' . md5($this->email) . '?set=set4';
     }
 
-    //Human
-    /*public function getAvatar(): string
+    public function registerMediaConversions(?Media $media = null): void
     {
-        return 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&background=random&color=fff';
-    }*/
+        $this->addMediaConversion('thumb')
+            ->width(150)
+            ->height(150)
+            ->sharpen(10)
+            ->performOnCollections('avatar');
+
+        $this->addMediaConversion('preview')
+            ->width(300)
+            ->height(300)
+            ->sharpen(10)
+            ->performOnCollections('avatar');
+    }
 
     public function isAdmin(): bool
     {

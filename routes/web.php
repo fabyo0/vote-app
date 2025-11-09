@@ -20,4 +20,14 @@ Route::get('/', [IdeaController::class, 'index'])->name('idea.index');
 
 Route::get('/ideas/{idea:slug}', [IdeaController::class, 'show'])->name('idea.show');
 
+Route::get('/users/{user}', function (\App\Models\User $user) {
+    return view('user-profile-show', ['user' => $user]);
+})->name('user.show');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', function () {
+        return view('profile');
+    })->name('profile');
+});
+
 require __DIR__ . '/auth.php';

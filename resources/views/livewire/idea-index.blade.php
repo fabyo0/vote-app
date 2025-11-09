@@ -34,7 +34,7 @@
     </div>
     <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
         <div class="flex-none mx-2 md:mx-0">
-            <a href="#">
+            <a href="{{ route('user.show', $idea->user) }}">
                 <img src="{{ $idea->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded-xl">
             </a>
         </div>
