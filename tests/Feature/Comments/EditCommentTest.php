@@ -65,6 +65,8 @@ class EditCommentTest extends TestCase
         Livewire::actingAs($user)
             ->test(EditComment::class)
             ->call('setEditComment', $comment->id)
+            ->assertSet('body', 'My first comment')
+            ->assertSet('comment.id', $comment->id)
             ->assertEmitted('editCommentWasSet');
     }
 
@@ -83,8 +85,11 @@ class EditCommentTest extends TestCase
         Livewire::actingAs($user)
             ->test(EditComment::class)
             ->call('setEditComment', $comment->id)
+            ->set('body', 'Updated comment body')
             ->call('updateComment')
-            ->assertEmitted('commentWasUpdated');
+            ->assertEmitted('commentWasUpdated', 'Comment was update!');
+
+        $this->assertEquals('Updated comment body', $comment->fresh()->body);
     }
 
     public function test_edit_comment_form_validation_work()
@@ -165,5 +170,66 @@ class EditCommentTest extends TestCase
                 'ideaUserID' => $idea->user_id,
             ])
             ->assertDontSee('Edit Comment');
+    }
+
+    /** @test */
+    public function test_guest_user_cannot_update_comment()
+    {
+        $user = User::factory()->create();
+        $idea = Idea::factory()->create();
+
+        $comment = Comment::factory()->create([
+            'idea_id' => $idea->id,
+            'user_id' => $user->id,
+            'body' => 'This is my first comment',
+        ]);
+
+        Livewire::test(EditComment::class)
+            ->call('setEditComment', $comment->id)
+            ->set('body', 'Updated comment')
+            ->call('updateComment')
+            ->assertStatus(Response::HTTP_FORBIDDEN);
+
+        $this->assertEquals('This is my first comment', $comment->fresh()->body);
+    }
+
+    /** @test */
+    public function test_edit_comment_component_can_render()
+    {
+        Livewire::test(EditComment::class)
+            ->assertStatus(200)
+            ->assertViewIs('livewire.edit-comment');
+    }
+
+    /** @test */
+    public function test_set_edit_comment_fails_when_comment_not_found()
+    {
+        $user = User::factory()->create();
+
+        $this->expectException(\Illuminate\Database\Eloquent\ModelNotFoundException::class);
+
+        Livewire::actingAs($user)
+            ->test(EditComment::class)
+            ->call('setEditComment', 99999);
+    }
+
+    /** @test */
+    public function test_update_comment_with_minimum_length_validation()
+    {
+        $user = User::factory()->create();
+        $idea = Idea::factory()->create();
+
+        $comment = Comment::factory()->create([
+            'idea_id' => $idea->id,
+            'user_id' => $user->id,
+            'body' => 'This is my first comment',
+        ]);
+
+        Livewire::actingAs($user)
+            ->test(EditComment::class)
+            ->call('setEditComment', $comment->id)
+            ->set('body', 'abc') // Less than 4 characters
+            ->call('updateComment')
+            ->assertHasErrors(['body']);
     }
 }
