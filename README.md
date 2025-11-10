@@ -1,4 +1,4 @@
-# 🚀 Project Setup Guide
+# 🚀 Vote App - Idea Voting Platform
 
 [![CI Tests](https://github.com/fabyo0/vote-app/actions/workflows/ci.yml/badge.svg)](https://github.com/fabyo0/vote-app/actions/workflows/ci.yml)
 &nbsp;&nbsp;
@@ -6,15 +6,31 @@
 &nbsp;&nbsp;
 [![codecov](https://codecov.io/github/fabyo0/vote-app/graph/badge.svg?token=YXZ7XMNABM)](https://codecov.io/github/fabyo0/vote-app)
 
+A modern voting platform built with Laravel 10, Livewire, and real-time notifications. Users can submit ideas, vote on them, comment with unlimited nesting, follow other users, and receive instant notifications via Pusher or database polling.
+
+## ✨ Key Features
+
+- 🗳️ **Idea Submission & Voting** - Create and vote on ideas with status tracking
+- 💬 **Unlimited Nested Comments** - Full threaded discussion support
+- 👥 **User Profiles & Following** - Follow users and view their activity
+- 🔔 **Dual Notification System** - Choose between Pusher (real-time) or Database (polling)
+- 🎨 **Avatar System** - Auto-generated avatars with upload support (Spatie Media Library + Laravolt Avatar)
+- 📊 **Polls** - Create and vote on polls within ideas
+- 🔒 **Social Authentication** - Login via Facebook and Google
+- ⚙️ **Admin Settings Panel** - Control notification delivery methods on-the-fly
+- 🌐 **Username-based URLs** - Clean URLs like `/users/@username`
+- 🎭 **Dark Mode Support** - User preference based theme switching
+
 ## ✅ Requirements
 
 Make sure the following are installed on your system:
 
-- **PHP** >= 8.0  
-- **Composer**  
-- **MySQL** (or any other supported database)  
+- **PHP** >= 8.0
+- **Composer**
+- **MySQL** (or any other supported database)
 - **Node.js & npm** *(required for Vite and frontend assets)*
 - **Redis** *(optional, for queue jobs and caching)*
+- **Pusher Account** *(optional, for real-time notifications)*
 
 ---
 
@@ -136,7 +152,77 @@ php artisan queue:work --daemon
 
 ---
 
-### 8. Frontend Assets (Vite)
+### 8. Notification System Configuration
+
+This project supports two notification delivery methods that can be switched by administrators:
+
+#### Option 1: Database Notifications (Default - Polling)
+No additional configuration needed. Notifications are stored in the database and polled periodically.
+
+#### Option 2: Real-time Notifications with Pusher
+
+1. **Create a Pusher account** at [pusher.com](https://pusher.com)
+2. **Create a new Pusher app** and get your credentials
+3. **Update your `.env` file**:
+
+```env
+BROADCAST_DRIVER=pusher
+
+PUSHER_APP_ID=your-app-id
+PUSHER_APP_KEY=your-app-key
+PUSHER_APP_SECRET=your-app-secret
+PUSHER_APP_CLUSTER=your-cluster
+
+VITE_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+```
+
+4. **Clear config cache**:
+```bash
+php artisan config:clear
+php artisan cache:clear
+```
+
+5. **Rebuild frontend assets**:
+```bash
+npm run build
+```
+
+#### Admin Control Panel
+
+Administrators can switch between notification modes at `/admin/settings`:
+- **Database Only** - Traditional polling (no Pusher required)
+- **Pusher Only** - Real-time via WebSockets (requires Pusher)
+- **Both (Recommended)** - Hybrid approach with database backup + real-time updates
+
+The setting is stored in the `settings` table and cached for performance.
+
+---
+
+### 9. Social Authentication (Optional)
+
+To enable Facebook and Google login:
+
+1. **Create OAuth Apps**:
+   - Facebook: [developers.facebook.com](https://developers.facebook.com)
+   - Google: [console.cloud.google.com](https://console.cloud.google.com)
+
+2. **Update `.env`**:
+```env
+FACEBOOK_CLIENT_ID=your-facebook-client-id
+FACEBOOK_CLIENT_SECRET=your-facebook-client-secret
+
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+```
+
+3. **Set callback URLs** in your OAuth apps:
+   - Facebook: `http://yourdomain.com/auth/facebook/callback`
+   - Google: `http://yourdomain.com/auth/google/callback`
+
+---
+
+### 10. Frontend Assets (Vite)
 
 Build and compile frontend assets using Vite:
 
@@ -157,7 +243,7 @@ npm run dev -- --watch
 
 ---
 
-### 9. Run the Application
+### 11. Run the Application
 
 #### Option 1: Using Laravel's Built-in Server
 
@@ -299,6 +385,21 @@ chmod -R 775 bootstrap/cache
 - Run `npm run build` for production
 - Check if `public/build` directory exists
 - Verify Vite configuration in `vite.config.js`
+
+#### Pusher Notifications Not Working
+1. **Check Browser Console** (F12) for Echo connection logs
+2. **Verify Pusher credentials** in `.env` are correct
+3. **Check Pusher Dashboard** at [dashboard.pusher.com](https://dashboard.pusher.com) for connection activity
+4. **Verify BROADCAST_DRIVER** is set to `pusher` in `.env`
+5. **Clear config cache**: `php artisan config:clear && php artisan cache:clear`
+6. **Rebuild assets**: `npm run build`
+7. **Check `/broadcasting/auth` route** exists: `php artisan route:list | grep broadcasting`
+8. **Verify user is authenticated** - Pusher uses private channels requiring authentication
+
+#### Username Already Exists Error
+- All users must have unique usernames
+- Run migration to add username column: `php artisan migrate`
+- Generate usernames for existing users (done automatically in migration)
 
 ---
 
