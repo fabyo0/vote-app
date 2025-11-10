@@ -142,6 +142,8 @@
     />
 @endif
 
+<x-notification-success />
+
 <livewire:scripts/>
 </body>
 </html>

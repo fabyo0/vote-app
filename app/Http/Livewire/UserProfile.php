@@ -92,7 +92,7 @@ class UserProfile extends Component
         $this->reset(['avatar', 'temporaryAvatar']);
         $this->user->refresh();
 
-        session()->flash('profile_updated', 'Profile updated successfully!');
+        $this->emit('profileWasUpdated', 'Profile updated successfully!');
     }
 
     public function updatePassword(): void
@@ -114,7 +114,7 @@ class UserProfile extends Component
         ]);
 
         $this->reset(['currentPassword', 'newPassword', 'newPasswordConfirmation', 'showPasswordForm']);
-        session()->flash('password_updated', 'Password updated successfully!');
+        $this->emit('passwordWasUpdated', 'Password updated successfully!');
     }
 
     public function togglePasswordForm(): void

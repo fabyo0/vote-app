@@ -12,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Laravolt\Avatar\Facade as Avatar;
 
 /**
  * App\Models\User
@@ -63,6 +64,7 @@ class User extends Authenticatable implements HasMedia
         'password',
         'facebook_id',
         'google_id',
+        'avatar'
     ];
 
     /**
@@ -159,17 +161,17 @@ class User extends Authenticatable implements HasMedia
         return $this->following()->where('following_id', $user->id)->exists();
     }
 
-    public function getAvatar(): string
+    /**
+     * @return mixed
+     */
+    public function getAvatar()
     {
-        // Check if user has uploaded an avatar
-        $avatar = $this->getFirstMediaUrl('avatar');
-
-        if ($avatar) {
-            return $avatar;
+        $avatarUrl = $this->getFirstMediaUrl('avatar');
+        if ($avatarUrl) {
+            return $avatarUrl;
         }
 
-        // Fallback to robohash
-        return 'https://robohash.org/' . md5($this->email) . '?set=set4';
+        return Avatar::create($this->name)->toBase64();
     }
 
     public function registerMediaConversions(?Media $media = null): void

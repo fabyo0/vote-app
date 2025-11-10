@@ -1,18 +1,5 @@
 <div class="bg-white rounded-xl flex flex-col md:flex-row mt-8">
     <div class="flex flex-col md:flex-row flex-1 px-4 py-6">
-        <!-- Success Messages -->
-        @if (session()->has('profile_updated'))
-            <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-xl">
-                {{ session('profile_updated') }}
-            </div>
-        @endif
-
-        @if (session()->has('password_updated'))
-            <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-xl">
-                {{ session('password_updated') }}
-            </div>
-        @endif
-
         <div class="w-full">
             <h2 class="text-2xl font-bold mb-6">Profile Settings</h2>
 
@@ -36,7 +23,8 @@
                                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                                 </svg>
-                                Upload Avatar
+                                <span wire:loading.remove wire:target="avatar">Upload Avatar</span>
+                                <span wire:loading wire:target="avatar">Uploading...</span>
                                 <input type="file" wire:model="avatar" class="hidden" accept="image/*">
                             </label>
                             @if ($temporaryAvatar || $user->getFirstMediaUrl('avatar'))
@@ -47,6 +35,9 @@
                             @error('avatar')
                                 <span class="text-red-600 text-sm">{{ $message }}</span>
                             @enderror
+                            <div wire:loading wire:target="avatar" class="text-sm text-blue">
+                                Processing image...
+                            </div>
                         </div>
                     </div>
                 </div>
