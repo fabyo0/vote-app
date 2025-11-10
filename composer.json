@@ -18,6 +18,7 @@
         "laravolt/avatar": "^6.3",
         "livewire/livewire": "^2.12",
         "opcodesio/log-viewer": "^3.1",
+        "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-honeypot": "^4.6",
         "spatie/laravel-ignition": "^2.0",
         "spatie/laravel-medialibrary": "^11.13"

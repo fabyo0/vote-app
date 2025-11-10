@@ -167,6 +167,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/gif" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/image" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravolt/avatar" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/sodium_compat" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/pusher/pusher-php-server" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -48,6 +48,11 @@
                             <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 Profile
                             </a>
+                            @if(auth()->user()->isAdmin())
+                                <a href="{{ route('admin.settings') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    Admin Settings
+                                </a>
+                            @endif
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <a href="{{ route('logout') }}"

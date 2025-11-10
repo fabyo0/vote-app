@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace App\Notifications;
 
 use App\Models\Comment;
+use App\Models\Setting;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CommentAdded extends Notification
+class CommentAdded extends Notification implements ShouldBroadcast
 {
     use Queueable;
 
@@ -33,7 +36,8 @@ class CommentAdded extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        $channels = Setting::get('notification_channels', 'database,broadcast');
+        return array_map('trim', explode(',', $channels));
     }
 
     /**
@@ -67,5 +71,25 @@ class CommentAdded extends Notification
             'idea_slug' => $this->comment->idea->slug,
             'idea_title' => $this->comment->idea->title,
         ];
+    }
+
+    /**
+     * Get the broadcastable representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return BroadcastMessage
+     */
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage([
+            'comment_id' => $this->comment->id,
+            'comment_body' => $this->comment->body,
+            'user_avatar' => $this->comment->user->getAvatar(),
+            'user_name' => $this->comment->user->name,
+            'idea_id' => $this->comment->idea->id,
+            'idea_slug' => $this->comment->idea->slug,
+            'idea_title' => $this->comment->idea->title,
+            'type' => 'App\Notifications\CommentAdded',
+        ]);
     }
 }

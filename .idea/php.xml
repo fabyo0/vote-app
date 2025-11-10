@@ -176,6 +176,8 @@
       <path value="$PROJECT_DIR$/vendor/laravolt/avatar" />
       <path value="$PROJECT_DIR$/vendor/intervention/gif" />
       <path value="$PROJECT_DIR$/vendor/intervention/image" />
+      <path value="$PROJECT_DIR$/vendor/pusher/pusher-php-server" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/sodium_compat" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1">

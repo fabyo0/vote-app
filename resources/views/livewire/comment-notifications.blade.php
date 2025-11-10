@@ -1,6 +1,19 @@
 <div
     wire:poll="getNotificationCount"
     x-data="{ isOpen: false }"
+
+    x-init="() => {
+    if (typeof window.Echo !== 'undefined') {
+        window.Echo.private('App.Models.User.1')
+            .notification((notification) => {
+                console.log('Real-time notification received:', notification);
+                $wire.call('getNotificationCount');
+                if (isOpen) {
+                    $wire.call('getNotifications');
+                }
+            });
+    }
+}"
     class="relative">
     <button
         @click=
