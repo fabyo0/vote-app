@@ -39,7 +39,7 @@ class CommentNotifications extends Component
     }
 
     // Read Idea
-    public function markAsRead($notificationId): void
+    public function markAsRead($notificationId)
     {
         if (auth()->guest()) {
             abort(Response::HTTP_FORBIDDEN);
@@ -48,8 +48,15 @@ class CommentNotifications extends Component
         $notification = DatabaseNotification::findOrFail($notificationId);
         $notification->markAsRead();
 
-        $this->scrollToComment($notification);
+        // Handle different notification types
+        if ($notification->type === 'App\Notifications\CommentAdded') {
+            $this->scrollToComment($notification);
+        } elseif ($notification->type === 'App\Notifications\NewFollower') {
+            $username = $notification->data['follower_username'] ?? $notification->data['follower_id'];
+            return redirect()->route('user.show', '@' . $username);
+        }
     }
+
 
     public function scrollToComment($notification)
     {

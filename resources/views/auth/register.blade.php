@@ -21,6 +21,15 @@
                     :value="old('name')" required autofocus />
             </div>
 
+            <!-- Username -->
+            <div>
+                <x-label for="username" :value="__('Username')" class="text-sm font-medium text-gray-800" />
+                <x-input id="username" type="text" name="username"
+                    class="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-gray-500 focus:ring-gray-200 text-sm"
+                    :value="old('username')" required />
+                <p class="mt-1 text-xs text-gray-500">Only letters, numbers, and underscores. No spaces.</p>
+            </div>
+
             <!-- Email -->
             <div>
                 <x-label for="email" :value="__('Email')" class="text-sm font-medium text-gray-800" />

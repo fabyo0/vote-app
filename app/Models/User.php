@@ -60,6 +60,7 @@ class User extends Authenticatable implements HasMedia
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
         'facebook_id',
@@ -164,7 +165,7 @@ class User extends Authenticatable implements HasMedia
     /**
      * @return mixed
      */
-    public function getAvatar()
+    public function getAvatar(): mixed
     {
         $avatarUrl = $this->getFirstMediaUrl('avatar');
         if ($avatarUrl) {
@@ -192,5 +193,36 @@ class User extends Authenticatable implements HasMedia
     public function isAdmin(): bool
     {
         return 'emredikmen002@gmail.com' === $this->email;
+    }
+
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'username';
+    }
+
+    /**
+     * Get the username with @ prefix for URLs
+     */
+    public function getUsernameForUrl(): string
+    {
+        return '@' . $this->username;
+    }
+
+    /**
+     * Retrieve the model for a bound value.
+     *
+     * @param  mixed  $value
+     * @param  string|null  $field
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    public function resolveRouteBinding($value, $field = null)
+    {
+        // Remove @ prefix if present
+        $value = ltrim($value, '@');
+
+        return $this->where('username', $value)->firstOrFail();
     }
 }

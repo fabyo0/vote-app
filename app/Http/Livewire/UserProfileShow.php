@@ -7,6 +7,7 @@ namespace App\Http\Livewire;
 use App\Models\Comment;
 use App\Models\Idea;
 use App\Models\User;
+use App\Notifications\NewFollower;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -49,6 +50,9 @@ class UserProfileShow extends Component
         } else {
             $currentUser->follow($this->user);
             $this->isFollowing = true;
+
+            // Send notification to the user being followed
+            $this->user->notify(new NewFollower($currentUser));
         }
 
         $this->user->refresh();

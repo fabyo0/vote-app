@@ -164,6 +164,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/image-optimizer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-medialibrary" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/temporary-directory" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/gif" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/image" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravolt/avatar" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
