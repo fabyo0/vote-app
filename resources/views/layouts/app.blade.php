@@ -22,44 +22,54 @@
     <x-application-logo style="width: 70px;" />
     <div class="flex items-center mt-2 md:mt-0">
         @if (Route::has('login'))
-            <div class="px-6 py-4">
-                @auth
-                    <div class="flex items-center space-x-4">
-                        <a href="{{ route('profile') }}" class="text-sm text-gray-700 hover:text-gray-900 font-semibold">
-                            Profile
-                        </a>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
+            @auth
+                <div class="flex items-center space-x-4">
+                    <!-- Notification -->
+                    <livewire:comment-notifications/>
 
-                            <a href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                                        this.closest('form').submit();">
-                                {{ __('Log out') }}
+                    <!-- Profile Dropdown -->
+                    <div x-data="{ open: false }" class="relative">
+                        <button @click="open = !open" @click.away="open = false" class="flex items-center space-x-2 focus:outline-none">
+                            <img src="{{ auth()->user()->getAvatar() }}" alt="avatar" class="w-10 h-10 rounded-full">
+                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+
+                        <div x-show="open"
+                             x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="transform opacity-0 scale-95"
+                             x-transition:enter-end="transform opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-75"
+                             x-transition:leave-start="transform opacity-100 scale-100"
+                             x-transition:leave-end="transform opacity-0 scale-95"
+                             class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200"
+                             style="display: none;">
+                            <a href="{{ route('profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                Profile
                             </a>
-                        </form>
-                        <!-- Notification -->
-                        <livewire:comment-notifications/>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault(); this.closest('form').submit();"
+                                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    Logout
+                                </a>
+                            </form>
+                        </div>
                     </div>
-                @else
+                </div>
+            @else
+                <div class="flex items-center space-x-4">
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                        <a href="{{ route('register') }}" class="text-sm text-gray-700 underline">Register</a>
                     @endif
-                @endauth
-            </div>
+                    <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp" alt="avatar"
+                         class="w-10 h-10 rounded-full">
+                </div>
+            @endauth
         @endif
-        @auth
-            <a href="{{ route('profile') }}">
-                <img src="{{ auth()->user()->getAvatar() }}" alt="avatar"
-                     class="w-10 h-10 rounded-full">
-            </a>
-        @else
-            <a href="#">
-                <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp" alt="avatar"
-                     class="w-10 h-10 rounded-full">
-            </a>
-        @endauth
     </div>
 </header>
 
