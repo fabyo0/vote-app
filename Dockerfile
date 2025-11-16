@@ -33,11 +33,21 @@ RUN mkdir -p storage/app/public \
     storage/logs \
     bootstrap/cache
 
-# Set correct permissions (using www-data instead of webuser)
+# Set correct permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 storage bootstrap/cache
 
-# Switch back to www-data
-USER www-data
+# Create entrypoint script to fix permissions on container start
+RUN printf '#!/bin/bash\n\
+set -e\n\
+\n\
+# Fix permissions every time container starts\n\
+chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache\n\
+chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache\n\
+\n\
+# Execute the main command\n\
+exec "$@"\n' > /usr/local/bin/docker-entrypoint.sh \
+    && chmod +x /usr/local/bin/docker-entrypoint.sh
 
-EXPOSE 8080
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
