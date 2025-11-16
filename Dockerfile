@@ -1,35 +1,46 @@
-FROM unit:1.34.1-php8.3
+FROM serversideup/php:8.3-fpm-nginx
 
-RUN apt update && apt install -y \
-    curl unzip git libicu-dev libzip-dev libpng-dev libjpeg-dev libfreetype6-dev libssl-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) pcntl opcache pdo pdo_mysql intl zip gd exif ftp bcmath \
-    && pecl install redis \
-    && docker-php-ext-enable redis
-
-RUN echo "opcache.enable=1" > /usr/local/etc/php/conf.d/custom.ini \
-    && echo "opcache.jit=tracing" >> /usr/local/etc/php/conf.d/custom.ini \
-    && echo "opcache.jit_buffer_size=256M" >> /usr/local/etc/php/conf.d/custom.ini \
-    && echo "memory_limit=512M" > /usr/local/etc/php/conf.d/custom.ini \        
-    && echo "upload_max_filesize=64M" >> /usr/local/etc/php/conf.d/custom.ini \
-    && echo "post_max_size=64M" >> /usr/local/etc/php/conf.d/custom.ini
-
-COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+USER root
 
 WORKDIR /var/www/html
 
-RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache
+# Install PHP extensions
+RUN apt-get update && apt-get install -y \
+    libmagickwand-dev \
+    && docker-php-ext-install exif \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN chown -R unit:unit /var/www/html/storage bootstrap/cache && chmod -R 775 /var/www/html/storage
+# Copy composer files
+COPY composer.json composer.lock* ./
 
+# Install dependencies
+RUN composer install --prefer-dist --no-scripts --no-autoloader --ignore-platform-reqs
+
+# Copy application
 COPY . .
 
-RUN chown -R unit:unit storage bootstrap/cache && chmod -R 775 storage bootstrap/cache
+# Generate optimized autoload
+RUN composer dump-autoload --optimize --no-scripts
 
-RUN composer install --prefer-dist --optimize-autoloader --no-interaction
+# Create directories
+RUN mkdir -p storage/app/public \
+    storage/framework/cache/data \
+    storage/framework/sessions \
+    storage/framework/views \
+    storage/logs \
+    bootstrap/cache
 
-COPY unit.json /docker-entrypoint.d/unit.json
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 777 storage bootstrap/cache
 
-EXPOSE 8000
+# Run Laravel optimizations during build
+RUN php artisan config:cache \
+    && php artisan route:cache \
+    && php artisan view:cache
 
-CMD ["unitd", "--no-daemon"]
+USER www-data
+
+EXPOSE 8080
