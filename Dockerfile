@@ -16,13 +16,13 @@ RUN apt-get update && apt-get install -y \
 # Copy composer files
 COPY composer.json composer.lock* ./
 
-# Install dependencies (WITHOUT --no-dev to include ide-helper)
+# Install dependencies
 RUN composer install --prefer-dist --no-scripts --no-autoloader --ignore-platform-reqs
 
 # Copy application
 COPY . .
 
-# Generate optimized autoload (WITHOUT running scripts that need ide-helper)
+# Generate optimized autoload
 RUN composer dump-autoload --optimize --no-scripts
 
 # Create ALL necessary directories
@@ -33,11 +33,11 @@ RUN mkdir -p storage/app/public \
     storage/logs \
     bootstrap/cache
 
-# Set correct permissions
-RUN chown -R webuser:webgroup /var/www/html \
+# Set correct permissions (using www-data instead of webuser)
+RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 storage bootstrap/cache
 
-# Switch back to webuser
-USER webuser
+# Switch back to www-data
+USER www-data
 
 EXPOSE 8080
