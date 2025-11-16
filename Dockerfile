@@ -16,14 +16,14 @@ RUN apt-get update && apt-get install -y \
 # Copy composer files
 COPY composer.json composer.lock* ./
 
-# Install dependencies
-RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist --ignore-platform-reqs
+# Install dependencies (WITHOUT --no-dev to include ide-helper)
+RUN composer install --prefer-dist --no-scripts --no-autoloader --ignore-platform-reqs
 
 # Copy application
 COPY . .
 
-# Generate optimized autoload
-RUN composer dump-autoload --optimize
+# Generate optimized autoload (WITHOUT running scripts that need ide-helper)
+RUN composer dump-autoload --optimize --no-scripts
 
 # Create ALL necessary directories
 RUN mkdir -p storage/app/public \
