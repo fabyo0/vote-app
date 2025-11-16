@@ -1,11 +1,10 @@
 FROM serversideup/php:8.3-fpm-nginx
 
-# Switch to root for installations
 USER root
 
 WORKDIR /var/www/html
 
-# Install system dependencies and PHP extensions
+# Install PHP extensions
 RUN apt-get update && apt-get install -y \
     libmagickwand-dev \
     && docker-php-ext-install exif \
@@ -25,7 +24,7 @@ COPY . .
 # Generate optimized autoload
 RUN composer dump-autoload --optimize --no-scripts
 
-# Create ALL necessary directories
+# Create directories
 RUN mkdir -p storage/app/public \
     storage/framework/cache/data \
     storage/framework/sessions \
@@ -33,21 +32,15 @@ RUN mkdir -p storage/app/public \
     storage/logs \
     bootstrap/cache
 
-# Set correct permissions
+# Set permissions
 RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 775 storage bootstrap/cache
+    && chmod -R 777 storage bootstrap/cache
 
-# Create entrypoint script to fix permissions on container start
-RUN printf '#!/bin/bash\n\
-set -e\n\
-\n\
-# Fix permissions every time container starts\n\
-chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache\n\
-chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache\n\
-\n\
-# Execute the main command\n\
-exec "$@"\n' > /usr/local/bin/docker-entrypoint.sh \
-    && chmod +x /usr/local/bin/docker-entrypoint.sh
+# Run Laravel optimizations during build
+RUN php artisan config:cache \
+    && php artisan route:cache \
+    && php artisan view:cache
 
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+USER www-data
+
+EXPOSE 8080
