@@ -16,6 +16,9 @@ class CommentAdded extends Notification implements ShouldBroadcast
 {
     use Queueable;
 
+    /**
+     * @var \App\Models\Comment
+     */
     public $comment;
 
     /**
@@ -32,12 +35,11 @@ class CommentAdded extends Notification implements ShouldBroadcast
      * Get the notification's delivery channels.
      *
      * @param  mixed  $notifiable
-     * @return array
      */
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         $channels = Setting::get('notification_channels', 'database,broadcast');
-        return array_map('trim', explode(',', $channels));
+        return array_map(trim(...), explode(',', $channels));
     }
 
     /**
@@ -57,10 +59,8 @@ class CommentAdded extends Notification implements ShouldBroadcast
 
     /**
      * Get the array representation of the notification.
-     *
-     * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'comment_id' => $this->comment->id,
@@ -77,9 +77,8 @@ class CommentAdded extends Notification implements ShouldBroadcast
      * Get the broadcastable representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return BroadcastMessage
      */
-    public function toBroadcast($notifiable)
+    public function toBroadcast($notifiable): \Illuminate\Notifications\Messages\BroadcastMessage
     {
         return new BroadcastMessage([
             'comment_id' => $this->comment->id,
@@ -89,7 +88,7 @@ class CommentAdded extends Notification implements ShouldBroadcast
             'idea_id' => $this->comment->idea->id,
             'idea_slug' => $this->comment->idea->slug,
             'idea_title' => $this->comment->idea->title,
-            'type' => 'App\Notifications\CommentAdded',
+            'type' => \App\Notifications\CommentAdded::class,
         ]);
     }
 }

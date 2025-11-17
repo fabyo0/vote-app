@@ -98,7 +98,7 @@ class CreateIdea extends Component
         ]);
     }
 
-    private function formatFileSize($bytes)
+    private function formatFileSize($bytes): string
     {
         if ($bytes < 1024) {
             return $bytes . ' B';

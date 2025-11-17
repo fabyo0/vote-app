@@ -27,7 +27,7 @@ class IdeaShow extends Component
         'ideaWasUpdating' => '$refresh',
     ];
 
-    public function mount(Idea $idea, $votesCount): void
+    public function mount(Idea $idea, int $votesCount): void
     {
         $this->idea = $idea;
         $this->votesCount = $votesCount;
@@ -73,7 +73,7 @@ class IdeaShow extends Component
         }
     }
 
-    public function getImagesProperty()
+    public function getImagesProperty(): \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection
     {
         return $this->idea->getMedia('images');
     }

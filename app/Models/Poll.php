@@ -47,7 +47,7 @@ class Poll extends Model
 
     public function hasVotedByUser(?User $user): bool
     {
-        if (!$user) {
+        if (!$user instanceof \App\Models\User) {
             return false;
         }
 

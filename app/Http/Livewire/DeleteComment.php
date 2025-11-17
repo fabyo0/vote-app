@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DeleteComment extends Component
 {
-    public ?Comment $comment;
+    public ?Comment $comment = null;
 
     public $body;
 

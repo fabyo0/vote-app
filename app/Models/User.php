@@ -125,7 +125,7 @@ class User extends Authenticatable implements HasMedia
      */
     public function isFollowedBy(?User $user): bool
     {
-        if (! $user) {
+        if (!$user instanceof \App\Models\User) {
             return false;
         }
 
@@ -162,13 +162,10 @@ class User extends Authenticatable implements HasMedia
         return $this->following()->where('following_id', $user->id)->exists();
     }
 
-    /**
-     * @return mixed
-     */
     public function getAvatar(): mixed
     {
         $avatarUrl = $this->getFirstMediaUrl('avatar');
-        if ($avatarUrl) {
+        if ($avatarUrl !== '' && $avatarUrl !== '0') {
             return $avatarUrl;
         }
 
@@ -221,7 +218,7 @@ class User extends Authenticatable implements HasMedia
     public function resolveRouteBinding($value, $field = null)
     {
         // Remove @ prefix if present
-        $value = ltrim($value, '@');
+        $value = ltrim((string) $value, '@');
 
         return $this->where('username', $value)->firstOrFail();
     }

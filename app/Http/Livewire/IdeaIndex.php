@@ -18,7 +18,7 @@ class IdeaIndex extends Component
 
     public $hasVoted;
 
-    public function mount(Idea $idea, $votesCount): void
+    public function mount(Idea $idea, int $votesCount): void
     {
         $this->idea = $idea;
         $this->votesCount = $votesCount;

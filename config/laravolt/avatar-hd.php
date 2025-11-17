@@ -121,7 +121,7 @@ return [
         'disk' => env('AVATAR_STORAGE_DISK', 'local'),
 
         // CDN URL for serving images
-        'cdn_url' => env('AVATAR_CDN_URL', null),
+        'cdn_url' => env('AVATAR_CDN_URL'),
 
         // Enable storage metrics
         'metrics' => env('AVATAR_STORAGE_METRICS', false),

@@ -15,7 +15,7 @@ class AddComment extends Component
 {
     public $idea;
     public $comment;
-    public $parentComment = null;
+    public $parentComment;
 
     protected $rules = [
         'comment' => 'required|min:4',

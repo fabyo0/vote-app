@@ -49,9 +49,9 @@ class CommentNotifications extends Component
         $notification->markAsRead();
 
         // Handle different notification types
-        if ($notification->type === 'App\Notifications\CommentAdded') {
+        if ($notification->type === \App\Notifications\CommentAdded::class) {
             $this->scrollToComment($notification);
-        } elseif ($notification->type === 'App\Notifications\NewFollower') {
+        } elseif ($notification->type === \App\Notifications\NewFollower::class) {
             $username = $notification->data['follower_username'] ?? $notification->data['follower_id'];
             return redirect()->route('user.show', '@' . $username);
         }

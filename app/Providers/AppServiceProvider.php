@@ -17,8 +17,6 @@ final class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
     public function register(): void
     {
@@ -27,8 +25,6 @@ final class AppServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -41,7 +37,7 @@ final class AppServiceProvider extends ServiceProvider
 
     private function adminBladeDirective(): void
     {
-        Blade::if('admin', fn() => auth()->check() && auth()->user()->isAdmin());
+        Blade::if('admin', fn(): bool => auth()->check() && auth()->user()->isAdmin());
     }
 
 
@@ -57,11 +53,6 @@ final class AppServiceProvider extends ServiceProvider
             : Password::min(6));
     }
 
-    private function configureModels(): void
-    {
-        Model::shouldBeStrict( ! $this->app->isProduction());
-    }
-
     /**
      * Configure query logging for development
      */
@@ -69,7 +60,7 @@ final class AppServiceProvider extends ServiceProvider
     {
         // N+1 Query Detection
         DB::listen(function ($query): void {
-            if (str_contains($query->sql, 'select * from')) {
+            if (str_contains((string) $query->sql, 'select * from')) {
                 $backtrace = collect(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 10))
                     ->filter(fn($trace): bool => isset($trace['file']) &&
                         ! str_contains($trace['file'], '/vendor/') &&

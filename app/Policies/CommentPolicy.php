@@ -17,7 +17,7 @@ class CommentPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Comment $comment)
+    public function update(User $user, Comment $comment): bool
     {
         return $user->id === $comment->user_id;
     }
@@ -27,7 +27,7 @@ class CommentPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Comment $comment)
+    public function delete(User $user, Comment $comment): bool
     {
         return $user->id === $comment->user_id
             || $user->isAdmin();

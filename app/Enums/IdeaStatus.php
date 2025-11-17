@@ -18,7 +18,7 @@ enum IdeaStatus: int
      */
     public static function getActiveStatuses(): array
     {
-        return array_filter(self::cases(), fn($status) => self::All !== $status);
+        return array_filter(self::cases(), fn(\App\Enums\IdeaStatus $status): bool => self::All !== $status);
     }
 
     /**
@@ -27,7 +27,7 @@ enum IdeaStatus: int
     public static function getOptions(): array
     {
         return collect(self::cases())
-            ->mapWithKeys(fn($status) => [$status->value => $status->getName()])
+            ->mapWithKeys(fn($status): array => [$status->value => $status->getName()])
             ->toArray();
     }
 
@@ -37,7 +37,7 @@ enum IdeaStatus: int
     public static function getActiveOptions(): array
     {
         return collect(self::getActiveStatuses())
-            ->mapWithKeys(fn($status) => [$status->value => $status->getName()])
+            ->mapWithKeys(fn($status): array => [$status->value => $status->getName()])
             ->toArray();
     }
 
@@ -131,7 +131,7 @@ enum IdeaStatus: int
     {
         return array_filter(
             self::getActiveStatuses(),
-            fn($status) => $this->canTransitionTo($status),
+            $this->canTransitionTo(...),
         );
     }
 }

@@ -14,7 +14,7 @@ class PollComponent extends Component
 {
     public Poll $poll;
     public Idea $idea;
-    public $selectedOption = null;
+    public $selectedOption;
     public $showResults = false;
     public $voteCounts = [];
 

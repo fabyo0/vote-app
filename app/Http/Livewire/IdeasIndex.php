@@ -45,10 +45,8 @@ class IdeasIndex extends Component
 
     public function updatedFilter()
     {
-        if ('My Ideas' === $this->filter) {
-            if (auth()->guest()) {
-                return Redirect::route('login');
-            }
+        if ('My Ideas' === $this->filter && auth()->guest()) {
+            return Redirect::route('login');
         }
     }
 

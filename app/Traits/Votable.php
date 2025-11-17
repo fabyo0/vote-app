@@ -15,7 +15,7 @@ trait Votable
      */
     public function isVotedByUser(?User $user): bool
     {
-        if ( ! $user) {
+        if ( !$user instanceof \App\Models\User) {
             return false;
         }
 

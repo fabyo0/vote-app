@@ -36,7 +36,7 @@ class UserFactory extends Factory
 
     public function admin()
     {
-        return $this->state(fn(array $attribute) => [
+        return $this->state(fn(array $attribute): array => [
             'email' => 'emredikmen002@gmail.com',
         ]);
     }
@@ -48,7 +48,7 @@ class UserFactory extends Factory
      */
     public function unverified()
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn(array $attributes): array => [
             'email_verified_at' => null,
         ]);
     }

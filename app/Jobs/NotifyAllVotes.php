@@ -20,6 +20,9 @@ class NotifyAllVotes implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
+    /**
+     * @var \App\Models\Idea
+     */
     public $idea;
 
     /**

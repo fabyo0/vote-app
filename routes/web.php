@@ -11,14 +11,10 @@ Route::get('/', [IdeaController::class, 'index'])->name('idea.index');
 
 Route::get('/ideas/{idea:slug}', [IdeaController::class, 'show'])->name('idea.show');
 
-Route::get('/@{user}', function (User $user) {
-    return view('user-profile-show', ['user' => $user]);
-})->name('user.show');
+Route::get('/@{user}', fn(User $user) => view('user-profile-show', ['user' => $user]))->name('user.show');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', function () {
-        return view('profile');
-    })->name('profile');
+Route::middleware('auth')->group(function (): void {
+    Route::get('/profile', fn() => view('profile'))->name('profile');
 
     Route::get('/admin/settings', function () {
         if (!auth()->user()->isAdmin()) {

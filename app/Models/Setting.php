@@ -51,7 +51,7 @@ class Setting extends Model
         return match($type) {
             'boolean' => (bool) $value,
             'integer' => (int) $value,
-            'json' => json_decode($value, true),
+            'json' => json_decode((string) $value, true),
             default => $value,
         };
     }

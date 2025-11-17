@@ -33,7 +33,7 @@ class IdeaPolicy
      *
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Idea $idea)
+    public function delete(User $user, Idea $idea): bool
     {
         return $idea->user_id === $user->id || $user->isAdmin();
     }

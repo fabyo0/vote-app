@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('polls', function (Blueprint $table) {
+        Schema::create('polls', function (Blueprint $table): void {
             $table->id();
             $table->foreignId('idea_id')->constrained()->onDelete('cascade');
             $table->string('question');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('poll_votes', function (Blueprint $table) {
+        Schema::create('poll_votes', function (Blueprint $table): void {
             $table->id();
             $table->foreignId('poll_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
