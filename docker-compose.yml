@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vote-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+      - ./storage:/var/www/html/storage
+    ports:
+      - "8080:8080"
+    environment:
+      - APP_ENV=${APP_ENV:-local}
+      - APP_DEBUG=${APP_DEBUG:-true}
+      - DB_CONNECTION=mysql
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_DATABASE:-vote_app}
+      - DB_USERNAME=${DB_USERNAME:-root}
+      - DB_PASSWORD=${DB_PASSWORD:-secret}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MAIL_HOST=mailhog
+      - MAIL_PORT=1025
+    depends_on:
+      - mysql
+      - redis
+      - mailhog
+    networks:
+      - vote-app-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: vote-app-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-secret}
+      MYSQL_DATABASE: ${DB_DATABASE:-vote_app}
+      MYSQL_USER: ${DB_USERNAME:-root}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - vote-app-network
+    command: --default-authentication-plugin=mysql_native_password
+
+  redis:
+    image: redis:alpine
+    container_name: vote-app-redis
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    networks:
+      - vote-app-network
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: vote-app-mailhog
+    restart: unless-stopped
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - vote-app-network
+
+networks:
+  vote-app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local

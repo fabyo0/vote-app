@@ -4,25 +4,33 @@ USER root
 
 WORKDIR /var/www/html
 
-# Install PHP extensions
+# Install PHP extensions and system dependencies
 RUN apt-get update && apt-get install -y \
     libmagickwand-dev \
-    && docker-php-ext-install exif \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    zip \
+    unzip \
+    git \
+    curl \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install exif pdo_mysql gd \
     && pecl install imagick \
     && docker-php-ext-enable imagick \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copy composer files
-COPY composer.json composer.lock* ./
+# Copy composer files first for better layer caching
+COPY composer.json composer.lock ./
 
 # Install dependencies
-RUN composer install --prefer-dist --no-scripts --no-autoloader --ignore-platform-reqs
+RUN composer install --prefer-dist --no-scripts --no-autoloader --no-dev --ignore-platform-reqs
 
 # Copy application
 COPY . .
 
 # Generate optimized autoload
-RUN composer dump-autoload --optimize --no-scripts
+RUN composer dump-autoload --optimize
 
 # Create directories
 RUN mkdir -p storage/app/public \
@@ -34,13 +42,14 @@ RUN mkdir -p storage/app/public \
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 777 storage bootstrap/cache
+    && chmod -R 775 storage bootstrap/cache
 
-# Run Laravel optimizations during build
-RUN php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache
+# Copy startup script
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 USER www-data
 
 EXPOSE 8080
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
