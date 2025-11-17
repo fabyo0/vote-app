@@ -36,7 +36,7 @@ class AddCommentsTest extends TestCase
     /** @test */
     public function test_add_comments_livewire_component_renders()
     {
-        $response = $this->get(route('idea.show', $this->idea));
+        $response = $this->actingAs($this->user)->get(route('idea.show', $this->idea));
 
         $response->assertSeeLivewire('add-comment');
     }

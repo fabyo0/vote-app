@@ -186,7 +186,7 @@ class ShowCommentsTest extends TestCase
 
         $this->actingAs($this->user)
             ->get(route('idea.show', $this->idea))
-            ->assertDontSee('OP');
+            ->assertDontSeeLivewire('OP');
     }
 
     /** @test */
