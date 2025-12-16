@@ -78,8 +78,7 @@ A modern, full-featured voting platform built with Laravel 10 and Livewire. Subm
 ---
 
 ## 🎯 Demo
-
-> **Live Demo:** [Coming Soon]
+> **Live Demo:** [https://vote-app.on-forge.com/](https://vote-app.on-forge.com/)
 
 **Test Credentials:**
 ```
