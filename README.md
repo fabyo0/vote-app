@@ -82,8 +82,8 @@ A modern, full-featured voting platform built with Laravel 10 and Livewire. Subm
 
 **Test Credentials:**
 ```
-Email: demo@example.com
-Password: password
+Email: demo@demo.com
+Password: Pa$$w0rd!
 ```
 
 ---
